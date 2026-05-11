@@ -29,7 +29,7 @@
 
 // Artificial pressure reference distance and exponent (Macklin & Muller eq. 13).
 #define SCORR_DELTA_Q     (0.2f * H)
-#define SCORR_N           3.0f
+#define SCORR_N           4.0f
 
 // Grid dimensions: gridDim cells per axis, each of width H/CELL_PER_H.
 #define GRID_DIM          128 // cells per axis; SpatialGrid supports up to 128 (5-pass Blelloch)
