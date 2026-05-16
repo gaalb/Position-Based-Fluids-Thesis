@@ -115,7 +115,7 @@ void InitDX12(
     com_ptr<ID3D12Device>& device) {
     DX_API("Failed to create debug layer")
         D3D12GetDebugInterface(IID_PPV_ARGS(debugController.GetAddressOf()));
-    debugController->EnableDebugLayer(); // turn on the debug layer - causes D3D12 to validate API calls
+    //debugController->EnableDebugLayer(); // turn on the debug layer - causes D3D12 to validate API calls
     DX_API("Failed to create DXGI factory")
         CreateDXGIFactory1(IID_PPV_ARGS(dxgiFactory.GetAddressOf()));
 

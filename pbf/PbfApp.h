@@ -94,7 +94,7 @@ protected:
 	float epsilon = 4.0f; // constraint force mixing relaxation parameter, higher value = softer constraints
 	float viscosity = 0.005f; // // XSPH viscosity coefficient, higher value = "thicker" fluid, M&M: 0.01
 	// artificial purely repulsive pressure term reduces clumping while leaving room for surface tension,
-	float sCorrK = 0.02f; // artificial pressure magnitude coefficient M&M: 0.1
+	float sCorrK = 0.015f; // artificial pressure magnitude coefficient M&M: 0.1
 	float vorticityEpsilon = 0.01f; // vorticity confinement strength M&M: 0.01
 	float adhesion = 0.01f; // tangential velocity damping on wall contact (0 = frictionless, 1 = full stop)
 	bool fountainEnabled = false; // toggle for the upward jet in a corner of the box, like a fountain :)
