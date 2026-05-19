@@ -23,13 +23,13 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="5.6568543"
-     inkscape:cx="415.6904"
-     inkscape:cy="455.64193"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="415.24846"
+     inkscape:cy="418.78399"
      inkscape:window-width="1920"
-     inkscape:window-height="991"
-     inkscape:window-x="2391"
-     inkscape:window-y="592"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg1" />
   <defs
@@ -79,174 +79,373 @@
        lpeversion="1"
        end_type="open_both" />
   </defs>
-  <rect
-     style="opacity:1;fill:#00ff00;fill-opacity:1;stroke:#020202;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
-     id="rect60"
-     width="26.589388"
-     height="4.4149995"
-     x="85.780022"
-     y="114.95589" />
   <g
-     id="g33"
-     style="stroke-width:1.00025"
-     transform="matrix(0.99951006,0,0,1,-3.7961795,-8.2711507)">
+     id="g16"
+     transform="translate(27.58584,22.441413)">
     <rect
-       style="opacity:1;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:0.20004901;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#800000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
        id="rect33"
-       width="29.729849"
+       width="33.578667"
        height="4.4148436"
-       x="59.690186"
-       y="114.3972" />
+       x="21.725143"
+       y="80.351166" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.17578px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.200049;stroke-dasharray:none;stroke-opacity:1"
-       x="60.36058"
-       y="117.52019"
-       id="text33"
-       transform="scale(1.0002451,0.99975497)"><tspan
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="22.455769"
+       y="83.445358"
+       id="text33"><tspan
          sodipodi:role="line"
          id="tspan33"
-         style="stroke-width:0.200049"
-         x="60.36058"
-         y="117.52019">Wait compute N</tspan></text>
+         style="stroke-width:0.2"
+         x="22.455769"
+         y="83.445358">Wait compute N-1</tspan></text>
   </g>
   <g
-     id="g32-1"
-     transform="matrix(1.1270167,0,0,1,0.01020962,42.415897)"
-     style="stroke-width:0.941966">
-    <g
-       id="g33-2"
-       transform="matrix(1.3163598,0,0,1,17.148879,-9.1172951)"
-       style="stroke-width:0.821008">
-      <path
-         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.410503;stroke-dasharray:none;stroke-opacity:1"
-         d="M 29.971262,30.1785 H 56.522754"
-         id="path11-3" />
-      <path
-         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.410503;stroke-dasharray:none;stroke-opacity:1"
-         d="m 29.971262,27.6785 v 5"
-         id="path12-8-3" />
-      <path
-         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.410503;stroke-dasharray:none;stroke-opacity:1"
-         d="m 56.522754,27.6785 v 5"
-         id="path12-8-5-4" />
-    </g>
+     id="g20">
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.499998;stroke-dasharray:none;stroke-opacity:1"
+       d="M 49.674902,99.1173 H 140.89146"
+       id="path11-3" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.499998;stroke-dasharray:none;stroke-opacity:1"
+       d="m 49.674902,96.6173 v 5"
+       id="path12-8-3" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.499998;stroke-dasharray:none;stroke-opacity:1"
+       d="m 140.89146,96.6173 v 5"
+       id="path12-8-5-4" />
     <text
        xml:space="preserve"
-       style="font-size:2.99073927px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.188393;stroke-dasharray:none;stroke-opacity:1"
-       x="65.810562"
-       y="19.743303"
-       id="text12-1"><tspan
+       style="font-size:3.175px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="81.486496"
+       y="104.07212"
+       id="text12-1"
+       transform="scale(1.0616104,0.94196515)"><tspan
          sodipodi:role="line"
          id="tspan12-1"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.188393;stroke-dasharray:none;stroke-opacity:1;font-size:2.99073927px"
-         x="65.810562"
-         y="19.743303">Render N</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+         x="81.486496"
+         y="104.07212">Render N</tspan></text>
   </g>
-  <path
-     style="opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:#000000;stroke-width:0.498433;stroke-dasharray:none;stroke-opacity:1"
-     d="M 85.430802,115.25592 V 94.288156"
-     id="path54" />
   <g
-     id="g58"
-     transform="translate(-17.153491,-4.2348863)">
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
-       id="rect56"
-       width="27.806627"
-       height="7.970727"
-       x="102.48508"
-       y="98.673042" />
+     id="g20-0"
+     transform="translate(92.324271)">
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.499998;stroke-dasharray:none;stroke-opacity:1"
+       d="M 49.674902,99.1173 H 140.89146"
+       id="path11-3-2" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.499998;stroke-dasharray:none;stroke-opacity:1"
+       d="m 49.674902,96.6173 v 5"
+       id="path12-8-3-8" />
+    <path
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.499998;stroke-dasharray:none;stroke-opacity:1"
+       d="m 140.89146,96.6173 v 5"
+       id="path12-8-5-4-6" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
-       x="103.25843"
-       y="100.61689"
-       id="text57"><tspan
+       style="font-size:3.175px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="47.852184"
+       y="104.07212"
+       id="text12-1-0"
+       transform="scale(1.0616104,0.94196515)"><tspan
          sodipodi:role="line"
-         id="tspan57"
-         style="font-size:2.11667px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-opacity:1"
-         x="103.25843"
-         y="100.61689">Flip buffers</tspan><tspan
-         sodipodi:role="line"
-         style="font-size:2.11667px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-opacity:1"
-         x="103.25843"
-         y="103.26273"
-         id="tspan58">Dispatch compute N</tspan><tspan
-         sodipodi:role="line"
-         style="font-size:2.11667px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-opacity:1"
-         x="103.25843"
-         y="105.90856"
-         id="tspan59">Dispatch graphics N-1</tspan></text>
-  </g>
-  <rect
-     style="opacity:1;fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
-     id="rect58"
-     width="42.354706"
-     height="4.415"
-     x="85.780022"
-     y="110.74092" />
-  <text
-     xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
-     x="98.304794"
-     y="113.51044"
-     id="text60"><tspan
-       sodipodi:role="line"
-       id="tspan60"
-       style="font-size:2.82222px;stroke-width:0.2"
-       x="98.304794"
-       y="113.51044">Compute N</tspan></text>
-  <text
-     xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82223px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
-     x="88.87043"
-     y="117.95163"
-     id="text61"><tspan
-       sodipodi:role="line"
-       id="tspan61"
-       style="stroke-width:0.2"
-       x="88.87043"
-       y="117.95163">Graphics N-1</tspan></text>
-  <path
-     style="fill:#1a1a1a;fill-opacity:1;stroke:#000000;stroke-width:0.45037;stroke-dasharray:none;stroke-opacity:1"
-     d="M 112.16363,128.30695 V 114.95589"
-     id="path54-4" />
-  <rect
-     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.286286;stroke-dasharray:none;stroke-opacity:1"
-     id="rect56-6"
-     width="27.806627"
-     height="7.970727"
-     x="112.16363"
-     y="120.33623" />
-  <g
-     id="g63"
-     transform="translate(-0.19453735,-0.03396096)">
-    <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
-       id="rect56-6-8"
-       width="21.112032"
-       height="4.2621946"
-       x="86.024559"
-       y="121.63142" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
-       x="87.087082"
-       y="124.3537"
-       id="text62"><tspan
-         sodipodi:role="line"
-         id="tspan62"
-         style="stroke-width:0.2"
-         x="87.087082"
-         y="124.3537">Wait N-1: no-op</tspan></text>
+         id="tspan12-1-2"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+         x="47.852184"
+         y="104.07212">Render N+1</tspan></text>
   </g>
   <g
-     id="g62"
-     transform="translate(-0.14924464,0.10002797)">
+     id="g17">
     <rect
        style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
        id="rect58-4"
+       width="51.582489"
+       height="4.415"
+       x="96.817513"
+       y="107.40742" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="109.32288"
+       y="110.37698"
+       id="text60-0"><tspan
+         sodipodi:role="line"
+         id="tspan60-7"
+         style="font-size:2.82222px;stroke-width:0.2"
+         x="109.32288"
+         y="110.37698">Compute N</tspan></text>
+  </g>
+  <g
+     id="g6"
+     transform="translate(15.932283,-25.886065)">
+    <g
+       id="g2"
+       transform="translate(11.64627,-8.0036463)">
+      <rect
+         style="opacity:1;fill:#00ff00;fill-opacity:1;stroke:#020202;stroke-width:0.269563;stroke-dasharray:none;stroke-opacity:1"
+         id="rect60"
+         width="21.439575"
+         height="4.3454366"
+         x="80.920013"
+         y="145.94691" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82223px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+         x="81.416107"
+         y="148.90787"
+         id="text61"><tspan
+           sodipodi:role="line"
+           id="tspan61"
+           style="stroke-width:0.2"
+           x="81.416107"
+           y="148.90787">Graphics N-1</tspan></text>
+    </g>
+    <g
+       id="g9"
+       transform="translate(-0.16913473,-8.1742157)">
+      <rect
+         style="fill:#008000;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+         id="rect2"
+         width="11.408624"
+         height="4.4149995"
+         x="81.054367"
+         y="146.0827" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.41111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+         x="81.23275"
+         y="147.80238"
+         id="text3"><tspan
+           sodipodi:role="line"
+           id="tspan3"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.41111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#000000;fill-opacity:1;stroke-width:0.264583"
+           x="81.23275"
+           y="147.80238">Wait compute </tspan><tspan
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.41111px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#000000;fill-opacity:1;stroke-width:0.264583"
+           x="81.23275"
+           y="149.56627"
+           id="tspan4">N-1 (no-op)</tspan></text>
+    </g>
+  </g>
+  <g
+     id="g14"
+     transform="translate(21.016065,0.42418542)">
+    <rect
+       style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       id="rect33-2"
+       width="13.527864"
+       height="4.4148436"
+       x="62.073586"
+       y="102.36839" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.05833px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="62.272564"
+       y="103.54823"
+       id="text33-4"><tspan
+         sodipodi:role="line"
+         style="font-size:1.05833px;stroke-width:0.2"
+         x="62.272564"
+         y="103.54823"
+         id="tspan6">Flip buffers </tspan><tspan
+         sodipodi:role="line"
+         style="font-size:1.05833px;stroke-width:0.2"
+         x="62.272564"
+         y="104.87115"
+         id="tspan13">Dispatch compute N</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:1.05833px;stroke-width:0.2"
+         x="62.272564"
+         y="106.19406"
+         id="tspan7">Dispatch graphics N-1</tspan></text>
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82223px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+     x="129.30011"
+     y="96.109894"
+     id="text9"><tspan
+       sodipodi:role="line"
+       id="tspan9"
+       style="stroke-width:0.2;fill:#000000;fill-opacity:1;stroke:none"
+       x="129.30011"
+       y="96.109894" /></text>
+  <g
+     id="g10"
+     transform="translate(26.690273,13.096868)">
+    <rect
+       style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.200001;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8"
+       width="10.494025"
+       height="4.4150023"
+       x="121.90973"
+       y="94.310547" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="122.26453"
+       y="97.103546"
+       id="text10"><tspan
+         sodipodi:role="line"
+         id="tspan10"
+         style="font-size:2.11667px;stroke-width:0.2"
+         x="122.26453"
+         y="97.103546">Signal N</tspan></text>
+  </g>
+  <g
+     id="g12">
+    <rect
+       style="fill:#b3ff80;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       id="rect11"
+       width="11.086324"
+       height="4.4149985"
+       x="130.17293"
+       y="112.02242" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.76389px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="130.59151"
+       y="114.71783"
+       id="text10-1"><tspan
+         sodipodi:role="line"
+         id="tspan10-5"
+         style="font-size:1.76389px;stroke-width:0.2"
+         x="130.59151"
+         y="114.71783">Signal N-1</tspan></text>
+  </g>
+  <g
+     id="g13"
+     transform="translate(-118.60418,27.384847)">
+    <rect
+       style="fill:#e3f4d7;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       id="rect12"
+       width="8.2069921"
+       height="4.4149985"
+       x="141.45926"
+       y="112.02242" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="141.95911"
+       y="115.41202"
+       id="text12"><tspan
+         sodipodi:role="line"
+         id="tspan12"
+         style="font-size:3.175px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2"
+         x="141.95911"
+         y="115.41202">Idle</tspan></text>
+  </g>
+  <g
+     id="g21">
+    <rect
+       style="fill:#00ff00;fill-opacity:1;stroke:#020202;stroke-width:0.269563;stroke-dasharray:none;stroke-opacity:1"
+       id="rect60-9"
+       width="37.238049"
+       height="4.3454366"
+       x="29.41098"
+       y="112.05721" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="50.485638"
+       y="114.82111"
+       id="text61-0"><tspan
+         sodipodi:role="line"
+         id="tspan61-0"
+         style="font-size:2.11667px;stroke-width:0.2"
+         x="50.485638"
+         y="114.82111">Graphics N-2</tspan></text>
+  </g>
+  <g
+     id="g12-3"
+     transform="translate(-63.123758,1.1817646)">
+    <rect
+       style="fill:#b3ff80;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       id="rect11-4"
+       width="11.086324"
+       height="4.4149985"
+       x="130.00757"
+       y="110.84067" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.76389px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="130.42615"
+       y="113.53606"
+       id="text10-1-4"><tspan
+         sodipodi:role="line"
+         id="tspan10-5-6"
+         style="font-size:1.76389px;stroke-width:0.2"
+         x="130.42615"
+         y="113.53606">Signal N-2</tspan></text>
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.05833px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+     x="63.586761"
+     y="100.18598"
+     id="text14"><tspan
+       sodipodi:role="line"
+       id="tspan14"
+       style="stroke-width:0.2"></tspan></text>
+  <g
+     id="g11-1"
+     transform="translate(-4.642475,-17.496771)">
+    <g
+       id="g15">
+      <rect
+         style="fill:#800000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+         id="rect33-4"
+         width="44.441734"
+         height="4.4148436"
+         x="101.45999"
+         y="120.28935" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+         x="107.72524"
+         y="123.37502"
+         id="text33-2"><tspan
+           sodipodi:role="line"
+           id="tspan33-3"
+           style="stroke-width:0.2"
+           x="107.72524"
+           y="123.37502">Wait graphics N-1</tspan></text>
+    </g>
+  </g>
+  <g
+     id="g11-1-8"
+     transform="translate(-96.790742,-17.496774)">
+    <g
+       id="g15-8">
+      <rect
+         style="fill:#800000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+         id="rect33-4-2"
+         width="44.441734"
+         height="4.4148436"
+         x="101.45999"
+         y="120.28935" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+         x="107.72524"
+         y="123.37502"
+         id="text33-2-9"><tspan
+           sodipodi:role="line"
+           id="tspan33-3-1"
+           style="stroke-width:0.2"
+           x="107.72524"
+           y="123.37502">Wait graphics N-2</tspan></text>
+    </g>
+  </g>
+  <g
+     id="g62-6"
+     transform="translate(-13.499927,-3.2334697)">
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       id="rect58-4-8"
        width="42.354706"
        height="4.415"
        x="42.876125"
@@ -254,17 +453,68 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
-       x="55.381493"
+       x="63.70694"
        y="113.61044"
-       id="text60-0"><tspan
+       id="text60-0-5"><tspan
          sodipodi:role="line"
-         id="tspan60-7"
+         id="tspan60-7-7"
          style="font-size:2.82222px;stroke-width:0.2"
-         x="55.381493"
-         y="113.61044">Compute N</tspan></text>
+         x="63.70694"
+         y="113.61044">Compute N-1</tspan></text>
   </g>
-  <path
-     style="fill:#1a1a1a;fill-opacity:1;stroke:#000000;stroke-width:0.45037;stroke-dasharray:none;stroke-opacity:1"
-     d="M 85.905207,126.00965 V 115.25592"
-     id="path54-4-8" />
+  <g
+     id="g10-6"
+     transform="translate(-49.098784,15.404369)">
+    <g
+       id="g18"
+       transform="translate(-0.88004802,-2.307493)">
+      <rect
+         style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.200001;stroke-dasharray:none;stroke-opacity:1"
+         id="rect8-1"
+         width="10.958745"
+         height="4.4150023"
+         x="121.90974"
+         y="94.310547" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.76389px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+         x="122.26453"
+         y="97.103546"
+         id="text10-8"><tspan
+           sodipodi:role="line"
+           id="tspan10-9"
+           style="font-size:1.76389px;stroke-width:0.2"
+           x="122.26453"
+           y="97.103546">Signal N-1</tspan></text>
+    </g>
+  </g>
+  <g
+     id="g16-5"
+     transform="translate(119.72851,22.441406)">
+    <rect
+       style="fill:#800000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       id="rect33-43"
+       width="45.683353"
+       height="4.4148436"
+       x="21.725143"
+       y="80.351166" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="22.455769"
+       y="83.445358"
+       id="text33-1"><tspan
+         sodipodi:role="line"
+         id="tspan33-2"
+         style="stroke-width:0.2"
+         x="22.455769"
+         y="83.445358">Wait compute N</tspan></text>
+  </g>
+  <rect
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.0999998;stroke-dasharray:none;stroke-opacity:1"
+     id="rect21"
+     width="123.67442"
+     height="22.604353"
+     x="47.627617"
+     y="94.79184" />
 </svg>
