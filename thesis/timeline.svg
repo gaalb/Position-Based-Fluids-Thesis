@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="297mm"
+   height="210mm"
+   viewBox="0 0 297 210"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="timeline.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="5.6568543"
+     inkscape:cx="415.6904"
+     inkscape:cy="455.64193"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="2391"
+     inkscape:window-y="592"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <defs
+     id="defs1">
+    <linearGradient
+       id="swatch56"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop56" />
+    </linearGradient>
+    <linearGradient
+       id="swatch55"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop55" />
+    </linearGradient>
+    <linearGradient
+       id="swatch18"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop18" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="parallel"
+       offset_pt="66.221281,-64.35554"
+       id="path-effect4"
+       is_visible="true"
+       lpeversion="1"
+       length-left="150"
+       length-right="150" />
+    <inkscape:path-effect
+       effect="line_segment"
+       id="path-effect3"
+       is_visible="true"
+       lpeversion="1"
+       end_type="open_both" />
+    <inkscape:path-effect
+       effect="line_segment"
+       id="path-effect2"
+       is_visible="true"
+       lpeversion="1"
+       end_type="open_both" />
+  </defs>
+  <rect
+     style="opacity:1;fill:#00ff00;fill-opacity:1;stroke:#020202;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+     id="rect60"
+     width="26.589388"
+     height="4.4149995"
+     x="85.780022"
+     y="114.95589" />
+  <g
+     id="g33"
+     style="stroke-width:1.00025"
+     transform="matrix(0.99951006,0,0,1,-3.7961795,-8.2711507)">
+    <rect
+       style="opacity:1;fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:0.20004901;stroke-dasharray:none;stroke-opacity:1"
+       id="rect33"
+       width="29.729849"
+       height="4.4148436"
+       x="59.690186"
+       y="114.3972" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.17578px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.200049;stroke-dasharray:none;stroke-opacity:1"
+       x="60.36058"
+       y="117.52019"
+       id="text33"
+       transform="scale(1.0002451,0.99975497)"><tspan
+         sodipodi:role="line"
+         id="tspan33"
+         style="stroke-width:0.200049"
+         x="60.36058"
+         y="117.52019">Wait compute N</tspan></text>
+  </g>
+  <g
+     id="g32-1"
+     transform="matrix(1.1270167,0,0,1,0.01020962,42.415897)"
+     style="stroke-width:0.941966">
+    <g
+       id="g33-2"
+       transform="matrix(1.3163598,0,0,1,17.148879,-9.1172951)"
+       style="stroke-width:0.821008">
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.410503;stroke-dasharray:none;stroke-opacity:1"
+         d="M 29.971262,30.1785 H 56.522754"
+         id="path11-3" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.410503;stroke-dasharray:none;stroke-opacity:1"
+         d="m 29.971262,27.6785 v 5"
+         id="path12-8-3" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.410503;stroke-dasharray:none;stroke-opacity:1"
+         d="m 56.522754,27.6785 v 5"
+         id="path12-8-5-4" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:2.99073927px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.188393;stroke-dasharray:none;stroke-opacity:1"
+       x="65.810562"
+       y="19.743303"
+       id="text12-1"><tspan
+         sodipodi:role="line"
+         id="tspan12-1"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.188393;stroke-dasharray:none;stroke-opacity:1;font-size:2.99073927px"
+         x="65.810562"
+         y="19.743303">Render N</tspan></text>
+  </g>
+  <path
+     style="opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:#000000;stroke-width:0.498433;stroke-dasharray:none;stroke-opacity:1"
+     d="M 85.430802,115.25592 V 94.288156"
+     id="path54" />
+  <g
+     id="g58"
+     transform="translate(-17.153491,-4.2348863)">
+    <rect
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
+       id="rect56"
+       width="27.806627"
+       height="7.970727"
+       x="102.48508"
+       y="98.673042" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="103.25843"
+       y="100.61689"
+       id="text57"><tspan
+         sodipodi:role="line"
+         id="tspan57"
+         style="font-size:2.11667px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-opacity:1"
+         x="103.25843"
+         y="100.61689">Flip buffers</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.11667px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-opacity:1"
+         x="103.25843"
+         y="103.26273"
+         id="tspan58">Dispatch compute N</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.11667px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-opacity:1"
+         x="103.25843"
+         y="105.90856"
+         id="tspan59">Dispatch graphics N-1</tspan></text>
+  </g>
+  <rect
+     style="opacity:1;fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+     id="rect58"
+     width="42.354706"
+     height="4.415"
+     x="85.780022"
+     y="110.74092" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+     x="98.304794"
+     y="113.51044"
+     id="text60"><tspan
+       sodipodi:role="line"
+       id="tspan60"
+       style="font-size:2.82222px;stroke-width:0.2"
+       x="98.304794"
+       y="113.51044">Compute N</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82223px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+     x="88.87043"
+     y="117.95163"
+     id="text61"><tspan
+       sodipodi:role="line"
+       id="tspan61"
+       style="stroke-width:0.2"
+       x="88.87043"
+       y="117.95163">Graphics N-1</tspan></text>
+  <path
+     style="fill:#1a1a1a;fill-opacity:1;stroke:#000000;stroke-width:0.45037;stroke-dasharray:none;stroke-opacity:1"
+     d="M 112.16363,128.30695 V 114.95589"
+     id="path54-4" />
+  <rect
+     style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.286286;stroke-dasharray:none;stroke-opacity:1"
+     id="rect56-6"
+     width="27.806627"
+     height="7.970727"
+     x="112.16363"
+     y="120.33623" />
+  <g
+     id="g63"
+     transform="translate(-0.19453735,-0.03396096)">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.3;stroke-dasharray:none;stroke-opacity:1"
+       id="rect56-6-8"
+       width="21.112032"
+       height="4.2621946"
+       x="86.024559"
+       y="121.63142" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.11667px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="87.087082"
+       y="124.3537"
+       id="text62"><tspan
+         sodipodi:role="line"
+         id="tspan62"
+         style="stroke-width:0.2"
+         x="87.087082"
+         y="124.3537">Wait N-1: no-op</tspan></text>
+  </g>
+  <g
+     id="g62"
+     transform="translate(-0.14924464,0.10002797)">
+    <rect
+       style="fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       id="rect58-4"
+       width="42.354706"
+       height="4.415"
+       x="42.876125"
+       y="110.64089" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="55.381493"
+       y="113.61044"
+       id="text60-0"><tspan
+         sodipodi:role="line"
+         id="tspan60-7"
+         style="font-size:2.82222px;stroke-width:0.2"
+         x="55.381493"
+         y="113.61044">Compute N</tspan></text>
+  </g>
+  <path
+     style="fill:#1a1a1a;fill-opacity:1;stroke:#000000;stroke-width:0.45037;stroke-dasharray:none;stroke-opacity:1"
+     d="M 85.905207,126.00965 V 115.25592"
+     id="path54-4-8" />
+</svg>
