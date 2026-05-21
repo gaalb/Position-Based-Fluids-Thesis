@@ -1,0 +1,3771 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="346.31549mm"
+   height="440.86624mm"
+   viewBox="0 0 346.31549 440.86624"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="marker47"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path47" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ArrowWide"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ArrowWide-9"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path1-4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker47-2"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path47-0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ArrowWide-1"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path1-1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker47-8"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path47-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ArrowWide-2"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path1-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker47-89"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path47-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ArrowWide-97"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path1-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker47-4"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path47-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ArrowWide-10"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path1-47" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker47-42"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path47-71" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-5-5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0-0-2"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-5-5-1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0-0-2-3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-5-5-1-2" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0-0-2-3-8"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-5-5-1-2-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="DartArrow-0-0-2-3-8-7"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         transform="scale(-0.5)"
+         id="path6-5-5-1-2-6-5" />
+    </marker>
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-22.39233,-475.68024)">
+    <g
+       id="g53"
+       transform="translate(-280.583,468.56139)">
+      <g
+         id="g40-8"
+         transform="matrix(1.1799128,0,0,1.1799994,358.05615,-8.3618505)"
+         style="stroke-width:0.847489">
+        <g
+           id="g3-39"
+           transform="translate(-23.368869,0.02710751)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-31"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="38.323963"
+             id="text2-3"><tspan
+               id="tspan2-9"
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="38.323963">count[0]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="51.891392"
+             id="text3-63"><tspan
+               id="tspan3-7"
+               style="font-size:12.7px;stroke-width:0.338995"
+               x="38.520569"
+               y="51.891392">10</tspan></text>
+        </g>
+        <g
+           id="g3-8-52"
+           transform="translate(0.7565505,0.02710751)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-3-0"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="38.323963"
+             id="text2-4-71"><tspan
+               id="tspan2-8-7"
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="38.323963">count[1]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="51.891392"
+             id="text3-4-0"><tspan
+               id="tspan3-9-6"
+               style="font-size:12.7px;stroke-width:0.338995"
+               x="38.520569"
+               y="51.891392">12</tspan></text>
+        </g>
+        <g
+           id="g3-3-7"
+           transform="translate(24.883741,0.02710751)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-33-1"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="38.323963"
+             id="text2-7-75"><tspan
+               id="tspan2-4-4"
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="38.323963">count[2]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="51.891392"
+             id="text3-3-8"><tspan
+               id="tspan3-8-17"
+               style="font-size:12.7px;stroke-width:0.338995"
+               x="38.520569"
+               y="51.891392">1</tspan></text>
+        </g>
+        <g
+           id="g3-8-0-5"
+           transform="translate(49.010934,0.02710751)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-3-8-2"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="38.323963"
+             id="text2-4-8-17"><tspan
+               id="tspan2-8-0-5"
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="38.323963">count[3]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="51.891392"
+             id="text3-4-6-3"><tspan
+               id="tspan3-9-8-1"
+               style="font-size:12.7px;stroke-width:0.338995"
+               x="38.520569"
+               y="51.891392">15</tspan></text>
+        </g>
+        <g
+           id="g3-7-0"
+           transform="translate(73.13813,0.02710751)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-2-0"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="38.323963"
+             id="text2-2-0"><tspan
+               id="tspan2-82-5"
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="38.323963">count[4]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="51.891392"
+             id="text3-8-0"><tspan
+               id="tspan3-90-0"
+               style="font-size:12.7px;stroke-width:0.338995"
+               x="38.520569"
+               y="51.891392">6</tspan></text>
+        </g>
+        <g
+           id="g3-8-7-7"
+           transform="translate(97.26354,0.02710751)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-3-81-86"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="38.323963"
+             id="text2-4-5-4"><tspan
+               id="tspan2-8-8-9"
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="38.323963">count[5]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="51.891392"
+             id="text3-4-61-14"><tspan
+               id="tspan3-9-2-8"
+               style="font-size:12.7px;stroke-width:0.338995"
+               x="38.520569"
+               y="51.891392">7</tspan></text>
+        </g>
+        <g
+           id="g3-3-4-0"
+           transform="translate(121.39074,0.02710751)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-33-2-8"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="38.323963"
+             id="text2-7-5-99"><tspan
+               id="tspan2-4-8-7"
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="38.323963">count[6]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="51.891392"
+             id="text3-3-6-9"><tspan
+               id="tspan3-8-2-9"
+               style="font-size:12.7px;stroke-width:0.338995"
+               x="38.520569"
+               y="51.891392">20</tspan></text>
+        </g>
+        <g
+           id="g3-8-0-6-9"
+           transform="translate(145.51793,0.02710751)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-3-8-5-6"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="38.323963"
+             id="text2-4-8-3-0"><tspan
+               id="tspan2-8-0-9-6"
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="38.323963">count[7]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="51.891392"
+             id="text3-4-6-2-38"><tspan
+               id="tspan3-9-8-4-0"
+               style="font-size:12.7px;stroke-width:0.338995"
+               x="38.520569"
+               y="51.891392">19</tspan></text>
+        </g>
+      </g>
+      <g
+         id="g47"
+         transform="translate(-20.462823,-4.8033273)">
+        <path
+           style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#ArrowWide);marker-end:url(#marker47)"
+           d="m 383.47033,31.00586 h 55.43703"
+           id="path46" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:7.05556px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-dasharray:none;stroke-opacity:1"
+           x="387.66571"
+           y="28.520247"
+           id="text47"><tspan
+             id="tspan47"
+             style="font-size:7.05556px;stroke:none;stroke-width:0.7"
+             x="387.66571"
+             y="28.520247">cell group 0 </tspan></text>
+      </g>
+      <g
+         id="g47-3"
+         transform="translate(36.314156,-4.8033273)">
+        <path
+           style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#ArrowWide-9);marker-end:url(#marker47-2)"
+           d="m 383.47033,31.00586 h 55.43703"
+           id="path46-6" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:7.05556px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-dasharray:none;stroke-opacity:1"
+           x="387.66571"
+           y="28.520247"
+           id="text47-9"><tspan
+             id="tspan47-1"
+             style="font-size:7.05556px;stroke:none;stroke-width:0.7"
+             x="387.66571"
+             y="28.520247">cell group 1 </tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:7.05556px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-dasharray:none;stroke-opacity:1"
+           x="354.6315"
+           y="17.155306"
+           id="text47-9-2"><tspan
+             id="tspan47-1-2"
+             style="font-size:7.05556px;stroke:none;stroke-width:0.7"
+             x="354.6315"
+             y="17.155306">super-group 0</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:7.05556px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.7;stroke-dasharray:none;stroke-opacity:1"
+           x="468.66516"
+           y="17.110519"
+           id="text48"><tspan
+             id="tspan48"
+             style="stroke-width:0.7"
+             x="468.66516"
+             y="17.110519">super-group 1</tspan></text>
+      </g>
+      <g
+         id="g47-0"
+         transform="translate(93.091137,-4.8033273)">
+        <path
+           style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#ArrowWide-1);marker-end:url(#marker47-8)"
+           d="m 383.47033,31.00586 h 55.43703"
+           id="path46-9" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:7.05556px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-dasharray:none;stroke-opacity:1"
+           x="387.66571"
+           y="28.520247"
+           id="text47-1"><tspan
+             id="tspan47-0"
+             style="font-size:7.05556px;stroke:none;stroke-width:0.7"
+             x="387.66571"
+             y="28.520247">cell group 2 </tspan></text>
+      </g>
+      <g
+         id="g47-9"
+         transform="translate(149.86811,-4.7804932)">
+        <path
+           style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#ArrowWide-2);marker-end:url(#marker47-89)"
+           d="m 383.47033,31.00586 h 55.43703"
+           id="path46-3" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:7.05556px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-dasharray:none;stroke-opacity:1"
+           x="387.66571"
+           y="28.520247"
+           id="text47-0"><tspan
+             id="tspan47-5"
+             style="font-size:7.05556px;stroke:none;stroke-width:0.7"
+             x="387.66571"
+             y="28.520247">cell group 3 </tspan></text>
+      </g>
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#ArrowWide-97);marker-end:url(#marker47-4)"
+         d="M 363.67748,15.39916 H 474.55154"
+         id="path46-33" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.7;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#ArrowWide-10);marker-end:url(#marker47-42)"
+         d="M 477.23545,15.399161 H 588.7715"
+         id="path46-2" />
+    </g>
+    <g
+       id="g52"
+       transform="translate(-339.8709,468.56139)">
+      <g
+         id="g3-39-3"
+         transform="matrix(1.1799128,0,0,1.1799994,330.44588,45.698958)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-31-1"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-3-3"><tspan
+             id="tspan2-9-3"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[0]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-63-4"><tspan
+             id="tspan3-7-3"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-52-5"
+         transform="matrix(1.1799128,0,0,1.1799994,358.91178,45.698958)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-0-2"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-71-1"><tspan
+             id="tspan2-8-7-6"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[1]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-0-9"><tspan
+             id="tspan3-9-6-8"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">10</tspan></text>
+      </g>
+      <g
+         id="g3-3-7-8"
+         transform="matrix(1.1799128,0,0,1.1799994,387.37976,45.698958)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-33-1-4"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-7-75-1"><tspan
+             id="tspan2-4-4-4"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[2]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-3-8-5"><tspan
+             id="tspan3-8-17-7"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-0-5-3"
+         transform="matrix(1.1799128,0,0,1.1799994,415.84774,45.698958)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-8-2-0"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-8-17-2"><tspan
+             id="tspan2-8-0-5-7"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[3]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-6-3-7"><tspan
+             id="tspan3-9-8-1-7"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">1</tspan></text>
+      </g>
+      <g
+         id="g3-7-0-0"
+         transform="matrix(1.1799128,0,0,1.1799994,444.31573,45.698958)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-2-0-2"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-2-0-0"><tspan
+             id="tspan2-82-5-0"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[4]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-8-0-8"><tspan
+             id="tspan3-90-0-6"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-7-7-4"
+         transform="matrix(1.1799128,0,0,1.1799994,472.78161,45.698958)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-81-86-5"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-5-4-0"><tspan
+             id="tspan2-8-8-9-1"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[5]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-61-14-5"><tspan
+             id="tspan3-9-2-8-7"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">6</tspan></text>
+      </g>
+      <g
+         id="g3-3-4-0-3"
+         transform="matrix(1.1799128,0,0,1.1799994,501.2496,45.698958)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-33-2-8-2"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-7-5-99-7"><tspan
+             id="tspan2-4-8-7-9"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[6]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-3-6-9-1"><tspan
+             id="tspan3-8-2-9-1"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-0-6-9-4"
+         transform="matrix(1.1799128,0,0,1.1799994,529.71758,45.698958)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-8-5-6-0"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-8-3-0-3"><tspan
+             id="tspan2-8-0-9-6-3"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[7]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-6-2-38-1"><tspan
+             id="tspan3-9-8-4-0-5"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">20</tspan></text>
+      </g>
+      <g
+         id="g48-0"
+         transform="matrix(1.1799128,0,0,1.1799994,591.96452,45.666971)"
+         style="stroke-width:0.847489">
+        <g
+           id="g3-39-3-6"
+           transform="translate(-23.368869,0.02710751)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-31-1-4"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="37.730713"
+             id="text2-3-3-8"><tspan
+               id="tspan2-9-3-9"
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="37.730713">group</tspan><tspan
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="43.022377"
+               id="tspan49">Sums[0]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="54.60326"
+             id="text3-63-4-5"><tspan
+               id="tspan3-7-3-6"
+               style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+               x="38.520569"
+               y="54.60326">22</tspan></text>
+        </g>
+        <g
+           id="g3-39-3-6-2"
+           transform="translate(0.356551,0.02710751)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-31-1-4-3"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="37.730713"
+             id="text2-3-3-8-2"><tspan
+               id="tspan2-9-3-9-8"
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="37.730713">group</tspan><tspan
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="43.022377"
+               id="tspan49-3">Sums[1]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="54.60326"
+             id="text3-63-4-5-3"><tspan
+               id="tspan3-7-3-6-8"
+               style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+               x="38.520569"
+               y="54.60326">16</tspan></text>
+        </g>
+        <g
+           id="g3-39-3-6-1"
+           transform="translate(24.077214,0.02710751)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-31-1-4-35"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="37.730713"
+             id="text2-3-3-8-1"><tspan
+               id="tspan2-9-3-9-2"
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="37.730713">group</tspan><tspan
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="43.022377"
+               id="tspan49-0">Sums[2]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="54.60326"
+             id="text3-63-4-5-8"><tspan
+               id="tspan3-7-3-6-6"
+               style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+               x="38.520569"
+               y="54.60326">13</tspan></text>
+        </g>
+        <g
+           id="g3-39-3-6-5"
+           transform="translate(47.802634,0.02710751)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-31-1-4-354"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="37.730713"
+             id="text2-3-3-8-8"><tspan
+               id="tspan2-9-3-9-5"
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="37.730713">group</tspan><tspan
+               style="font-size:4.23333px;stroke-width:0.338995"
+               x="39.146885"
+               y="43.022377"
+               id="tspan49-03">Sums[3]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="54.60326"
+             id="text3-63-4-5-5"><tspan
+               id="tspan3-7-3-6-0"
+               style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+               x="38.520569"
+               y="54.60326">39</tspan></text>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g64"
+       transform="translate(-369.31425,468.56139)">
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#DartArrow-0-0)"
+         d="m 519.41352,61.673694 v 15.05483"
+         id="path3-4-2" />
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:6.35px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1"
+         x="523.9469"
+         y="69.455055"
+         id="text4-8"
+         transform="scale(0.99996331,1.0000367)"><tspan
+           style="font-size:6.35px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1"
+           x="523.9469"
+           y="69.455055"
+           id="tspan12-6">pass 1: pre-cell-group</tspan><tspan
+           style="font-size:6.35px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1"
+           x="523.9469"
+           y="77.392555"
+           id="tspan64">Blelloch scan over  count</tspan></text>
+    </g>
+    <g
+       id="g55"
+       transform="translate(-334.71536,468.56139)">
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#DartArrow-0-0-2)"
+         d="m 476.02196,114.807 v 15.05483"
+         id="path3-4-2-0" />
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:6.35px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1"
+         x="479.76569"
+         y="122.09807"
+         id="text4-8-1"
+         transform="scale(0.99996331,1.0000367)"><tspan
+           style="font-size:6.35px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1"
+           x="479.76569"
+           y="122.09807"
+           id="tspan12-6-7">pass 2: per-super-group</tspan><tspan
+           style="font-size:6.35px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1"
+           x="479.76569"
+           y="130.03557"
+           id="tspan65">Blelloch scan over groupSums </tspan></text>
+    </g>
+    <g
+       id="g62"
+       transform="translate(-339.85238,468.56139)">
+      <g
+         id="g3-39-3-1"
+         transform="matrix(1.1799128,0,0,1.1799994,331.12329,97.06)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-31-1-3"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-3-3-2"><tspan
+             id="tspan2-9-3-1"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[0]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-63-4-9"><tspan
+             id="tspan3-7-3-4"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-52-5-2"
+         transform="matrix(1.1799128,0,0,1.1799994,359.58919,97.06)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-0-2-3"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-71-1-0"><tspan
+             id="tspan2-8-7-6-1"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[1]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-0-9-4"><tspan
+             id="tspan3-9-6-8-8"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">10</tspan></text>
+      </g>
+      <g
+         id="g3-3-7-8-6"
+         transform="matrix(1.1799128,0,0,1.1799994,388.05717,97.06)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-33-1-4-6"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-7-75-1-1"><tspan
+             id="tspan2-4-4-4-3"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[2]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-3-8-5-8"><tspan
+             id="tspan3-8-17-7-7"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-0-5-3-9"
+         transform="matrix(1.1799128,0,0,1.1799994,416.52515,97.06)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-8-2-0-4"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-8-17-2-4"><tspan
+             id="tspan2-8-0-5-7-3"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[3]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-6-3-7-5"><tspan
+             id="tspan3-9-8-1-7-4"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">1</tspan></text>
+      </g>
+      <g
+         id="g3-7-0-0-4"
+         transform="matrix(1.1799128,0,0,1.1799994,444.99314,97.06)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-2-0-2-2"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-2-0-0-7"><tspan
+             id="tspan2-82-5-0-7"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[4]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-8-0-8-5"><tspan
+             id="tspan3-90-0-6-6"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-7-7-4-6"
+         transform="matrix(1.1799128,0,0,1.1799994,473.45902,97.06)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-81-86-5-9"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-5-4-0-0"><tspan
+             id="tspan2-8-8-9-1-7"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[5]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-61-14-5-0"><tspan
+             id="tspan3-9-2-8-7-9"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">6</tspan></text>
+      </g>
+      <g
+         id="g3-3-4-0-3-8"
+         transform="matrix(1.1799128,0,0,1.1799994,501.92701,97.06)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-33-2-8-2-6"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-7-5-99-7-7"><tspan
+             id="tspan2-4-8-7-9-3"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[6]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-3-6-9-1-2"><tspan
+             id="tspan3-8-2-9-1-0"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-0-6-9-4-1"
+         transform="matrix(1.1799128,0,0,1.1799994,530.39499,97.06)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-8-5-6-0-5"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-8-3-0-3-3"><tspan
+             id="tspan2-8-0-9-6-3-5"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[7]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-6-2-38-1-6"><tspan
+             id="tspan3-9-8-4-0-5-5"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">20</tspan></text>
+      </g>
+      <g
+         id="g50"
+         transform="translate(-36.517286,-6.8036275)"
+         style="opacity:0.5">
+        <g
+           id="g48-0-4"
+           transform="matrix(1.1799128,0,0,1.1799994,627.76736,103.83164)"
+           style="stroke-width:0.847489">
+          <g
+             id="g3-39-3-6-6"
+             transform="translate(-23.368869,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-8"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-15"><tspan
+                 id="tspan2-9-3-9-85"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-33">Sums[0]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-2"><tspan
+                 id="tspan3-7-3-6-87"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">22</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-2-6"
+             transform="translate(0.356551,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-3-9"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-2-6"><tspan
+                 id="tspan2-9-3-9-8-4"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-3-6">Sums[1]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-3-3"><tspan
+                 id="tspan3-7-3-6-8-2"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">16</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-1-1"
+             transform="translate(24.077214,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-35-0"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-1-5"><tspan
+                 id="tspan2-9-3-9-2-8"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-0-7">Sums[2]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-8-0"><tspan
+                 id="tspan3-7-3-6-6-0"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">13</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-5-3"
+             transform="translate(47.802634,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-354-7"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-8-3"><tspan
+                 id="tspan2-9-3-9-5-4"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-03-6">Sums[3]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-5-2"><tspan
+                 id="tspan3-7-3-6-0-0"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">39</tspan></text>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g57"
+       transform="translate(-332.36767,468.56139)">
+      <g
+         id="g50-4"
+         transform="translate(-191.77345,23.93966)">
+        <g
+           id="g48-0-4-3"
+           transform="matrix(1.1799128,0,0,1.1799994,627.76736,103.83164)"
+           style="stroke-width:0.847489">
+          <g
+             id="g3-39-3-6-6-3"
+             transform="translate(-23.368869,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-8-6"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-15-7"><tspan
+                 id="tspan2-9-3-9-85-6"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-33-6">Prefix[0]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-2-1"><tspan
+                 id="tspan3-7-3-6-87-4"
+                 style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">0</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-2-6-8"
+             transform="translate(0.356551,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-3-9-1"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-2-6-6"><tspan
+                 id="tspan2-9-3-9-8-4-59"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-3-6-6">Prefix[1]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-3-3-8"><tspan
+                 id="tspan3-7-3-6-8-2-7"
+                 style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">22</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-1-1-1"
+             transform="translate(24.077214,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-35-0-9"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-1-5-1"><tspan
+                 id="tspan2-9-3-9-2-8-6"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-0-7-76">Prefix[2]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-8-0-3"><tspan
+                 id="tspan3-7-3-6-6-0-7"
+                 style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">0</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-5-3-1"
+             transform="translate(47.802634,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-354-7-2"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-8-3-7"><tspan
+                 id="tspan2-9-3-9-5-4-9"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-03-6-4">Prefix[3]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-5-2-7"><tspan
+                 id="tspan3-7-3-6-0-0-1"
+                 style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">13</tspan></text>
+          </g>
+        </g>
+      </g>
+      <g
+         id="g51"
+         transform="translate(-159.72648,29.00763)">
+        <g
+           id="g3-39-3-6-6-9"
+           transform="matrix(1.1799128,0,0,1.1799994,687.11876,98.795655)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-31-1-4-8-5"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:3.28873px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="37.730713"
+             id="text2-3-3-8-15-3"><tspan
+               id="tspan2-9-3-9-85-4"
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="37.730713">superGroup</tspan><tspan
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="41.841625"
+               id="tspan49-33-3">Sums[0]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="54.60326"
+             id="text3-63-4-5-2-7"><tspan
+               id="tspan3-7-3-6-87-7"
+               style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+               x="38.520569"
+               y="54.60326">38</tspan></text>
+        </g>
+        <g
+           id="g3-39-3-6-6-9-5"
+           transform="matrix(1.1799128,0,0,1.1799994,715.11269,98.795655)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-31-1-4-8-5-9"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:3.28873px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="37.730713"
+             id="text2-3-3-8-15-3-4"><tspan
+               id="tspan2-9-3-9-85-4-4"
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="37.730713">superGroup</tspan><tspan
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="41.841625"
+               id="tspan49-33-3-4">Sums[1]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="54.60326"
+             id="text3-63-4-5-2-7-9"><tspan
+               id="tspan3-7-3-6-87-7-9"
+               style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+               x="38.520569"
+               y="54.60326">52</tspan></text>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g58"
+       transform="translate(-323.91209,468.56139)">
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#DartArrow-0-0-2-3)"
+         d="M 478.52196,197.52447 V 212.5793"
+         id="path3-4-2-0-4" />
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:6.35px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1"
+         x="483.8519"
+         y="204.66628"
+         id="text4-8-1-3"
+         transform="scale(0.99996331,1.0000367)"><tspan
+           style="font-size:6.35px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1"
+           x="483.8519"
+           y="204.66628"
+           id="tspan12-6-7-1">pass 3: Blelloch scan </tspan><tspan
+           style="font-size:6.35px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1"
+           x="483.8519"
+           y="212.60378"
+           id="tspan67">over superGroupSums</tspan></text>
+    </g>
+    <g
+       id="g58-6"
+       transform="translate(-342.56967,551.75999)">
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#DartArrow-0-0-2-3-8)"
+         d="M 478.52196,197.52447 V 212.5793"
+         id="path3-4-2-0-4-6" />
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:6.35px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1"
+         x="484.93188"
+         y="207.22372"
+         id="text4-8-1-3-2"
+         transform="scale(0.99996331,1.0000367)"><tspan
+           style="font-size:6.35px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1"
+           x="484.93188"
+           y="207.22372"
+           id="tspan66">pass 4: add each super group's</tspan><tspan
+           style="font-size:6.35px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1"
+           x="484.93188"
+           y="215.16122"
+           id="tspan68">offset to its cell groups' prefixes</tspan></text>
+    </g>
+    <g
+       id="g63"
+       transform="translate(-339.85274,468.56139)">
+      <g
+         id="g3-39-3-1-4"
+         transform="matrix(1.1799128,0,0,1.1799994,331.12365,181.66704)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-31-1-3-2"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-3-3-2-6"><tspan
+             id="tspan2-9-3-1-9"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[0]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-63-4-9-8"><tspan
+             id="tspan3-7-3-4-7"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-52-5-2-7"
+         transform="matrix(1.1799128,0,0,1.1799994,359.58955,181.66704)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-0-2-3-4"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-71-1-0-8"><tspan
+             id="tspan2-8-7-6-1-7"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[1]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-0-9-4-8"><tspan
+             id="tspan3-9-6-8-8-3"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">10</tspan></text>
+      </g>
+      <g
+         id="g3-3-7-8-6-2"
+         transform="matrix(1.1799128,0,0,1.1799994,388.05753,181.66704)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-33-1-4-6-1"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-7-75-1-1-9"><tspan
+             id="tspan2-4-4-4-3-3"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[2]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-3-8-5-8-7"><tspan
+             id="tspan3-8-17-7-7-4"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-0-5-3-9-4"
+         transform="matrix(1.1799128,0,0,1.1799994,416.52551,181.66704)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-8-2-0-4-4"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-8-17-2-4-3"><tspan
+             id="tspan2-8-0-5-7-3-5"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[3]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-6-3-7-5-1"><tspan
+             id="tspan3-9-8-1-7-4-3"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">1</tspan></text>
+      </g>
+      <g
+         id="g3-7-0-0-4-2"
+         transform="matrix(1.1799128,0,0,1.1799994,444.9935,181.66704)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-2-0-2-2-8"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-2-0-0-7-0"><tspan
+             id="tspan2-82-5-0-7-9"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[4]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-8-0-8-5-0"><tspan
+             id="tspan3-90-0-6-6-3"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-7-7-4-6-4"
+         transform="matrix(1.1799128,0,0,1.1799994,473.45938,181.66704)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-81-86-5-9-9"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-5-4-0-0-4"><tspan
+             id="tspan2-8-8-9-1-7-4"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[5]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-61-14-5-0-3"><tspan
+             id="tspan3-9-2-8-7-9-9"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">6</tspan></text>
+      </g>
+      <g
+         id="g3-3-4-0-3-8-8"
+         transform="matrix(1.1799128,0,0,1.1799994,501.92737,181.66704)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-33-2-8-2-6-5"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-7-5-99-7-7-3"><tspan
+             id="tspan2-4-8-7-9-3-8"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[6]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-3-6-9-1-2-1"><tspan
+             id="tspan3-8-2-9-1-0-2"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-0-6-9-4-1-3"
+         transform="matrix(1.1799128,0,0,1.1799994,530.39535,181.66704)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-8-5-6-0-5-8"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-8-3-0-3-3-9"><tspan
+             id="tspan2-8-0-9-6-3-5-8"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[7]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-6-2-38-1-6-5"><tspan
+             id="tspan3-9-8-4-0-5-5-1"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">20</tspan></text>
+      </g>
+      <g
+         id="g50-0"
+         transform="translate(-36.516924,77.803415)"
+         style="opacity:0.5">
+        <g
+           id="g48-0-4-6"
+           transform="matrix(1.1799128,0,0,1.1799994,627.76736,103.83164)"
+           style="stroke-width:0.847489">
+          <g
+             id="g3-39-3-6-6-1"
+             transform="translate(-23.368869,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-8-8"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-15-1"><tspan
+                 id="tspan2-9-3-9-85-8"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-33-7">Sums[0]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-2-72"><tspan
+                 id="tspan3-7-3-6-87-8"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">22</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-2-6-2"
+             transform="translate(0.356551,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-3-9-3"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-2-6-66"><tspan
+                 id="tspan2-9-3-9-8-4-9"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-3-6-65">Sums[1]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-3-3-1"><tspan
+                 id="tspan3-7-3-6-8-2-3"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">16</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-1-1-8"
+             transform="translate(24.077214,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-35-0-0"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-1-5-7"><tspan
+                 id="tspan2-9-3-9-2-8-61"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-0-7-6">Sums[2]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-8-0-0"><tspan
+                 id="tspan3-7-3-6-6-0-3"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">13</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-5-3-10"
+             transform="translate(47.802634,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-354-7-4"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-8-3-3"><tspan
+                 id="tspan2-9-3-9-5-4-1"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-03-6-5">Sums[3]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-5-2-8"><tspan
+                 id="tspan3-7-3-6-0-0-9"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">39</tspan></text>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g57-5"
+       transform="translate(-332.36767,553.16843)">
+      <g
+         id="g50-4-4"
+         transform="translate(-191.77345,23.93966)">
+        <g
+           id="g48-0-4-3-5"
+           transform="matrix(1.1799128,0,0,1.1799994,627.76736,103.83164)"
+           style="stroke-width:0.847489">
+          <g
+             id="g3-39-3-6-6-3-7"
+             transform="translate(-23.368869,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-8-6-4"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-15-7-4"><tspan
+                 id="tspan2-9-3-9-85-6-6"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-33-6-7">Prefix[0]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-2-1-7"><tspan
+                 id="tspan3-7-3-6-87-4-5"
+                 style="font-size:12.7px;fill:#000000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">0</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-2-6-8-2"
+             transform="translate(0.356551,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-3-9-1-6"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-2-6-6-8"><tspan
+                 id="tspan2-9-3-9-8-4-59-8"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-3-6-6-9">Prefix[1]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-3-3-8-1"><tspan
+                 id="tspan3-7-3-6-8-2-7-9"
+                 style="font-size:12.7px;fill:#000000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">22</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-1-1-1-8"
+             transform="translate(24.077214,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-35-0-9-0"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-1-5-1-5"><tspan
+                 id="tspan2-9-3-9-2-8-6-0"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-0-7-76-2">Prefix[2]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-8-0-3-9"><tspan
+                 id="tspan3-7-3-6-6-0-7-6"
+                 style="font-size:12.7px;fill:#000000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">0</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-5-3-1-0"
+             transform="translate(47.802634,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-354-7-2-2"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-8-3-7-2"><tspan
+                 id="tspan2-9-3-9-5-4-9-9"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-03-6-4-2">Prefix[3]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-5-2-7-6"><tspan
+                 id="tspan3-7-3-6-0-0-1-7"
+                 style="font-size:12.7px;fill:#000000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">13</tspan></text>
+          </g>
+        </g>
+      </g>
+      <g
+         id="g51-3"
+         transform="translate(-159.72648,29.00763)">
+        <g
+           id="g3-39-3-6-6-9-6"
+           transform="matrix(1.1799128,0,0,1.1799994,687.11876,98.795655)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-31-1-4-8-5-0"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:3.28873px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="37.730713"
+             id="text2-3-3-8-15-3-5"><tspan
+               id="tspan2-9-3-9-85-4-2"
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="37.730713">superGroup</tspan><tspan
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="41.841625"
+               id="tspan49-33-3-1">Sums[0]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="54.60326"
+             id="text3-63-4-5-2-7-7"><tspan
+               id="tspan3-7-3-6-87-7-1"
+               style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+               x="38.520569"
+               y="54.60326">0</tspan></text>
+        </g>
+        <g
+           id="g3-39-3-6-6-9-5-1"
+           transform="matrix(1.1799128,0,0,1.1799994,715.11269,98.795655)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-31-1-4-8-5-9-5"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:3.28873px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="37.730713"
+             id="text2-3-3-8-15-3-4-3"><tspan
+               id="tspan2-9-3-9-85-4-4-2"
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="37.730713">superGroup</tspan><tspan
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="41.841625"
+               id="tspan49-33-3-4-6">Sums[1]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="54.60326"
+             id="text3-63-4-5-2-7-9-6"><tspan
+               id="tspan3-7-3-6-87-7-9-8"
+               style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+               x="38.520569"
+               y="54.60326">38</tspan></text>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g66"
+       transform="translate(-339.74531,468.56139)">
+      <g
+         id="g3-39-3-1-4-8"
+         transform="matrix(1.1799128,0,0,1.1799994,331.01622,265.26053)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-31-1-3-2-9"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-3-3-2-6-7"><tspan
+             id="tspan2-9-3-1-9-9"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[0]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-63-4-9-8-0"><tspan
+             id="tspan3-7-3-4-7-5"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-52-5-2-7-8"
+         transform="matrix(1.1799128,0,0,1.1799994,359.48212,265.26053)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-0-2-3-4-2"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-71-1-0-8-6"><tspan
+             id="tspan2-8-7-6-1-7-9"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[1]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-0-9-4-8-7"><tspan
+             id="tspan3-9-6-8-8-3-1"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">10</tspan></text>
+      </g>
+      <g
+         id="g3-3-7-8-6-2-7"
+         transform="matrix(1.1799128,0,0,1.1799994,387.9501,265.26053)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-33-1-4-6-1-5"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-7-75-1-1-9-1"><tspan
+             id="tspan2-4-4-4-3-3-6"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[2]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-3-8-5-8-7-4"><tspan
+             id="tspan3-8-17-7-7-4-4"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-0-5-3-9-4-9"
+         transform="matrix(1.1799128,0,0,1.1799994,416.41808,265.26053)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-8-2-0-4-4-9"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-8-17-2-4-3-6"><tspan
+             id="tspan2-8-0-5-7-3-5-1"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[3]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-6-3-7-5-1-5"><tspan
+             id="tspan3-9-8-1-7-4-3-5"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">1</tspan></text>
+      </g>
+      <g
+         id="g3-7-0-0-4-2-6"
+         transform="matrix(1.1799128,0,0,1.1799994,444.88607,265.26053)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-2-0-2-2-8-0"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-2-0-0-7-0-7"><tspan
+             id="tspan2-82-5-0-7-9-5"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[4]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-8-0-8-5-0-0"><tspan
+             id="tspan3-90-0-6-6-3-7"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-7-7-4-6-4-9"
+         transform="matrix(1.1799128,0,0,1.1799994,473.35195,265.26053)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-81-86-5-9-9-5"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-5-4-0-0-4-6"><tspan
+             id="tspan2-8-8-9-1-7-4-8"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[5]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-61-14-5-0-3-5"><tspan
+             id="tspan3-9-2-8-7-9-9-3"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">6</tspan></text>
+      </g>
+      <g
+         id="g3-3-4-0-3-8-8-7"
+         transform="matrix(1.1799128,0,0,1.1799994,501.81994,265.26053)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-33-2-8-2-6-5-0"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-7-5-99-7-7-3-7"><tspan
+             id="tspan2-4-8-7-9-3-8-5"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[6]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-3-6-9-1-2-1-2"><tspan
+             id="tspan3-8-2-9-1-0-2-3"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-0-6-9-4-1-3-0"
+         transform="matrix(1.1799128,0,0,1.1799994,530.28792,265.26053)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-8-5-6-0-5-8-4"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-8-3-0-3-3-9-9"><tspan
+             id="tspan2-8-0-9-6-3-5-8-8"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[7]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-6-2-38-1-6-5-5"><tspan
+             id="tspan3-9-8-4-0-5-5-1-8"
+             style="font-size:12.7px;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">20</tspan></text>
+      </g>
+      <g
+         id="g50-0-0"
+         transform="translate(-36.624358,161.3969)"
+         style="opacity:0.5">
+        <g
+           id="g48-0-4-6-0"
+           transform="matrix(1.1799128,0,0,1.1799994,627.76736,103.83164)"
+           style="stroke-width:0.847489">
+          <g
+             id="g3-39-3-6-6-1-9"
+             transform="translate(-23.368869,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-8-8-7"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-15-1-7"><tspan
+                 id="tspan2-9-3-9-85-8-4"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-33-7-4">Sums[0]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-2-72-7"><tspan
+                 id="tspan3-7-3-6-87-8-5"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">22</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-2-6-2-9"
+             transform="translate(0.356551,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-3-9-3-2"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-2-6-66-3"><tspan
+                 id="tspan2-9-3-9-8-4-9-2"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-3-6-65-2">Sums[1]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-3-3-1-3"><tspan
+                 id="tspan3-7-3-6-8-2-3-1"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">16</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-1-1-8-9"
+             transform="translate(24.077214,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-35-0-0-7"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-1-5-7-3"><tspan
+                 id="tspan2-9-3-9-2-8-61-0"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-0-7-6-4">Sums[2]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-8-0-0-3"><tspan
+                 id="tspan3-7-3-6-6-0-3-7"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">13</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-5-3-10-8"
+             transform="translate(47.802634,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-354-7-4-0"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-8-3-3-8"><tspan
+                 id="tspan2-9-3-9-5-4-1-8"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-03-6-5-1">Sums[3]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-5-2-8-2"><tspan
+                 id="tspan3-7-3-6-0-0-9-7"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">39</tspan></text>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g59"
+       transform="translate(-339.7452,468.56139)">
+      <g
+         id="g50-4-4-9"
+         transform="translate(-184.39592,192.14019)">
+        <g
+           id="g48-0-4-3-5-1"
+           transform="matrix(1.1799128,0,0,1.1799994,627.76736,103.83164)"
+           style="stroke-width:0.847489">
+          <g
+             id="g3-39-3-6-6-3-7-9"
+             transform="translate(-23.368869,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-8-6-4-3"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-15-7-4-6"><tspan
+                 id="tspan2-9-3-9-85-6-6-2"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-33-6-7-0">Prefix[0]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-2-1-7-7"><tspan
+                 id="tspan3-7-3-6-87-4-5-2"
+                 style="font-size:12.7px;fill:#000000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">0</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-2-6-8-2-0"
+             transform="translate(0.356551,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-3-9-1-6-0"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-2-6-6-8-5"><tspan
+                 id="tspan2-9-3-9-8-4-59-8-3"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-3-6-6-9-5">Prefix[1]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-3-3-8-1-7"><tspan
+                 id="tspan3-7-3-6-8-2-7-9-7"
+                 style="font-size:12.7px;fill:#000000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">22</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-1-1-1-8-4"
+             transform="translate(24.077214,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-35-0-9-0-4"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-1-5-1-5-3"><tspan
+                 id="tspan2-9-3-9-2-8-6-0-3"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-0-7-76-2-8">Prefix[2]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-8-0-3-9-6"><tspan
+                 id="tspan3-7-3-6-6-0-7-6-4"
+                 style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">38</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-5-3-1-0-4"
+             transform="translate(47.802634,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-354-7-2-2-5"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-8-3-7-2-9"><tspan
+                 id="tspan2-9-3-9-5-4-9-9-2"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-03-6-4-2-4">Prefix[3]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-5-2-7-6-4"><tspan
+                 id="tspan3-7-3-6-0-0-1-7-2"
+                 style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">51</tspan></text>
+          </g>
+        </g>
+      </g>
+      <g
+         id="g51-3-4"
+         transform="translate(-152.34895,197.20816)"
+         style="opacity:0.5">
+        <g
+           id="g3-39-3-6-6-9-6-2"
+           transform="matrix(1.1799128,0,0,1.1799994,687.11876,98.795655)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-31-1-4-8-5-0-5"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:3.28873px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="37.730713"
+             id="text2-3-3-8-15-3-5-3"><tspan
+               id="tspan2-9-3-9-85-4-2-2"
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="37.730713">superGroup</tspan><tspan
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="41.841625"
+               id="tspan49-33-3-1-3">Sums[0]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="54.60326"
+             id="text3-63-4-5-2-7-7-4"><tspan
+               id="tspan3-7-3-6-87-7-1-0"
+               style="font-size:12.7px;fill:#000000;stroke-width:0.338995"
+               x="38.520569"
+               y="54.60326">0</tspan></text>
+        </g>
+        <g
+           id="g3-39-3-6-6-9-5-1-2"
+           transform="matrix(1.1799128,0,0,1.1799994,715.11269,98.795655)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-31-1-4-8-5-9-5-3"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:3.28873px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="37.730713"
+             id="text2-3-3-8-15-3-4-3-7"><tspan
+               id="tspan2-9-3-9-85-4-4-2-2"
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="37.730713">superGroup</tspan><tspan
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="41.841625"
+               id="tspan49-33-3-4-6-0">Sums[1]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="54.60326"
+             id="text3-63-4-5-2-7-9-6-7"><tspan
+               id="tspan3-7-3-6-87-7-9-8-7"
+               style="font-size:12.7px;fill:#000000;stroke-width:0.338995"
+               x="38.520569"
+               y="54.60326">38</tspan></text>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g58-6-9"
+       transform="translate(-335.31452,637.25019)">
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#DartArrow-0-0-2-3-8-7)"
+         d="M 478.52196,197.52447 V 212.5793"
+         id="path3-4-2-0-4-6-0" />
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:6.35px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1"
+         x="482.8761"
+         y="204.88933"
+         id="text4-8-1-3-2-8"
+         transform="scale(0.99996331,1.0000367)"><tspan
+           style="font-size:6.35px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1"
+           x="482.8761"
+           y="204.88933"
+           id="tspan12-6-7-1-8-5">pass 5: add each cell group's</tspan><tspan
+           style="font-size:6.35px;text-align:start;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1"
+           x="482.8761"
+           y="212.82683"
+           id="tspan69">offset to its cells' prefixes</tspan></text>
+    </g>
+    <g
+       id="g60"
+       transform="translate(-342.78087,468.56139)">
+      <g
+         id="g3-39-3-1-4-8-5"
+         transform="matrix(1.1799128,0,0,1.1799994,334.05178,350.84411)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-31-1-3-2-9-8"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-3-3-2-6-7-8"><tspan
+             id="tspan2-9-3-1-9-9-2"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[0]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-63-4-9-8-0-8"><tspan
+             id="tspan3-7-3-4-7-5-5"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">0</tspan></text>
+      </g>
+      <g
+         id="g3-8-52-5-2-7-8-2"
+         transform="matrix(1.1799128,0,0,1.1799994,362.51768,350.84411)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-0-2-3-4-2-7"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-71-1-0-8-6-6"><tspan
+             id="tspan2-8-7-6-1-7-9-7"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[1]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-0-9-4-8-7-3"><tspan
+             id="tspan3-9-6-8-8-3-1-3"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">10</tspan></text>
+      </g>
+      <g
+         id="g3-3-7-8-6-2-7-5"
+         transform="matrix(1.1799128,0,0,1.1799994,390.98566,350.84411)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-33-1-4-6-1-5-6"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-7-75-1-1-9-1-9"><tspan
+             id="tspan2-4-4-4-3-3-6-4"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[2]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-3-8-5-8-7-4-4"><tspan
+             id="tspan3-8-17-7-7-4-4-5"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">22</tspan></text>
+      </g>
+      <g
+         id="g3-8-0-5-3-9-4-9-9"
+         transform="matrix(1.1799128,0,0,1.1799994,419.45364,350.84411)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-8-2-0-4-4-9-6"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-8-17-2-4-3-6-9"><tspan
+             id="tspan2-8-0-5-7-3-5-1-2"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[3]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-6-3-7-5-1-5-9"><tspan
+             id="tspan3-9-8-1-7-4-3-5-5"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">23</tspan></text>
+      </g>
+      <g
+         id="g3-7-0-0-4-2-6-6"
+         transform="matrix(1.1799128,0,0,1.1799994,447.92163,350.84411)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-2-0-2-2-8-0-1"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-2-0-0-7-0-7-7"><tspan
+             id="tspan2-82-5-0-7-9-5-8"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[4]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-8-0-8-5-0-0-3"><tspan
+             id="tspan3-90-0-6-6-3-7-7"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">38</tspan></text>
+      </g>
+      <g
+         id="g3-8-7-7-4-6-4-9-2"
+         transform="matrix(1.1799128,0,0,1.1799994,476.38751,350.84411)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-81-86-5-9-9-5-6"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-5-4-0-0-4-6-9"><tspan
+             id="tspan2-8-8-9-1-7-4-8-1"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[5]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-61-14-5-0-3-5-0"><tspan
+             id="tspan3-9-2-8-7-9-9-3-0"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">44</tspan></text>
+      </g>
+      <g
+         id="g3-3-4-0-3-8-8-7-4"
+         transform="matrix(1.1799128,0,0,1.1799994,504.8555,350.84411)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-33-2-8-2-6-5-0-5"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-7-5-99-7-7-3-7-6"><tspan
+             id="tspan2-4-8-7-9-3-8-5-3"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[6]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-3-6-9-1-2-1-2-6"><tspan
+             id="tspan3-8-2-9-1-0-2-3-4"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">51</tspan></text>
+      </g>
+      <g
+         id="g3-8-0-6-9-4-1-3-0-6"
+         transform="matrix(1.1799128,0,0,1.1799994,533.32348,350.84411)"
+         style="stroke-width:0.847489">
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           id="rect1-3-8-5-6-0-5-8-4-7"
+           width="23.72542"
+           height="21.620348"
+           x="27.135347"
+           y="34.479443" />
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="39.146885"
+           y="38.323963"
+           id="text2-4-8-3-0-3-3-9-9-6"><tspan
+             id="tspan2-8-0-9-6-3-5-8-8-3"
+             style="font-size:4.23333px;stroke-width:0.338995"
+             x="39.146885"
+             y="38.323963">prefix[7]</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+           x="38.520569"
+           y="51.891392"
+           id="text3-4-6-2-38-1-6-5-5-9"><tspan
+             id="tspan3-9-8-4-0-5-5-1-8-1"
+             style="font-size:12.7px;fill:#ff0000;stroke-width:0.338995"
+             x="38.520569"
+             y="51.891392">71</tspan></text>
+      </g>
+      <g
+         id="g50-0-0-4"
+         transform="translate(-33.588798,246.98048)"
+         style="opacity:0.5">
+        <g
+           id="g48-0-4-6-0-7"
+           transform="matrix(1.1799128,0,0,1.1799994,627.76736,103.83164)"
+           style="stroke-width:0.847489">
+          <g
+             id="g3-39-3-6-6-1-9-5"
+             transform="translate(-23.368869,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-8-8-7-0"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-15-1-7-0"><tspan
+                 id="tspan2-9-3-9-85-8-4-5"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-33-7-4-5">Sums[0]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-2-72-7-8"><tspan
+                 id="tspan3-7-3-6-87-8-5-8"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">22</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-2-6-2-9-6"
+             transform="translate(0.356551,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-3-9-3-2-9"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-2-6-66-3-8"><tspan
+                 id="tspan2-9-3-9-8-4-9-2-1"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-3-6-65-2-5">Sums[1]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-3-3-1-3-6"><tspan
+                 id="tspan3-7-3-6-8-2-3-1-0"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">16</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-1-1-8-9-6"
+             transform="translate(24.077214,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-35-0-0-7-0"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-1-5-7-3-4"><tspan
+                 id="tspan2-9-3-9-2-8-61-0-7"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-0-7-6-4-8">Sums[2]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-8-0-0-3-6"><tspan
+                 id="tspan3-7-3-6-6-0-3-7-4"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">13</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-5-3-10-8-0"
+             transform="translate(47.802634,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-354-7-4-0-3"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-8-3-3-8-4"><tspan
+                 id="tspan2-9-3-9-5-4-1-8-1"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-03-6-5-1-0">Sums[3]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-5-2-8-2-0"><tspan
+                 id="tspan3-7-3-6-0-0-9-7-4"
+                 style="font-size:12.7px;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">39</tspan></text>
+          </g>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g61"
+       transform="translate(-342.78076,468.56139)">
+      <g
+         id="g50-4-4-9-6"
+         transform="translate(-181.36036,277.72377)"
+         style="opacity:0.5">
+        <g
+           id="g48-0-4-3-5-1-1"
+           transform="matrix(1.1799128,0,0,1.1799994,627.76736,103.83164)"
+           style="stroke-width:0.847489">
+          <g
+             id="g3-39-3-6-6-3-7-9-0"
+             transform="translate(-23.368869,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-8-6-4-3-5"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-15-7-4-6-6"><tspan
+                 id="tspan2-9-3-9-85-6-6-2-8"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-33-6-7-0-6">Prefix[0]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-2-1-7-7-7"><tspan
+                 id="tspan3-7-3-6-87-4-5-2-6"
+                 style="font-size:12.7px;fill:#000000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">0</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-2-6-8-2-0-7"
+             transform="translate(0.356551,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-3-9-1-6-0-8"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-2-6-6-8-5-9"><tspan
+                 id="tspan2-9-3-9-8-4-59-8-3-4"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-3-6-6-9-5-5">Prefix[1]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-3-3-8-1-7-1"><tspan
+                 id="tspan3-7-3-6-8-2-7-9-7-0"
+                 style="font-size:12.7px;fill:#000000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">22</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-1-1-1-8-4-2"
+             transform="translate(24.077214,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-35-0-9-0-4-8"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-1-5-1-5-3-6"><tspan
+                 id="tspan2-9-3-9-2-8-6-0-3-7"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-0-7-76-2-8-0">Prefix[2]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-8-0-3-9-6-7"><tspan
+                 id="tspan3-7-3-6-6-0-7-6-4-7"
+                 style="font-size:12.7px;fill:#000000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">38</tspan></text>
+          </g>
+          <g
+             id="g3-39-3-6-5-3-1-0-4-4"
+             transform="translate(47.802634,0.02710751)"
+             style="stroke-width:0.847489">
+            <rect
+               style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               id="rect1-31-1-4-354-7-2-2-5-6"
+               width="23.72542"
+               height="21.620348"
+               x="27.135347"
+               y="34.479443" />
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:4.23333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="39.146885"
+               y="37.730713"
+               id="text2-3-3-8-8-3-7-2-9-2"><tspan
+                 id="tspan2-9-3-9-5-4-9-9-2-2"
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="37.730713">group</tspan><tspan
+                 style="font-size:4.23333px;stroke-width:0.338995"
+                 x="39.146885"
+                 y="43.022377"
+                 id="tspan49-03-6-4-2-4-9">Prefix[3]</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+               x="38.520569"
+               y="54.60326"
+               id="text3-63-4-5-5-2-7-6-4-6"><tspan
+                 id="tspan3-7-3-6-0-0-1-7-2-5"
+                 style="font-size:12.7px;fill:#000000;stroke-width:0.338995"
+                 x="38.520569"
+                 y="54.60326">51</tspan></text>
+          </g>
+        </g>
+      </g>
+      <g
+         id="g51-3-4-6"
+         transform="translate(-149.31339,282.79174)"
+         style="opacity:0.5">
+        <g
+           id="g3-39-3-6-6-9-6-2-4"
+           transform="matrix(1.1799128,0,0,1.1799994,687.11876,98.795655)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-31-1-4-8-5-0-5-0"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:3.28873px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="37.730713"
+             id="text2-3-3-8-15-3-5-3-6"><tspan
+               id="tspan2-9-3-9-85-4-2-2-9"
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="37.730713">superGroup</tspan><tspan
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="41.841625"
+               id="tspan49-33-3-1-3-6">Sums[0]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="54.60326"
+             id="text3-63-4-5-2-7-7-4-2"><tspan
+               id="tspan3-7-3-6-87-7-1-0-9"
+               style="font-size:12.7px;fill:#000000;stroke-width:0.338995"
+               x="38.520569"
+               y="54.60326">0</tspan></text>
+        </g>
+        <g
+           id="g3-39-3-6-6-9-5-1-2-1"
+           transform="matrix(1.1799128,0,0,1.1799994,715.11269,98.795655)"
+           style="stroke-width:0.847489">
+          <rect
+             style="fill:none;stroke:#000000;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             id="rect1-31-1-4-8-5-9-5-3-2"
+             width="23.72542"
+             height="21.620348"
+             x="27.135347"
+             y="34.479443" />
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:3.28873px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="39.146885"
+             y="37.730713"
+             id="text2-3-3-8-15-3-4-3-7-6"><tspan
+               id="tspan2-9-3-9-85-4-4-2-2-4"
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="37.730713">superGroup</tspan><tspan
+               style="font-size:3.28873px;stroke-width:0.338995"
+               x="39.146885"
+               y="41.841625"
+               id="tspan49-33-3-4-6-0-7">Sums[1]</tspan></text>
+          <text
+             xml:space="preserve"
+             style="font-weight:bold;font-size:12.7px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.338995;stroke-miterlimit:0.5;stroke-opacity:1"
+             x="38.520569"
+             y="54.60326"
+             id="text3-63-4-5-2-7-9-6-7-0"><tspan
+               id="tspan3-7-3-6-87-7-9-8-7-8"
+               style="font-size:12.7px;fill:#000000;stroke-width:0.338995"
+               x="38.520569"
+               y="54.60326">38</tspan></text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
