@@ -11,6 +11,7 @@
    sodipodi:docname="adhesion.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
@@ -23,18 +24,30 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="2"
-     inkscape:cx="124.5"
-     inkscape:cy="349.25"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="121.62237"
+     inkscape:cy="121.09204"
      inkscape:window-width="1920"
-     inkscape:window-height="991"
-     inkscape:window-x="2391"
-     inkscape:window-y="592"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      inkscape:lockguides="false" />
   <defs
      id="defs1">
+    <linearGradient
+       id="linearGradient1"
+       inkscape:collect="always">
+      <stop
+         style="stop-color:#232323;stop-opacity:1;"
+         offset="0"
+         id="stop1" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0.12784091;"
+         offset="1"
+         id="stop2" />
+    </linearGradient>
     <marker
        style="overflow:visible"
        id="marker24"
@@ -130,6 +143,25 @@
          d="M 5.77,0 -2.88,5 V -5 Z"
          id="path135-1" />
     </marker>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1"
+       id="linearGradient2"
+       x1="8.1522074"
+       y1="16.799755"
+       x2="37.448956"
+       y2="42.196949"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1"
+       id="linearGradient3"
+       gradientUnits="userSpaceOnUse"
+       x1="8.1522074"
+       y1="16.799755"
+       x2="37.448956"
+       y2="42.196949"
+       gradientTransform="translate(31.617543,-0.07872821)" />
   </defs>
   <g
      inkscape:label="Layer 1"
@@ -140,16 +172,12 @@
        d="M 74.712736,89.11192 97.687256,66.085381"
        id="path1" />
     <path
-       style="fill:#d5d5d5;fill-opacity:1;stroke:#000000;stroke-width:0.200001;stroke-miterlimit:0.5;stroke-opacity:1"
+       style="fill:url(#linearGradient2);fill-opacity:1;stroke:#000000;stroke-width:0.200001;stroke-miterlimit:0.5;stroke-opacity:1"
        d="m 37.348954,16.875358 v 25.22159 H 8.2176628 Z"
-       id="path2" />
-    <rect
-       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.01;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1"
-       id="rect8"
-       width="7.8003521"
-       height="5.2649121"
-       x="18.900404"
-       y="49.07196" />
+       id="path2"
+       inkscape:export-filename="fig3.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
     <text
        xml:space="preserve"
        style="font-weight:normal;font-size:1.05833333px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1;font-style:italic;font-stretch:normal;font-variant:normal"
@@ -169,7 +197,7 @@
        id="text11"><tspan
          sodipodi:role="line"
          id="tspan11"
-         style="stroke-width:0.01"></tspan></text>
+         style="stroke-width:0.01" /></text>
     <text
        xml:space="preserve"
        style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.05833px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1"
@@ -178,7 +206,7 @@
        id="text12"><tspan
          sodipodi:role="line"
          id="tspan12"
-         style="stroke-width:0.01"></tspan></text>
+         style="stroke-width:0.01" /></text>
     <text
        xml:space="preserve"
        style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.05833px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1"
@@ -187,7 +215,7 @@
        id="text13"><tspan
          sodipodi:role="line"
          id="tspan13"
-         style="stroke-width:0.01"></tspan></text>
+         style="stroke-width:0.01" /></text>
     <text
        xml:space="preserve"
        style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:1.05833px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Italic';text-align:center;writing-mode:lr-tb;direction:ltr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.01;stroke-miterlimit:0.5;stroke-dasharray:none;stroke-opacity:1"
@@ -196,9 +224,12 @@
        id="text14"><tspan
          sodipodi:role="line"
          id="tspan14"
-         style="stroke-width:0.01"></tspan></text>
+         style="stroke-width:0.01" /></text>
     <g
-       id="g18">
+       id="g18"
+       inkscape:export-filename="fig3.svg"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96">
       <g
          id="g9">
         <ellipse
@@ -267,9 +298,9 @@
    id="tspan18">perp</tspan></tspan></text>
     </g>
     <path
-       style="fill:#d5d5d5;fill-opacity:1;stroke:#000000;stroke-width:0.200001;stroke-miterlimit:0.5;stroke-opacity:1"
-       d="m 68.896747,16.875358 v 25.22159 H 39.765456 Z"
-       id="path2-8" />
+       style="fill:url(#linearGradient3);fill-opacity:1;stroke:#000000;stroke-width:0.200001;stroke-miterlimit:0.5;stroke-opacity:1"
+       d="M 68.966497,16.79663 V 42.01822 H 39.835206 Z"
+       id="path2-1" />
     <ellipse
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-miterlimit:0.5;stroke-opacity:1"
        id="path7-1"
@@ -315,5 +346,31 @@
          x="43.221962"
          y="25.497171"
          id="tspan25">detected</tspan></text>
+    <g
+       id="g3"
+       transform="matrix(0.71451476,0,0,0.71451476,13.770827,17.589401)"
+       style="stroke-width:1.39955">
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.139955;stroke-dasharray:none;stroke-opacity:1"
+         d="m 10.640668,12.160763 0.80682,0.80682"
+         id="path3" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.139955;stroke-dasharray:none;stroke-opacity:1"
+         d="m 10.640668,12.967583 0.80682,-0.80682"
+         id="path3-8" />
+    </g>
+    <g
+       id="g3-2"
+       transform="matrix(0.71451476,0,0,0.71451476,45.31862,17.589401)"
+       style="stroke-width:1.39955">
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.139955;stroke-dasharray:none;stroke-opacity:1"
+         d="m 10.640668,12.160763 0.80682,0.80682"
+         id="path3-7" />
+      <path
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.139955;stroke-dasharray:none;stroke-opacity:1"
+         d="m 10.640668,12.967583 0.80682,-0.80682"
+         id="path3-8-6" />
+    </g>
   </g>
 </svg>
