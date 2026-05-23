@@ -24,13 +24,13 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="161.92745"
-     inkscape:cy="204.70741"
+     inkscape:zoom="3.25"
+     inkscape:cx="362.46154"
+     inkscape:cy="186"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
+     inkscape:window-x="-8"
+     inkscape:window-y="-2"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg1" />
   <defs
@@ -622,7 +622,7 @@
   </g>
   <g
      id="g40"
-     transform="translate(39.047133,-11.787435)">
+     transform="translate(39.447831,-11.786698)">
     <rect
        style="fill:url(#linearGradient21);fill-opacity:1;stroke:#000000;stroke-width:0.4;stroke-opacity:1"
        id="rect1-5"
@@ -749,14 +749,14 @@
      xml:space="preserve"
      style="font-size:3.175px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
      x="81.374237"
-     y="23.208414"
+     y="23.232668"
      id="text12-1-08"
      transform="scale(1.0616104,0.94196515)"><tspan
        sodipodi:role="line"
        id="tspan12-1-9"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
        x="81.374237"
-       y="23.208414">Render N</tspan></text>
+       y="23.232668">Render N</tspan></text>
   <path
      style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.4;stroke-dasharray:0.4, 0.4;stroke-dashoffset:0;stroke-opacity:1"
      d="M 95.151601,49.716267 V 24.91575"
@@ -774,28 +774,28 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.60413px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
-       x="59.80098"
+       x="75.713127"
        y="18.207123"
        id="text33-4-7"><tspan
          sodipodi:role="line"
-         style="font-size:2.60413px;stroke-width:0.2"
-         x="59.80098"
+         style="font-size:2.60413px;text-align:center;text-anchor:middle;stroke-width:0.2"
+         x="75.713127"
          y="18.207123"
-         id="tspan6-8">Flip buffers </tspan><tspan
+         id="tspan6-8">Flip double buffers </tspan><tspan
          sodipodi:role="line"
-         style="font-size:2.60413px;stroke-width:0.2"
-         x="59.80098"
+         style="font-size:2.60413px;text-align:center;text-anchor:middle;stroke-width:0.2"
+         x="75.713127"
          y="21.462286"
          id="tspan13-7">Dispatch compute N</tspan><tspan
          sodipodi:role="line"
-         style="font-size:2.60413px;stroke-width:0.2"
-         x="59.80098"
+         style="font-size:2.60413px;text-align:center;text-anchor:middle;stroke-width:0.2"
+         x="75.713127"
          y="24.717447"
          id="tspan7-8">Dispatch graphics N-1</tspan></text>
   </g>
   <path
      style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.4;stroke-dasharray:0.4, 0.4;stroke-dashoffset:0;stroke-opacity:1"
-     d="M 122.98151,76.795467 V 59.983344"
+     d="M 123.48073,76.795469 V 59.983346"
      id="path31-9" />
   <path
      style="fill:none;fill-opacity:1;stroke:#0000ff;stroke-width:0.4;stroke-dasharray:0.4, 0.4;stroke-dashoffset:0;stroke-opacity:1"
@@ -803,7 +803,7 @@
      id="path31-0" />
   <g
      id="g42"
-     transform="translate(-0.39999024,-3.7882725)">
+     transform="translate(0.0992284,-3.7882708)">
     <rect
        style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.400001;stroke-dasharray:0.400001, 0.400001;stroke-dashoffset:0;stroke-opacity:1"
        id="rect31-8"
@@ -870,7 +870,7 @@
   </g>
   <g
      id="g40-3"
-     transform="translate(-16.056374,-11.787513)">
+     transform="translate(-15.655676,-11.786776)">
     <rect
        style="fill:url(#linearGradient43);fill-opacity:1;stroke:#000000;stroke-width:0.4;stroke-opacity:1"
        id="rect1-5-1"
@@ -897,7 +897,7 @@
   </g>
   <path
      style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.4;stroke-dasharray:0.4, 0.4;stroke-dashoffset:0;stroke-opacity:1"
-     d="M 67.878003,76.795392 V 59.983266"
+     d="M 68.2787,76.796129 V 59.984003"
      id="path31-9-5" />
   <path
      style="fill:none;fill-opacity:1;stroke:#0000ff;stroke-width:0.4;stroke-dasharray:0.4, 0.4;stroke-dashoffset:0;stroke-opacity:1"
@@ -905,7 +905,7 @@
      id="path31-0-5" />
   <g
      id="g42-5"
-     transform="translate(-55.503497,-3.788351)">
+     transform="translate(-55.1028,-3.7876136)">
     <rect
        style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.400001;stroke-dasharray:0.400001, 0.400001;stroke-dashoffset:0;stroke-opacity:1"
        id="rect31-8-6"
@@ -996,22 +996,22 @@
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.60413px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
-         x="59.80098"
+         x="75.797691"
          y="18.207123"
          id="text33-4-7-4"><tspan
            sodipodi:role="line"
-           style="font-size:2.60413px;stroke-width:0.2"
-           x="59.80098"
+           style="font-size:2.60413px;text-align:center;text-anchor:middle;stroke-width:0.2"
+           x="75.797691"
            y="18.207123"
-           id="tspan6-8-4">Flip buffers </tspan><tspan
+           id="tspan6-8-4">Flip double buffers </tspan><tspan
            sodipodi:role="line"
-           style="font-size:2.60413px;stroke-width:0.2"
-           x="59.80098"
+           style="font-size:2.60413px;text-align:center;text-anchor:middle;stroke-width:0.2"
+           x="75.797691"
            y="21.462286"
            id="tspan13-7-2">Dispatch compute N-1</tspan><tspan
            sodipodi:role="line"
-           style="font-size:2.60413px;stroke-width:0.2"
-           x="59.80098"
+           style="font-size:2.60413px;text-align:center;text-anchor:middle;stroke-width:0.2"
+           x="75.797691"
            y="24.717447"
            id="tspan7-8-50">Dispatch graphics N-2</tspan></text>
     </g>
@@ -1028,14 +1028,14 @@
      xml:space="preserve"
      style="font-size:3.175px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
      x="41.553608"
-     y="23.347446"
+     y="23.232668"
      id="text12-1-08-9"
      transform="scale(1.0616104,0.94196515)"><tspan
        sodipodi:role="line"
        id="tspan12-1-9-5"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
        x="41.553608"
-       y="23.347446">Render N-1</tspan></text>
+       y="23.232668">Render N-1</tspan></text>
   <path
      style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.499998;stroke-dasharray:none;stroke-opacity:1"
      d="m 123.25448,23.162751 h 26.40218"
@@ -1051,15 +1051,15 @@
   <text
      xml:space="preserve"
      style="font-size:3.175px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
-     x="117.76883"
-     y="23.208414"
+     x="117.423"
+     y="23.232668"
      id="text12-1-08-2"
      transform="scale(1.0616104,0.94196515)"><tspan
        sodipodi:role="line"
        id="tspan12-1-9-2"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.175px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
-       x="117.76883"
-       y="23.208414">Render N+1</tspan></text>
+       x="117.423"
+       y="23.232668">Render N+1</tspan></text>
   <rect
      style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.0999998;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
      id="rect45"
@@ -1075,5 +1075,67 @@
      id="text1"><tspan
        sodipodi:role="line"
        id="tspan1"
-       style="stroke-width:0.1"></tspan></text>
+       style="stroke-width:0.1" /></text>
+  <path
+     style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.4;stroke-dasharray:0.4, 0.4;stroke-dashoffset:0;stroke-opacity:1"
+     d="M 40.448793,80.722645 V 59.984"
+     id="path31-9-5-8-1" />
+  <g
+     id="g42-5-8-1"
+     transform="translate(-82.932699,-3.1022692)">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.400001;stroke-dasharray:0.400001, 0.400001;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect31-8-6-2-5"
+       width="21.474775"
+       height="7.4530387"
+       x="123.38149"
+       y="76.171875" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.60413px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="134.13033"
+       y="78.998138"
+       id="text33-4-7-5-0-4-2"><tspan
+         sodipodi:role="line"
+         style="font-size:2.60413px;text-align:center;text-anchor:middle;stroke-width:0.2"
+         x="134.13033"
+         y="78.998138"
+         id="tspan2-6">Wait compute</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.60413px;text-align:center;text-anchor:middle;stroke-width:0.2"
+         x="134.13033"
+         y="82.253304"
+         id="tspan5">N-2: no-op</tspan></text>
+  </g>
+  <path
+     style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.4;stroke-dasharray:0.4, 0.4;stroke-dashoffset:0;stroke-opacity:1"
+     d="M 95.552302,80.722726 V 59.984081"
+     id="path31-9-5-8-1-6" />
+  <g
+     id="g42-5-8-1-1"
+     transform="translate(-27.82919,-3.1021883)">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.400001;stroke-dasharray:0.400001, 0.400001;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect31-8-6-2-5-8"
+       width="21.474775"
+       height="7.4530387"
+       x="123.38149"
+       y="76.171875" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.60413px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2;stroke-dasharray:none;stroke-opacity:1"
+       x="134.13033"
+       y="78.998138"
+       id="text33-4-7-5-0-4-2-9"><tspan
+         sodipodi:role="line"
+         style="font-size:2.60413px;text-align:center;text-anchor:middle;stroke-width:0.2"
+         x="134.13033"
+         y="78.998138"
+         id="tspan2-6-2">Wait compute</tspan><tspan
+         sodipodi:role="line"
+         style="font-size:2.60413px;text-align:center;text-anchor:middle;stroke-width:0.2"
+         x="134.13033"
+         y="82.253304"
+         id="tspan5-7">N-1: no-op</tspan></text>
+  </g>
 </svg>
