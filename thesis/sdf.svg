@@ -24,9 +24,9 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="4"
-     inkscape:cx="421.875"
-     inkscape:cy="357.125"
+     inkscape:zoom="5.28"
+     inkscape:cx="433.52273"
+     inkscape:cy="369.03409"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
@@ -810,9 +810,9 @@
    style="font-size:65%;baseline-shift:sub"
    id="tspan34">sdf</tspan>(x<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan35">i</tspan>)*r-sdf(x<tspan
+   id="tspan35">i</tspan>)*(r-sdf(x<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan36">i</tspan>)</tspan></text>
+   id="tspan36">i</tspan>))</tspan></text>
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.500001;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#DartArrow-3)"
        d="m 124.16165,90.763159 -2.56052,-0.548046"
