@@ -96,6 +96,9 @@
     <ClCompile Include="PbfApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NeuralPostProcess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PbfApp.h">
@@ -138,6 +141,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LodSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NeuralPostProcess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -280,6 +286,8 @@
     <FxCompile Include="splatDensityVolumeCS.hlsl">
       <Filter>Shaders\Compute</Filter>
     </FxCompile>
+    <FxCompile Include="toNchwCS.hlsl" />
+    <FxCompile Include="fromNchwCS.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SphKernels.hlsli">

@@ -55,14 +55,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>BOOST_BIND_NO_PLACEHOLDERS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>false</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)Common\assimp\include\;$(SolutionDir)Common\DirectXTex\;$(SolutionDir)Common\LuaBind\;$(SolutionDir)Common\Lua\include\;$(SolutionDir)Common\boost\include\;$(SolutionDir)Common\PhysX\include\;$(SolutionDir)Common\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <!-- ORT / DirectML: extract Microsoft.ML.OnnxRuntime.DirectML and Microsoft.AI.DirectML NuGet packages
+           to Common\onnxruntime\ and Common\directml\ respectively, then copy the DLLs to Bin\. -->
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)Common\assimp\include\;$(SolutionDir)Common\DirectXTex\;$(SolutionDir)Common\LuaBind\;$(SolutionDir)Common\Lua\include\;$(SolutionDir)Common\boost\include\;$(SolutionDir)Common\PhysX\include\;$(SolutionDir)Common\imgui;$(SolutionDir)Common\onnxruntime\include;$(SolutionDir)Common\directml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Common\Lua\lib;$(SolutionDir)Common\PhysX\lib\;$(SolutionDir)Common\assimp\lib\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Egg.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Common\Lua\lib;$(SolutionDir)Common\PhysX\lib\;$(SolutionDir)Common\assimp\lib\;$(SolutionDir)Common\onnxruntime\lib;$(SolutionDir)Common\directml\lib;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Egg.lib;onnxruntime.lib;DirectML.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -73,12 +75,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)Common\assimp\include\;$(SolutionDir)Common\DirectXTex\;$(SolutionDir)Common\LuaBind\;$(SolutionDir)Common\Lua\include\;$(SolutionDir)Common\boost\include\;$(SolutionDir)Common\PhysX\include\;$(SolutionDir)Common\imgui;$(SolutionDir)Common\onnxruntime\include;$(SolutionDir)Common\directml\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)Common\Lua\lib;$(SolutionDir)Common\PhysX\lib\;$(SolutionDir)Common\assimp\lib\;$(SolutionDir)Common\onnxruntime\lib;$(SolutionDir)Common\directml\lib;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Egg.lib;onnxruntime.lib;DirectML.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -89,10 +95,12 @@
     <ClCompile Include="..\Common\imgui\imgui_tables.cpp" />
     <ClCompile Include="..\Common\imgui\imgui_widgets.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NeuralPostProcess.cpp" />
     <ClCompile Include="PbfApp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AsyncComputeApp.h" />
+    <ClInclude Include="NeuralPostProcess.h" />
     <ClInclude Include="ComputeShader.h" />
     <ClInclude Include="ConstantBufferTypes.h" />
     <ClInclude Include="DescriptorAllocator.h" />
@@ -111,6 +119,14 @@
     <FxCompile Include="applyForcesCS.hlsl">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compute</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">6.4</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="toNchwCS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">6.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="fromNchwCS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Compute</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">6.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="bgPS.hlsl">
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.1</ShaderModel>
@@ -302,6 +318,11 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Egg\Egg.vcxproj">
+      <Project>{c235bd63-6e30-4f13-a0ff-c5d5fca38558}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include "AsyncComputeApp.h"
+#include "NeuralPostProcess.h"
 #include "ConstantBufferTypes.h"
 #include "ParticleTypes.h"
 #include "ComputeShader.h"
@@ -219,6 +220,9 @@ protected:
 
 	int shadingMode = SHADING_LIQUID; // current particle shading mode, driven by ImGui
 
+	// Neural post-processing pass (U-Net via DirectML). Null until LoadAssets() succeeds.
+	NeuralPostProcess::P neuralPass;
+
 	// Create all three descriptor heaps. Must be called before any Init function
 	// that populates descriptors.
 	void InitDescriptorHeaps();
@@ -396,4 +400,21 @@ public:
 	virtual void ProcessMessage(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) override;
 
 	void RunNTimes(int n, bool physicsEnabled);
+
+	// --- Training data capture ---
+	// Records a CopyTextureRegion from sceneRT into a CPU-readable readback buffer.
+	// Must be called while commandList is open, after all scene draws, before RecordPreProcess.
+	// Only valid when neuralPass is enabled (sceneRT exists).
+	void RecordCapture();
+
+	// Maps the readback buffer and writes a PNG to captureInputDir after the GPU finishes.
+	// Call after cpuWaitForGraphics; no-op if no capture is pending.
+	void SaveCaptureIfPending();
+
+	bool   captureNextFrame = false; // set from ImGui; cleared after RecordCapture
+	bool   pendingReadback  = false; // set by RecordCapture; cleared after SaveCaptureIfPending
+	int    captureIndex     = 0;     // sequential filename counter (0000.png, 0001.png, …)
+	UINT   captureRowPitch  = 0;     // aligned row pitch of the readback buffer
+	com_ptr<ID3D12Resource> captureReadback;
+	std::string captureInputDir = "captures\\input";
 };

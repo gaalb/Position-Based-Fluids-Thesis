@@ -1,12 +1,16 @@
 #include "PbfApp.h"
+#include <wincodec.h>
+#include <filesystem>
+#pragma comment(lib, "windowscodecs.lib")
 
 using namespace Egg::Math;
 
 // Recreate the window-resolution depth textures whenever the swap chain is (re)created.
 void PbfApp::CreateSwapChainResources() {
 	AsyncComputeApp::CreateSwapChainResources();
-	// lod is null on the first call (before CreateResources); skip until it exists.
-	if (lod) lod->Resize((UINT)scissorRect.right, (UINT)scissorRect.bottom);
+	// lod and neuralPass are null on the first call (before CreateResources); skip until they exist.
+	if (lod)       lod->Resize((UINT)scissorRect.right, (UINT)scissorRect.bottom);
+	if (neuralPass) neuralPass->Resize(device.Get(), (UINT)scissorRect.right, (UINT)scissorRect.bottom);
 }
 
 // Allocate all GPU resources that persist across frames: descriptor heaps, 
@@ -251,6 +255,12 @@ void PbfApp::LoadAssets() {
 	UploadAll();
 	BuildGraphicsPipelines();
 	BuildComputePipelines();
+
+	// Neural post-process pass. Disabled gracefully if the ONNX file is missing.
+	neuralPass = NeuralPostProcess::Create(
+		device.Get(), commandQueue.Get(), "models/unet_postprocess.onnx");
+	if (neuralPass && neuralPass->enabled)
+		neuralPass->Resize(device.Get(), (UINT)scissorRect.right, (UINT)scissorRect.bottom);
 }
 
 // Batch all initial data uploads into a single command list execution.
@@ -840,28 +850,34 @@ void PbfApp::PrepareCommandList() {
 	commandList->RSSetViewports(1, &viewPort); // the visible area (full window)
 	commandList->RSSetScissorRects(1, &scissorRect); // the clipping rectangle (also full window)
 
-	// transition the current back buffer from "present" state to "render target" state so we can draw into it
-	commandList->ResourceBarrier(1, // number of barriers
-		&CD3DX12_RESOURCE_BARRIER::Transition( // helper function to create a transition barrier
-			renderTargets[swapChainBackBufferIndex].Get(), // resource: the current back buffer, identified by the swap chain's current back buffer index
-			D3D12_RESOURCE_STATE_PRESENT, // before: the back buffer was last used for presentation
-			D3D12_RESOURCE_STATE_RENDER_TARGET)); // after: we want to render into the back buffer
-
-	// get a CPU handle to the current back buffer's render target view (RTV)
-	CD3DX12_CPU_DESCRIPTOR_HANDLE rHandle( // helper function to calculate a handle with an offset
-		rtvDescriptorHeap->GetCPUDescriptorHandleForHeapStart(), // start of the RTV heap
-		swapChainBackBufferIndex, // which back buffer
-		rtvDescriptorHandleIncrementSize); // byte offset between entries
-
 	// get a CPU handle to the depth stencil view (DSV)
 	CD3DX12_CPU_DESCRIPTOR_HANDLE dsvHandle(dsvHeap->GetCPUDescriptorHandleForHeapStart());
 
-	// set the render target and depth buffer as the output for draw calls
-	commandList->OMSetRenderTargets(1, &rHandle, FALSE, &dsvHandle);
-
-	// clear the screen to a solid color
 	const float clearColor[] = { 0.0f, 0.2f, 0.4f, 1.0f };
-	commandList->ClearRenderTargetView(rHandle, clearColor, 0, nullptr);
+
+	if (neuralPass && neuralPass->enabled) {
+		// Neural path: scene draws go to the intermediate sceneRT; the swapchain backbuffer
+		// is left in PRESENT state and is picked up in phase 2 (RecordPostProcess).
+		// sceneRT was created in RENDER_TARGET state and is restored there by RecordPreProcess
+		// at the end of every frame, so no barrier is needed here.
+		auto rtvHandle = neuralPass->GetSceneRtvHandle();
+		commandList->OMSetRenderTargets(1, &rtvHandle, FALSE, &dsvHandle);
+		commandList->ClearRenderTargetView(rtvHandle, clearColor, 0, nullptr);
+	} else {
+		// Normal path: transition the current back buffer from PRESENT to RENDER_TARGET
+		commandList->ResourceBarrier(1,
+			&CD3DX12_RESOURCE_BARRIER::Transition(
+				renderTargets[swapChainBackBufferIndex].Get(),
+				D3D12_RESOURCE_STATE_PRESENT,
+				D3D12_RESOURCE_STATE_RENDER_TARGET));
+
+		CD3DX12_CPU_DESCRIPTOR_HANDLE rHandle(
+			rtvDescriptorHeap->GetCPUDescriptorHandleForHeapStart(),
+			swapChainBackBufferIndex,
+			rtvDescriptorHandleIncrementSize);
+		commandList->OMSetRenderTargets(1, &rHandle, FALSE, &dsvHandle);
+		commandList->ClearRenderTargetView(rHandle, clearColor, 0, nullptr);
+	}
 
 	// clear the depth buffer to 1.0 (maximum depth = far plane)
 	commandList->ClearDepthStencilView(dsvHandle, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
@@ -948,7 +964,52 @@ void PbfApp::Render() {
 
 	PrepareCommandList();
 	RecordGraphicsCommands();
-	BuildImGui();
+
+	if (captureNextFrame && neuralPass && neuralPass->enabled) {
+		RecordCapture();
+		captureNextFrame = false;
+	}
+
+	if (neuralPass && neuralPass->enabled) {
+		// ---- Phase 1: scene draws + toNchwCS conversion ----
+		// RecordPreProcess dispatches toNchwCS (sceneRT → dmlInputBuf) and handles barriers.
+		// Leaves dmlInputBuf in COMMON (ready for ORT) and sceneRT in RENDER_TARGET (next frame).
+		neuralPass->RecordPreProcess(commandList.Get());
+
+		DX_API("Failed to close phase-1 command list")
+			commandList->Close();
+		ID3D12CommandList* phase1[] = { commandList.Get() };
+		commandQueue->ExecuteCommandLists(_countof(phase1), phase1);
+
+		// ---- ORT inference: DML work queued on commandQueue, FIFO after phase 1 ----
+		neuralPass->RunInference();
+
+		// ---- Phase 2: fromNchwCS → backbuffer, then ImGui overlay ----
+		// commandList->Reset() reuses the allocator without resetting it (safe: GPU is still
+		// running phase 1, but we don't reset the allocator until the start of the next frame).
+		DX_API("Failed to reset command list for phase 2")
+			commandList->Reset(commandAllocator.Get(), nullptr);
+		commandList->RSSetViewports(1, &viewPort);
+		commandList->RSSetScissorRects(1, &scissorRect);
+
+		// RecordPostProcess: fromNchwCS (dmlOutputBuf → outputTex) + CopyResource to backbuffer.
+		// Leaves backbuffer in RENDER_TARGET for the ImGui draws below.
+		neuralPass->RecordPostProcess(
+			commandList.Get(), renderTargets[swapChainBackBufferIndex].Get());
+
+		// Bind backbuffer as the render target for ImGui (no DSV needed for UI).
+		CD3DX12_CPU_DESCRIPTOR_HANDLE bbRtv(
+			rtvDescriptorHeap->GetCPUDescriptorHandleForHeapStart(),
+			swapChainBackBufferIndex,
+			rtvDescriptorHandleIncrementSize);
+		commandList->OMSetRenderTargets(1, &bbRtv, FALSE, nullptr);
+		BuildImGui();
+	} else {
+		BuildImGui();
+	}
+
+	// ExecuteGraphics transitions backbuffer RENDER_TARGET → PRESENT, closes the command list
+	// (phase 2 in the neural path, the only list in the normal path), and presents.
 	ExecuteGraphics();
 
 	// Signal graphicsFence and CPU-wait: blocks until the graphics queue (including the
@@ -957,6 +1018,8 @@ void PbfApp::Render() {
 	// allocator is safe to reset next frame, and render frame N.
 	graphicsFence.signal(commandQueue, frameCount - 1);
 	cpuWaitForGraphics(frameCount - 1);
+
+	SaveCaptureIfPending();
 
 	// save debug timer value for display in ImGui
 	t1 = std::chrono::high_resolution_clock::now();
@@ -1062,15 +1125,20 @@ void PbfApp::RecordGraphicsCommands() {
 		positionSnapshotDB->getFront()->Transition(SRV_ALL, commandList.Get());
 
 	if (lod->mode == LodSystem::Mode::DTVS) { // DTVS requires depth data
+		// DrawParticleDepth restores the RTV after its depth-only draw via the last argument.
+		// When the neural pass is active the destination is sceneRT, not the swapchain backbuffer.
+		D3D12_CPU_DESCRIPTOR_HANDLE mainRtv = (neuralPass && neuralPass->enabled)
+			? neuralPass->GetSceneRtvHandle()
+			: CD3DX12_CPU_DESCRIPTOR_HANDLE(
+				rtvDescriptorHeap->GetCPUDescriptorHandleForHeapStart(),
+				swapChainBackBufferIndex,
+				rtvDescriptorHandleIncrementSize);
 		lod->DrawParticleDepth(
 			commandList.Get(),
 			perFrameCb.GetGPUVirtualAddress(),
 			mainAllocator->GetGpuHandle(particleSrvTableStart),
 			dsvHeap->GetCPUDescriptorHandleForHeapStart(),
-			CD3DX12_CPU_DESCRIPTOR_HANDLE(
-				rtvDescriptorHeap->GetCPUDescriptorHandleForHeapStart(),
-				swapChainBackBufferIndex,
-				rtvDescriptorHandleIncrementSize));
+			mainRtv);
 	}		
 
 	if (shadingMode == ShadingMode::LIQUID) {
@@ -1120,6 +1188,87 @@ void PbfApp::DrawLiquidSurface() {
 		densityVolume->Get(), clearVal, 0, nullptr);
 
 	densityVolume->Transition(D3D12_RESOURCE_STATE_COMMON, commandList.Get());
+}
+
+void PbfApp::RecordCapture() {
+	auto* rt = neuralPass->GetSceneRT();
+	auto  d  = rt->GetDesc();
+	UINT  W  = (UINT)d.Width, H = d.Height;
+	UINT  rowPitch = (W * 4u + D3D12_TEXTURE_DATA_PITCH_ALIGNMENT - 1u) &
+	                 ~(D3D12_TEXTURE_DATA_PITCH_ALIGNMENT - 1u);
+
+	if (!captureReadback || captureRowPitch != rowPitch) {
+		captureRowPitch = rowPitch;
+		CD3DX12_HEAP_PROPERTIES hp(D3D12_HEAP_TYPE_READBACK);
+		auto bd = CD3DX12_RESOURCE_DESC::Buffer((UINT64)rowPitch * H);
+		DX_API("Failed to create capture readback buffer")
+			device->CreateCommittedResource(&hp, D3D12_HEAP_FLAG_NONE, &bd,
+				D3D12_RESOURCE_STATE_COPY_DEST, nullptr,
+				IID_PPV_ARGS(captureReadback.ReleaseAndGetAddressOf()));
+		captureReadback->SetName(L"CaptureReadback");
+	}
+
+	commandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(
+		rt, D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_COPY_SOURCE));
+
+	D3D12_PLACED_SUBRESOURCE_FOOTPRINT fp = {};
+	fp.Footprint = { DXGI_FORMAT_R8G8B8A8_UNORM, W, H, 1, rowPitch };
+	CD3DX12_TEXTURE_COPY_LOCATION src(rt, 0);
+	CD3DX12_TEXTURE_COPY_LOCATION dst(captureReadback.Get(), fp);
+	commandList->CopyTextureRegion(&dst, 0, 0, 0, &src, nullptr);
+
+	commandList->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(
+		rt, D3D12_RESOURCE_STATE_COPY_SOURCE, D3D12_RESOURCE_STATE_RENDER_TARGET));
+
+	pendingReadback = true;
+}
+
+void PbfApp::SaveCaptureIfPending() {
+	if (!pendingReadback) return;
+	pendingReadback = false;
+
+	auto* rt = neuralPass->GetSceneRT();
+	auto  d  = rt->GetDesc();
+	UINT  W  = (UINT)d.Width, H = d.Height;
+
+	std::filesystem::create_directories(captureInputDir);
+
+	char fname[16]; sprintf_s(fname, "%04d.png", captureIndex++);
+	std::string  path  = captureInputDir + "\\" + fname;
+	std::wstring wpath(path.begin(), path.end());
+
+	D3D12_RANGE readRange = { 0, (SIZE_T)captureRowPitch * H };
+	uint8_t*    pixels    = nullptr;
+	captureReadback->Map(0, &readRange, reinterpret_cast<void**>(&pixels));
+
+	// Write RGBA PNG via WIC (windowscodecs.dll is included with Windows; no extra DLLs needed).
+	HRESULT cohr = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+	{
+		IWICImagingFactory*    wic   = nullptr;
+		IWICStream*            stm   = nullptr;
+		IWICBitmapEncoder*     enc   = nullptr;
+		IWICBitmapFrameEncode* frame = nullptr;
+		CoCreateInstance(CLSID_WICImagingFactory, nullptr, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&wic));
+		wic->CreateStream(&stm);
+		stm->InitializeFromFilename(wpath.c_str(), GENERIC_WRITE);
+		wic->CreateEncoder(GUID_ContainerFormatPng, nullptr, &enc);
+		enc->Initialize(stm, WICBitmapEncoderNoCache);
+		enc->CreateNewFrame(&frame, nullptr);
+		frame->Initialize(nullptr);
+		frame->SetSize(W, H);
+		WICPixelFormatGUID fmt = GUID_WICPixelFormat32bppRGBA;
+		frame->SetPixelFormat(&fmt);
+		frame->WritePixels(H, captureRowPitch, captureRowPitch * H, pixels);
+		frame->Commit();
+		enc->Commit();
+		frame->Release(); enc->Release(); stm->Release(); wic->Release();
+	}
+	if (cohr == S_OK) CoUninitialize();
+
+	D3D12_RANGE writeRange = { 0, 0 };
+	captureReadback->Unmap(0, &writeRange);
+
+	OutputDebugStringA(("Capture saved → " + path + "\n").c_str());
 }
 
 void PbfApp::BuildImGui() {
@@ -1197,6 +1346,36 @@ void PbfApp::BuildImGui() {
 		ImGui::DragFloat3("Box min", &boxMin.x, 0.1f, gridMin.x, 0.0f, "%.2f", ImGuiSliderFlags_AlwaysClamp);
 		ImGui::DragFloat3("Box max", &boxMax.x, 0.1f, 0.0f, gridMax.x, "%.2f", ImGuiSliderFlags_AlwaysClamp);
 		ImGui::PopItemWidth();
+	}
+
+	if (ImGui::CollapsingHeader("Neural Post-Process")) {
+		if (neuralPass && neuralPass->enabled) {
+			ImGui::Checkbox("U-Net enabled", &neuralPass->enabled);
+			ImGui::TextDisabled("TinyUNet ~93K params, DirectML on GPU");
+			ImGui::Separator();
+			ImGui::TextUnformatted("Training capture");
+			if (ImGui::Button("Capture input frame")) captureNextFrame = true;
+			ImGui::SameLine();
+			ImGui::Text("%d saved", captureIndex);
+			ImGui::TextDisabled("%s", captureInputDir.c_str());
+			ImGui::TextDisabled("Train: python models/train_unet.py --data captures");
+		} else if (neuralPass) {
+			UINT rW = (UINT)scissorRect.right, rH = (UINT)scissorRect.bottom;
+			bool mismatch = neuralPass->modelWidth > 0 &&
+				(neuralPass->modelWidth != rW || neuralPass->modelHeight != rH);
+			if (mismatch) {
+				ImGui::TextColored(ImVec4(1, 0.4f, 0, 1), "Resolution mismatch!");
+				ImGui::TextDisabled("Model: %ux%u  Render: %ux%u",
+					neuralPass->modelWidth, neuralPass->modelHeight, rW, rH);
+				ImGui::TextDisabled("Re-export: python models/export_unet.py --width %u --height %u", rW, rH);
+			} else {
+				ImGui::Checkbox("U-Net enabled", &neuralPass->enabled);
+			}
+		} else {
+			ImGui::TextColored(ImVec4(1, 0.5f, 0, 1), "No model loaded");
+			ImGui::TextDisabled("Run: python models/export_unet.py");
+			ImGui::TextDisabled("Place unet_postprocess.onnx in Bin\\models\\");
+		}
 	}
 
 	ImGui::End();
@@ -1366,6 +1545,7 @@ void PbfApp::RunNTimes(int n, bool physicsEnabled) {
 }
 
 void PbfApp::ReleaseSwapChainResources()  {
+	if (neuralPass) neuralPass->ReleaseResolutionResources();
 	AsyncComputeApp::ReleaseSwapChainResources();
 }
 
