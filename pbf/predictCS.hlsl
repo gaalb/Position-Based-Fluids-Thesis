@@ -58,6 +58,11 @@ void main(uint3 dispatchID : SV_DispatchThreadID)
             force.y += 250.0;
     }
 
+    if(abs(pos.x) < 0.15)
+    {
+        force.x += -500.0 * cos(pos.x * 3.14 / 2.0 / 0.15);
+    }
+
     v += force * dt;
 
     // velocity-level collision response
@@ -91,6 +96,10 @@ void main(uint3 dispatchID : SV_DispatchThreadID)
     }
 
     // predict position
+    if (pos.x < 0.0)
+    {
+        v *= exp(-dt * 5.0);
+    }    
     velocity[i] = v;
     predictedPosition[i] = pos + v * dt;
 }

@@ -5,6 +5,7 @@ struct VSOutput
     float3 worldPos : WORLDPOS; // the world position of the vertex, passed to GS for billboard generation
     float density : DENSITY;   // SPH density estimate, passed through for coloring in PS
     uint lod : LOD;            // per-particle LOD value, passed through for coloring in PS
+    uint particleIndex : PARTICLEINDEX; // index of this particle in the structured buffers
 };
 
 struct GSOutput
@@ -16,6 +17,7 @@ struct GSOutput
     float3 up : UP; // billboard up axis in world space
     float density : DENSITY; // SPH density, same for all 4 verts of this billboard
     uint lod : LOD;          // LOD value, same for all 4 verts of this billboard
+    uint particleIndex : PARTICLEINDEX; // index of this particle in the structured buffers    
 };
 
 #include "SharedConfig.hlsli"
@@ -59,6 +61,7 @@ void main(point VSOutput input[1], inout TriangleStream<GSOutput> outputStream)
     for (int i = 0; i < 4; i++)
     {
         GSOutput output;
+        output.particleIndex = input[0].particleIndex;
 
         // offset the corner from center in world space
         float3 worldPos = center + right * uvs[i].x * radius + up * uvs[i].y * radius;

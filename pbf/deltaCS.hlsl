@@ -33,7 +33,7 @@ void main(uint3 dispatchID : SV_DispatchThreadID)
 {
     uint i = dispatchID.x;
     if (i >= numParticles) 
-        return; // skip threapds that belong to no particle
+        return; // skip threads that belong to no particle
     if (lod[i] == 0)
         return; // skip particles that have exhausted their iteration count
 
@@ -97,6 +97,9 @@ void main(uint3 dispatchID : SV_DispatchThreadID)
         }
     }
     deltaP /= RHO0;
+    if(pi.x < 0.0 ){
+        deltaP *= 1;
+    }
 
     // Update the predicted position (collision response is handled by collisionCS)
     scratch[i] = pi + deltaP;

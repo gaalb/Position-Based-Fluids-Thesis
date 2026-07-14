@@ -63,11 +63,20 @@
 // To add a new obstacle: bump this, add an entry to the ObstacleDesc table in
 // InitObstacle(), and update numDescriptors in the PredictRootSig /
 // CollisionPositionRootSig strings in predictCS.hlsl / collisionPredictedPositionCS.hlsl.
-#define NUM_OBSTACLES 2
+#define NUM_OBSTACLES 1
 
 // Number of directional light sources.
 // To add a new light: bump this and add an entry to the lightDirs/lightColors
 // initializers in PbfApp.h; the new light will appear in the ImGui "Light" combo.
 #define NUM_LIGHTS 3
+
+// BCC soft body dynamics grid dimensions.
+// Nodes: sublattice A at integer (i,j,k)*spacing, sublattice B at (i+0.5,j+0.5,k+0.5)*spacing.
+// Total node count = 2 * SBD_DIM_X * SBD_DIM_Y * SBD_DIM_Z.
+#define SBD_DIM_X 3
+#define SBD_DIM_Y 3
+#define SBD_DIM_Z 3
+#define SBD_NUM_CUBIC_NODES (SBD_DIM_X * SBD_DIM_Y * SBD_DIM_Z)
+#define SBD_NUM_NODES (SBD_NUM_CUBIC_NODES + (SBD_DIM_X+1) * (SBD_DIM_Y+1) * (SBD_DIM_Z+1))
 
 #endif

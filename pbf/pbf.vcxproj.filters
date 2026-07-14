@@ -70,6 +70,9 @@
     <Filter Include="Shaders\Compute\sort\prefixSum\unused">
       <UniqueIdentifier>{d53d111d-a044-4769-aa21-5b7c0014a708}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders\SBD">
+      <UniqueIdentifier>{1459e4c4-acdd-44c6-84ec-b1bd8c4a34be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -144,6 +147,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NeuralPostProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftBodyTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -288,6 +294,15 @@
     </FxCompile>
     <FxCompile Include="toNchwCS.hlsl" />
     <FxCompile Include="fromNchwCS.hlsl" />
+    <FxCompile Include="sbdPredictCS.hlsl">
+      <Filter>Shaders\SBD</Filter>
+    </FxCompile>
+    <FxCompile Include="sbdStrainCS.hlsl">
+      <Filter>Shaders\SBD</Filter>
+    </FxCompile>
+    <FxCompile Include="sbdUpdateVelocityCS.hlsl">
+      <Filter>Shaders\SBD</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SphKernels.hlsli">

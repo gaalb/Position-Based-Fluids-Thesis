@@ -9,6 +9,7 @@ struct GSOutput
     float3 up : UP; // billboard up axis in world space
     float density : DENSITY; // SPH density estimate for this particle
     uint lod : LOD;          // per-particle LOD value
+    uint particleIndex : PARTICLEINDEX; // index of this particle in the structured buffers
 };
 
 struct LightData { float4 direction; float4 color; };
@@ -48,7 +49,14 @@ float4 main(GSOutput input) : SV_Target
     if (shadingMode == SHADING_UNICOLOR)
     {
         // all particles the same color
-        baseColor = float3(0.0, 1.0, 1.0);
+        if(input.particleIndex < SBD_NUM_CUBIC_NODES)
+            baseColor = float3(0.0, 1.0, 1.0);
+        else
+            baseColor = float3(1.0, 0.0, 0.0);
+//        baseColor = float3(
+//        input.particleIndex % 2,
+//        input.particleIndex / 2 % 2,
+//        input.particleIndex / 4 % 2);
     }
     else if (shadingMode == SHADING_DENSITY)
     {

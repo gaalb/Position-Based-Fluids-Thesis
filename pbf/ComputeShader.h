@@ -61,6 +61,17 @@ public:
             cmd->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::UAV(r->Get()));
     }
 
+    // Like dispatch_then_barrier but sets a 32-bit root constant (rootParam) before dispatch.
+    // Use for shaders whose root sig has an extra RootConstants entry beyond the default CBV+table.
+    void dispatch_then_barrier_with_constant(ID3D12GraphicsCommandList* cmd, UINT numGroups, UINT rootParam, UINT value)
+    {
+        setup(cmd);
+        cmd->SetComputeRoot32BitConstant(rootParam, value, 0);
+        cmd->Dispatch(numGroups, 1, 1);
+        for (auto* r : outputs)
+            cmd->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::UAV(r->Get()));
+    }
+
     // 3D variant of dispatch_then_barrier.
     void dispatch3d_then_barrier(ID3D12GraphicsCommandList* cmd, UINT gx, UINT gy, UINT gz)
     {

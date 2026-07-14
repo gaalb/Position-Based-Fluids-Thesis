@@ -65,7 +65,11 @@ void main(uint3 dispatchID : SV_DispatchThreadID)
             uint j = prefixSum + s;
 
             // r points from neighbor j toward particle i (r_ij = p_i - p_j)
-            float3 r = pi - predictedPosition[j];
+            float3 ppj = predictedPosition[j];
+            float3 r = pi - ppj;
+            float rhosat = RHO0; // rest density
+            if (ppj.x < 0.0)
+                rhosat *= 1.0; // reduce rest density for particles on the left side of the box
             
             float r2 = dot(r, r);
 
@@ -76,11 +80,11 @@ void main(uint3 dispatchID : SV_DispatchThreadID)
             {
                 // k=j case: grad_pj(C_i) = -(1/rho0) * grad_W_spiky(r_ij, h)
                 float3 gradW = SpikyGrad(r, r2);
-                float3 gradJ = -(1.0 / RHO0) * gradW;
+                float3 gradJ = -(1.0 / rhosat) * gradW;
                 gradSqSum += dot(gradJ, gradJ); // add |grad_pj(C_i)|^2 to denominator
 
                 // Also accumulate gradW into gradI -- needed for the k=i term after the loop
-                gradI += gradW;
+                gradI += gradW / rhosat;
             }
         }
     }
@@ -88,15 +92,19 @@ void main(uint3 dispatchID : SV_DispatchThreadID)
     // k=i case
     // grad_pi(C_i) = (1/rho0) * sum_{j != i}(grad_W_spiky(r_ij, h))
     // gradI now holds the raw sum; apply the 1/rho0 factor and add its squared magnitude.
-    gradI /= RHO0;
+//sat    gradI /= rhosat;
     gradSqSum += dot(gradI, gradI); // add |grad_pi(C_i)|^2 to denominator
 
+    float rhosat = RHO0; // rest density
+    if (pi.x < 0.0)
+        rhosat *= 1.0; // reduce rest density for particles on the left side of the box
+    
     // Density constraint value
-    float C = rho / RHO0 - 1.0; // 0 at rest density, > 0 if compressed, < 0 if sparse
+    float C = rho /rhosat - 1.0; // 0 at rest density, > 0 if compressed, < 0 if sparse
 
     // Store density for visualization (read by rendering shaders)
     density[i] = rho;
 
-    // Newton step length lambdda
+    // Newton step length lambda
     lambda[i] = -C / (gradSqSum + epsilon);
 }

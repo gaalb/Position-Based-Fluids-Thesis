@@ -35,6 +35,8 @@ void PbfApp::CreateResources() {
 	InitDensityVolume();
 	InitBackground();
 	InitObstacles();
+	InitSoftBodyFields();
+	InitSoftBodySnapshotBuffers();
 }
 
 // Create all descriptor allocators. Must be called before any Init function
@@ -236,7 +238,7 @@ void PbfApp::InitObstacles() {
 		float  scale;
 	};
 	static const ObstacleDesc descs[NUM_OBSTACLES] = {
-		{ "dragonite", Float3(2.3f, -31.0f, 3.5f), Float3(0.0f, 0.0f, 0.0f), 3.8f },
+	//	{ "dragonite", Float3(2.3f, -31.0f, 3.5f), Float3(0.0f, 0.0f, 0.0f), 3.8f },
 		{ "funnel", Float3(0.0f, 14.0f, 0.0f), Float3(0.0f,  0.0f, 0.0f), 8.0f },
 	};
 
@@ -250,6 +252,212 @@ void PbfApp::InitObstacles() {
 	}
 }
 
+// Allocate GPU buffers for all SBD fields (position, velocity, predicted position)
+// and auxiliary buffers used by the rendering pipeline.
+void PbfApp::InitSoftBodyFields() {
+	for (UINT f = 0; f < SBD_COUNT; f++) {
+		sbdFieldBuffers[f] = GpuBuffer::Create(
+			device.Get(), numSbdNodes, sbdFieldStrides[f],
+			sbdFieldNames[f], D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+		sbdFieldBuffers[f]->CreateUav(device.Get(), *staticAllocator);
+	}
+
+	sbdPositionUploadBuffer = GpuBuffer::Create(
+		device.Get(), numSbdNodes, sizeof(Float3),
+		L"Sbd Position Upload Buffer",
+		D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_HEAP_TYPE_UPLOAD);
+
+	sbdVelocityUploadBuffer = GpuBuffer::Create(
+		device.Get(), numSbdNodes, sizeof(Float3),
+		L"Sbd Velocity Upload Buffer (zeros)",
+		D3D12_RESOURCE_STATE_GENERIC_READ, D3D12_HEAP_TYPE_UPLOAD);
+	{
+		void* data;
+		CD3DX12_RANGE readRange(0, 0);
+		DX_API("Failed to map SBD velocity upload buffer")
+			sbdVelocityUploadBuffer->Get()->Map(0, &readRange, &data);
+		memset(data, 0, (size_t)numSbdNodes * sizeof(Float3));
+		sbdVelocityUploadBuffer->Get()->Unmap(0, nullptr);
+	}
+
+	// Dummy zero buffers: particleVS needs density (t1) and LOD (t2) even for SBD nodes.
+	// DEFAULT heap ensures zero-initialization; we only create SRVs, never UAVs.
+	sbdDummyDensityBuffer = GpuBuffer::Create(
+		device.Get(), numSbdNodes, sizeof(float),
+		L"Sbd Dummy Density", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	sbdDummyDensityBuffer->CreateSrv(device.Get(), *staticAllocator);
+
+	sbdDummyLodBuffer = GpuBuffer::Create(
+		device.Get(), numSbdNodes, sizeof(UINT),
+		L"Sbd Dummy LOD", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	sbdDummyLodBuffer->CreateSrv(device.Get(), *staticAllocator);
+}
+
+// Double-buffered snapshot of SBD node positions for safe graphics readback.
+// Compute writes to back; flip() promotes to front for the VS to read.
+void PbfApp::InitSoftBodySnapshotBuffers() {
+	sbdPositionSnapshotDB = DoubleBufferGpuBuffer::Create(
+		device.Get(), numSbdNodes, sizeof(Float3),
+		L"Sbd Position Snapshot [front]", L"Sbd Position Snapshot [back]",
+		D3D12_RESOURCE_STATE_COMMON, *staticAllocator);
+
+	// Reserve 3 contiguous main-heap SRV slots for the SBD rendering descriptor table.
+	// Slot +0: sbdPositionSnapshotDB front (registered below; updated on every flip).
+	// Slot +1: sbdDummyDensityBuffer SRV (static, filled in BuildSoftBodyRenderPipeline).
+	// Slot +2: sbdDummyLodBuffer SRV     (static, filled in BuildSoftBodyRenderPipeline).
+	sbdSrvTableStart = mainAllocator->Allocate(3);
+	sbdPositionSnapshotDB->registerFrontTarget(mainAllocator->GetCpuHandle(sbdSrvTableStart), true);
+}
+
+// Fill the CPU-side BCC position upload buffer.
+// Sublattice A: SBD_DIM_X * SBD_DIM_Y * SBD_DIM_Z nodes at (i, j, k) * spacing.
+// Sublattice B: (SBD_DIM_X+1)*(SBD_DIM_Y+1)*(SBD_DIM_Z+1) nodes at (i-0.5, j-0.5, k-0.5)*spacing,
+//              so B extends half a spacing unit outside A on every side.
+// Both sublattices share the same world-space center.
+void PbfApp::FillSbdUploadBuffer() {
+	const float spacing = 1.0f;
+	const Float3 center(0.0f, 5.0f, 0.0f);
+	// A center = (DIM-1)*spacing/2 per axis; offset places A node (0,0,0) at center - that.
+	const Float3 aOffset = center - Float3(SBD_DIM_X - 1, SBD_DIM_Y - 1, SBD_DIM_Z - 1) * (spacing * 0.5f);
+	// B starts half a spacing below A, so B node (0,0,0) = aOffset - (0.5,0.5,0.5)*spacing.
+	const Float3 bOffset = aOffset - Float3(0.5f, 0.5f, 0.5f) * spacing;
+
+	std::vector<Float3> positions;
+	positions.reserve(numSbdNodes);
+
+	// Sublattice A: SBD_DIM_X * SBD_DIM_Y * SBD_DIM_Z nodes
+	for (int z = 0; z < SBD_DIM_Z; z++)
+		for (int y = 0; y < SBD_DIM_Y; y++)
+			for (int x = 0; x < SBD_DIM_X; x++)
+				positions.push_back(aOffset + Float3((float)x, (float)y, (float)z) * spacing);
+
+	// Sublattice B: (SBD_DIM_X+1) * (SBD_DIM_Y+1) * (SBD_DIM_Z+1) nodes
+	for (int z = 0; z <= SBD_DIM_Z; z++)
+		for (int y = 0; y <= SBD_DIM_Y; y++)
+			for (int x = 0; x <= SBD_DIM_X; x++)
+				positions.push_back(bOffset + Float3((float)x, (float)y, (float)z) * spacing);
+
+	void* data;
+	CD3DX12_RANGE readRange(0, 0);
+	DX_API("Failed to map SBD position upload buffer")
+		sbdPositionUploadBuffer->Get()->Map(0, &readRange, &data);
+	memcpy(data, positions.data(), positions.size() * sizeof(Float3));
+	sbdPositionUploadBuffer->Get()->Unmap(0, nullptr);
+}
+
+// Record GPU upload commands: copy initial BCC positions into the main buffer and both
+// snapshot slots, then transition all SBD buffers to their permanent home states.
+void PbfApp::RecordSbdUpload() {
+	const UINT64 posBytes = (UINT64)numSbdNodes * sizeof(Float3);
+
+	// Upload positions: upload buffer → SBD position field buffer
+	sbdFieldBuffers[SBD_POSITION]->Transition(D3D12_RESOURCE_STATE_COPY_DEST, commandList.Get());
+	commandList->CopyBufferRegion(sbdFieldBuffers[SBD_POSITION]->Get(), 0,
+		sbdPositionUploadBuffer->Get(), 0, posBytes);
+
+	// Copy to both snapshot slots for initial visibility before the first physics step.
+	sbdFieldBuffers[SBD_POSITION]->Transition(D3D12_RESOURCE_STATE_COPY_SOURCE, commandList.Get());
+	sbdPositionSnapshotDB->getFront()->Transition(D3D12_RESOURCE_STATE_COPY_DEST, commandList.Get());
+	sbdPositionSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_DEST, commandList.Get());
+	commandList->CopyBufferRegion(sbdPositionSnapshotDB->getFront()->Get(), 0,
+		sbdFieldBuffers[SBD_POSITION]->Get(), 0, posBytes);
+	commandList->CopyBufferRegion(sbdPositionSnapshotDB->getBack()->Get(), 0,
+		sbdFieldBuffers[SBD_POSITION]->Get(), 0, posBytes);
+
+	// Transition all SBD buffers to their permanent home states.
+	sbdFieldBuffers[SBD_POSITION]->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, commandList.Get());
+	sbdFieldBuffers[SBD_VELOCITY]->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, commandList.Get());
+	sbdFieldBuffers[SBD_PREDICTED_POSITION]->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, commandList.Get());
+	sbdPositionSnapshotDB->getFront()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, commandList.Get());
+	sbdPositionSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, commandList.Get());
+
+	// Dummy SRV buffers never change state again after this.
+	sbdDummyDensityBuffer->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, commandList.Get());
+	sbdDummyLodBuffer->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, commandList.Get());
+}
+
+// Wire the SBD compute shader descriptor tables and build their PSOs.
+void PbfApp::BuildSoftBodyComputePipelines() {
+	D3D12_GPU_VIRTUAL_ADDRESS cbv = computeCb.GetGPUVirtualAddress();
+	using P = com_ptr<ID3D12Resource>*;
+
+	auto copyToMain = [&](UINT slot, D3D12_CPU_DESCRIPTOR_HANDLE src) {
+		device->CopyDescriptorsSimple(1, mainAllocator->GetCpuHandle(slot), src,
+			D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+	};
+
+	// sbdPredictCS: UAV(u0-2) = 3 slots (position, velocity, predictedPosition)
+	{
+		UINT s = mainAllocator->Allocate(3);
+		copyToMain(s,     sbdFieldBuffers[SBD_POSITION]->GetUavCpuHandle());
+		copyToMain(s + 1, sbdFieldBuffers[SBD_VELOCITY]->GetUavCpuHandle());
+		copyToMain(s + 2, sbdFieldBuffers[SBD_PREDICTED_POSITION]->GetUavCpuHandle());
+		sbdPredictShader = ComputeShader::Create(device.Get(), "Shaders/sbdPredictCS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ sbdFieldBuffers[SBD_POSITION]->GetResourcePtr(),
+			                sbdFieldBuffers[SBD_VELOCITY]->GetResourcePtr() },
+			std::vector<P>{ sbdFieldBuffers[SBD_PREDICTED_POSITION]->GetResourcePtr() });
+	}
+
+	// sbdStrainCS: UAV(u0) = 1 slot (predictedPosition)
+	{
+		UINT s = mainAllocator->Allocate(1);
+		copyToMain(s, sbdFieldBuffers[SBD_PREDICTED_POSITION]->GetUavCpuHandle());
+		sbdStrainShader = ComputeShader::Create(device.Get(), "Shaders/sbdStrainCS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{},
+			std::vector<P>{ sbdFieldBuffers[SBD_PREDICTED_POSITION]->GetResourcePtr() });
+	}
+
+	// sbdUpdateVelocityCS: UAV(u0-2) = 3 slots (position, velocity, predictedPosition)
+	{
+		UINT s = mainAllocator->Allocate(3);
+		copyToMain(s,     sbdFieldBuffers[SBD_POSITION]->GetUavCpuHandle());
+		copyToMain(s + 1, sbdFieldBuffers[SBD_VELOCITY]->GetUavCpuHandle());
+		copyToMain(s + 2, sbdFieldBuffers[SBD_PREDICTED_POSITION]->GetUavCpuHandle());
+		sbdUpdateVelocityShader = ComputeShader::Create(device.Get(), "Shaders/sbdUpdateVelocityCS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ sbdFieldBuffers[SBD_POSITION]->GetResourcePtr(),
+			                sbdFieldBuffers[SBD_PREDICTED_POSITION]->GetResourcePtr() },
+			std::vector<P>{ sbdFieldBuffers[SBD_VELOCITY]->GetResourcePtr(),
+			                sbdFieldBuffers[SBD_POSITION]->GetResourcePtr() });
+	}
+}
+
+// Build the SBD node rendering pipeline, reusing the particle VS/GS/PS.
+// Binds a 3-slot SRV table: sbdPositionSnapshot (t0), dummy density (t1), dummy LOD (t2).
+void PbfApp::BuildSoftBodyRenderPipeline() {
+	auto copyToMain = [&](UINT slot, D3D12_CPU_DESCRIPTOR_HANDLE src) {
+		device->CopyDescriptorsSimple(1, mainAllocator->GetCpuHandle(slot), src,
+			D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+	};
+
+	// Fill the static SRV slots for the dummy buffers (slot 0 was already wired by registerFrontTarget).
+	copyToMain(sbdSrvTableStart + 1, sbdDummyDensityBuffer->GetSrvCpuHandle());
+	copyToMain(sbdSrvTableStart + 2, sbdDummyLodBuffer->GetSrvCpuHandle());
+
+	// Reuse the same particle shaders; only the SRV table offset and vertex count differ.
+	com_ptr<ID3DBlob> vertexShader   = Egg::Shader::LoadCso("Shaders/particleVS.cso");
+	com_ptr<ID3DBlob> geometryShader = Egg::Shader::LoadCso("Shaders/particleGS.cso");
+	com_ptr<ID3DBlob> pixelShader    = Egg::Shader::LoadCso("Shaders/particlePS.cso");
+	com_ptr<ID3D12RootSignature> rootSig = Egg::Shader::LoadRootSignature(device.Get(), vertexShader.Get());
+
+	Egg::Mesh::Material::P material = Egg::Mesh::Material::Create();
+	material->SetRootSignature(rootSig);
+	material->SetVertexShader(vertexShader);
+	material->SetGeometryShader(geometryShader);
+	material->SetPixelShader(pixelShader);
+	material->SetDepthStencilState(CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT));
+	material->SetDSVFormat(DXGI_FORMAT_D32_FLOAT);
+	material->SetConstantBuffer(perFrameCb);
+	material->SetSrvHeap(1, mainAllocator->GetHeap(), sbdSrvTableStart * mainAllocator->GetDescriptorSize());
+
+	Egg::Mesh::Geometry::P geometry = Egg::Mesh::NullGeometry::Create(numSbdNodes);
+	geometry->SetTopology(D3D_PRIMITIVE_TOPOLOGY_POINTLIST);
+
+	sbdMesh = Egg::Mesh::Shaded::Create(psoManager, material, geometry);
+}
+
 // upload initial data to the GPU and build rendering/compute pipelines.
 void PbfApp::LoadAssets() {
 	UploadAll();
@@ -258,7 +466,7 @@ void PbfApp::LoadAssets() {
 
 	// Neural post-process pass. Disabled gracefully if the ONNX file is missing.
 	neuralPass = NeuralPostProcess::Create(
-		device.Get(), commandQueue.Get(), "models/unet_postprocess.onnx");
+		device.Get(), commandQueue.Get(), "models/unet_postprocess.onnx-disabled");
 	if (neuralPass && neuralPass->enabled)
 		neuralPass->Resize(device.Get(), (UINT)scissorRect.right, (UINT)scissorRect.bottom);
 }
@@ -281,6 +489,8 @@ void PbfApp::UploadAll() {
 	for (int i = 0; i < NUM_OBSTACLES; i++)
 		obstacles[i]->UploadSdf(commandList.Get()); // record SDF texture copy + barrier
 	RecordSnapshotUpload(); // record initial state of snapshot buffers for frame 1
+	FillSbdUploadBuffer();  // CPU: generate BCC positions into the upload buffer
+	RecordSbdUpload();      // GPU: copy BCC positions to field buffer + both snapshot slots
 
 	// Pre-clear both depth texture slots to 1.0 (far plane) so the first DTVS compute frame
 	// sees valid depth data even before any graphics depth pass has run.
@@ -410,13 +620,14 @@ void PbfApp::WaitFirstFrame() {
 	lastFrame = clock::now();
 }
 
-// Build all graphics rendering pipelines (background, particles, liquid, solid transform).
+// Build all graphics rendering pipelines (background, particles, liquid, solid transform, SBD nodes).
 // The DTVS depth-only pipeline is built inside lod->BuildPipelines().
 void PbfApp::BuildGraphicsPipelines() {
 	BuildBackgroundPipeline();
 	BuildParticlePipeline();
 	BuildLiquidPipeline();
 	SetObstacleTransforms();
+	BuildSoftBodyRenderPipeline();
 }
 
 // Build the background skybox rendering pipeline (shaders, material, mesh).
@@ -707,6 +918,8 @@ void PbfApp::BuildComputePipelines() {
 	// are all built inside the LOD subsystem.
 	lod->BuildPipelines(device.Get(), cbv, *mainAllocator, particleFieldDB);
 
+	BuildSoftBodyComputePipelines();
+
 	// splatDensityVolumeCS: SRV(t0) UAV(u0) = 2 slots 
 	// [0]=posSnapshot front SRV, [1]=densityVol UAV
 	{
@@ -923,6 +1136,7 @@ void PbfApp::flipDoubleBuffers() {
 	cellCountSnapshotDB->flip();
 	cellPrefixSumSnapshotDB->flip();
 	lod->GetParticleDepthDB()->flip();
+	sbdPositionSnapshotDB->flip();
 }
 
 // Override Render() to decouple physics (compute queue) from graphics (direct queue).
@@ -1070,6 +1284,63 @@ void PbfApp::RecordComputeCommands() {
 	velocityFromScratchShader->dispatch_then_barrier(computeList.Get(), numGroups);
 	updatePositionShader->dispatch_then_barrier(computeList.Get(), numGroups);
 
+	if (sbdNeedsReset) {
+		sbdNeedsReset = false;
+		const UINT64 posBytes = (UINT64)numSbdNodes * sizeof(Float3);
+		sbdFieldBuffers[SBD_POSITION]->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
+		computeList->CopyBufferRegion(sbdFieldBuffers[SBD_POSITION]->Get(), 0,
+			sbdPositionUploadBuffer->Get(), 0, posBytes);
+		sbdFieldBuffers[SBD_POSITION]->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
+		sbdFieldBuffers[SBD_VELOCITY]->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
+		computeList->CopyBufferRegion(sbdFieldBuffers[SBD_VELOCITY]->Get(), 0,
+			sbdVelocityUploadBuffer->Get(), 0, posBytes);
+		sbdFieldBuffers[SBD_VELOCITY]->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
+	}
+
+	if (sbdRunning) {
+		UINT sbdGroups = ((UINT)numSbdNodes + THREAD_GROUP_SIZE - 1) / THREAD_GROUP_SIZE;
+		sbdPredictShader->dispatch_then_barrier(computeList.Get(), sbdGroups);
+
+		// 24 strain passes: 12 orientations × 2 parities.
+		// orion bit layout: [1:0]=axes.x [3:2]=axes.y [5:4]=axes.z [6]=signY [7]=signZ [8]=parity
+		// Each row of 'orientations' in the shader: |a| gives axis index, sign(a) gives the sign bit.
+		// sign convention: bit=1 means positive (>=0), bit=0 means negative.
+		static const UINT sbdOrionValues[24] = {
+			// parity 0 — 12 orientations
+
+			0b011100100,
+			0b010100100,
+			0b001100100,
+			0b000100100,
+//			228,  // ( 0, +1, +2)  axes=(0,1,2) signs=(+,+)
+//			 88,  // ( 0, +2, -1)  axes=(0,2,1) signs=(+,-)
+//			 36,  // ( 0, -1, -2)  axes=(0,1,2) signs=(-,-)
+//			152,  // ( 0, -2, +1)  axes=(0,2,1) signs=(-,+)
+			210,  // (+2,  0, +1)  axes=(2,0,1) signs=(+,+)
+			225,  // (-1,  0, +2)  axes=(1,0,2) signs=(+,+)
+			 82,  // (-2,  0, -1)  axes=(2,0,1) signs=(+,-)
+			 97,  // (+1,  0, -2)  axes=(1,0,2) signs=(+,-)
+			201,  // (+1, +2,  0)  axes=(1,2,0) signs=(+,+)
+			134,  // (+2, -1,  0)  axes=(2,1,0) signs=(-,+)
+			137,  // (-1, -2,  0)  axes=(1,2,0) signs=(-,+)
+			198,  // (-2, +1,  0)  axes=(2,1,0) signs=(+,+)
+			// parity 1 — same 12 orientations with bit 8 set (+256)
+			484, 344, 292, 408, 466, 481, 338, 353, 457, 390, 393, 454,
+		};
+		{
+			UINT orion = sbdOrionValues[sbdOrionIndex];
+			UINT sbdStrainCellsPerCall = (SBD_DIM_X / 2) * SBD_DIM_Y * SBD_DIM_Z;
+			if ((orion & 0x3) == 1)
+				sbdStrainCellsPerCall = SBD_DIM_X * (SBD_DIM_Y / 2) * SBD_DIM_Z;
+			if ((orion & 0x3) == 2)
+				sbdStrainCellsPerCall = SBD_DIM_X * SBD_DIM_Y * (SBD_DIM_Z / 2);
+			UINT sbdStrainGroups = ((UINT)sbdStrainCellsPerCall + THREAD_GROUP_SIZE - 1) / THREAD_GROUP_SIZE;
+			sbdStrainShader->dispatch_then_barrier_with_constant(computeList.Get(), sbdStrainGroups, 2, orion);
+		}
+
+		sbdUpdateVelocityShader->dispatch_then_barrier(computeList.Get(), sbdGroups);
+	}
+
 	WriteSnapshot();
 }
 
@@ -1111,12 +1382,26 @@ void PbfApp::WriteSnapshot() {
 	spatialGrid->GetPrefixSumBuffer()->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
 	cellCountSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, computeList.Get());
 	cellPrefixSumSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, computeList.Get());
+
+	// Copy SBD positions to the back snapshot so flip() makes them available to graphics.
+	if (sbdRunning) {
+		sbdFieldBuffers[SBD_POSITION]->Transition(D3D12_RESOURCE_STATE_COPY_SOURCE, computeList.Get());
+		sbdPositionSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
+		computeList->CopyBufferRegion(sbdPositionSnapshotDB->getBack()->Get(), 0,
+			sbdFieldBuffers[SBD_POSITION]->Get(), 0, (UINT64)numSbdNodes * sizeof(Float3));
+		sbdFieldBuffers[SBD_POSITION]->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
+		sbdPositionSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, computeList.Get());
+	}
 }
 
 void PbfApp::RecordGraphicsCommands() {
 	backgroundMesh->Draw(commandList.Get());
 	for (int i = 0; i < NUM_OBSTACLES; i++)
 		obstacles[i]->Draw(commandList.Get());
+
+	// Draw SBD nodes as point-sprite spheres alongside the fluid.
+	// sbdPositionSnapshotDB front is in NON_PIXEL_SHADER_RESOURCE (home state), sufficient for VS access.
+	sbdMesh->Draw(commandList.Get());
 
 	// Promote positionSnapshot front to pixel-visible before any draw that uses it from the pixel stage.
 	constexpr D3D12_RESOURCE_STATES SRV_ALL =
@@ -1193,14 +1478,15 @@ void PbfApp::DrawLiquidSurface() {
 void PbfApp::RecordCapture() {
 	auto* rt = neuralPass->GetSceneRT();
 	auto  d  = rt->GetDesc();
-	UINT  W  = (UINT)d.Width, H = d.Height;
-	UINT  rowPitch = (W * 4u + D3D12_TEXTURE_DATA_PITCH_ALIGNMENT - 1u) &
+	UINT  width = (UINT)d.Width;
+	UINT  height = (UINT)d.Height;
+	UINT  rowPitch = (width * 4u + D3D12_TEXTURE_DATA_PITCH_ALIGNMENT - 1u) &
 	                 ~(D3D12_TEXTURE_DATA_PITCH_ALIGNMENT - 1u);
 
 	if (!captureReadback || captureRowPitch != rowPitch) {
 		captureRowPitch = rowPitch;
 		CD3DX12_HEAP_PROPERTIES hp(D3D12_HEAP_TYPE_READBACK);
-		auto bd = CD3DX12_RESOURCE_DESC::Buffer((UINT64)rowPitch * H);
+		auto bd = CD3DX12_RESOURCE_DESC::Buffer((UINT64)rowPitch * height);
 		DX_API("Failed to create capture readback buffer")
 			device->CreateCommittedResource(&hp, D3D12_HEAP_FLAG_NONE, &bd,
 				D3D12_RESOURCE_STATE_COPY_DEST, nullptr,
@@ -1212,7 +1498,7 @@ void PbfApp::RecordCapture() {
 		rt, D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_COPY_SOURCE));
 
 	D3D12_PLACED_SUBRESOURCE_FOOTPRINT fp = {};
-	fp.Footprint = { DXGI_FORMAT_R8G8B8A8_UNORM, W, H, 1, rowPitch };
+	fp.Footprint = { DXGI_FORMAT_R8G8B8A8_UNORM, width, height, 1, rowPitch };
 	CD3DX12_TEXTURE_COPY_LOCATION src(rt, 0);
 	CD3DX12_TEXTURE_COPY_LOCATION dst(captureReadback.Get(), fp);
 	commandList->CopyTextureRegion(&dst, 0, 0, 0, &src, nullptr);
@@ -1229,7 +1515,7 @@ void PbfApp::SaveCaptureIfPending() {
 
 	auto* rt = neuralPass->GetSceneRT();
 	auto  d  = rt->GetDesc();
-	UINT  W  = (UINT)d.Width, H = d.Height;
+	UINT  width  = (UINT)d.Width, height = d.Height;
 
 	std::filesystem::create_directories(captureInputDir);
 
@@ -1237,7 +1523,7 @@ void PbfApp::SaveCaptureIfPending() {
 	std::string  path  = captureInputDir + "\\" + fname;
 	std::wstring wpath(path.begin(), path.end());
 
-	D3D12_RANGE readRange = { 0, (SIZE_T)captureRowPitch * H };
+	D3D12_RANGE readRange = { 0, (SIZE_T)captureRowPitch * height };
 	uint8_t*    pixels    = nullptr;
 	captureReadback->Map(0, &readRange, reinterpret_cast<void**>(&pixels));
 
@@ -1255,10 +1541,10 @@ void PbfApp::SaveCaptureIfPending() {
 		enc->Initialize(stm, WICBitmapEncoderNoCache);
 		enc->CreateNewFrame(&frame, nullptr);
 		frame->Initialize(nullptr);
-		frame->SetSize(W, H);
+		frame->SetSize(width, height);
 		WICPixelFormatGUID fmt = GUID_WICPixelFormat32bppRGBA;
 		frame->SetPixelFormat(&fmt);
-		frame->WritePixels(H, captureRowPitch, captureRowPitch * H, pixels);
+		frame->WritePixels(height, captureRowPitch, captureRowPitch * height, pixels);
 		frame->Commit();
 		enc->Commit();
 		frame->Release(); enc->Release(); stm->Release(); wic->Release();
@@ -1346,6 +1632,15 @@ void PbfApp::BuildImGui() {
 		ImGui::DragFloat3("Box min", &boxMin.x, 0.1f, gridMin.x, 0.0f, "%.2f", ImGuiSliderFlags_AlwaysClamp);
 		ImGui::DragFloat3("Box max", &boxMax.x, 0.1f, 0.0f, gridMax.x, "%.2f", ImGuiSliderFlags_AlwaysClamp);
 		ImGui::PopItemWidth();
+	}
+
+	if (ImGui::CollapsingHeader("Soft Body")) {
+		ImGui::Checkbox("SBD running", &sbdRunning);
+		ImGui::SameLine();
+		if (ImGui::Button("Reset")) sbdNeedsReset = true;
+		ImGui::SliderInt("Orientation", &sbdOrionIndex, 0, 23);
+		ImGui::TextDisabled("%d BCC nodes (%dx%dx%d * 2)", numSbdNodes, SBD_DIM_X, SBD_DIM_Y, SBD_DIM_Z);
+		ImGui::TextDisabled("Shaders: sbdPredictCS, sbdStrainCS, sbdUpdateVelocityCS");
 	}
 
 	if (ImGui::CollapsingHeader("Neural Post-Process")) {

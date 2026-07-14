@@ -24,7 +24,8 @@
 #include "LodSystem.h"
 #include <immintrin.h>
 #include <thread>
-#include "SharedConfig.hlsli" 
+#include "SharedConfig.hlsli"
+#include "SoftBodyTypes.h"
 
 // CPU-side staging struct for ease of particle initialization.
 struct ParticleInitData {
@@ -61,7 +62,7 @@ class PbfApp : public AsyncComputeApp {
 protected:
 	// Fixed particle and grid constants.
 	const int particlesX = 100, particlesY = 80, particlesZ = 100; // number of particles along each axis of the initial grid
-	const int offsetX = 0, offsetY = 30, offsetZ = 0; // world space offset of the center of the initial particle grid
+	const int offsetX = 0, offsetY = -20, offsetZ = 0; // world space offset of the center of the initial particle grid
 	const int numParticles = particlesX * particlesY * particlesZ; // total number of particles in the simulation
 	// particleSpacing and hMultiplier are constants that define the SPH kernel width h,
 	// which gives a lower bound to the spatial grid's cell width. We can use (try using...)
@@ -185,6 +186,42 @@ protected:
 	bool fpsCapped = false; // toggled from ImGui
 	bool gsmEnabled = false; // use GSM-boosted shaders for lambda, delta, vorticity, confinementViscosity
 	bool physicsRunning = false; // toggled by spacebar: when false, compute passes are skipped each frame
+	bool sbdRunning = true;     // toggles strain-based dynamics compute passes independently
+	bool sbdNeedsReset = false; // set by GUI Reset button; consumed at next RecordComputeCommands
+	int  sbdOrionIndex = 0;    // which of the 24 orientations to dispatch (0-11 parity=0, 12-23 parity=1)
+
+	// --- Soft Body Dynamics (SBD) ---
+	// BCC grid: SBD_DIM_X * SBD_DIM_Y * SBD_DIM_Z corner nodes + same count of body-center nodes.
+	const int numSbdNodes = SBD_NUM_NODES;
+
+	// Single-buffered SBD field buffers (no spatial sort, so no double-buffering needed).
+	GpuBuffer::P sbdFieldBuffers[SBD_COUNT];
+	GpuBuffer::P sbdPositionUploadBuffer; // CPU staging for initial BCC node positions
+	GpuBuffer::P sbdVelocityUploadBuffer; // CPU staging of all-zero velocities, used by Reset
+
+	// Zero-filled dummy buffers bound as t1/t2 in the particle SRV table for SBD rendering.
+	// particleVS reads density (t1) and LOD (t2); SBD nodes use 0 for both.
+	GpuBuffer::P sbdDummyDensityBuffer;
+	GpuBuffer::P sbdDummyLodBuffer;
+
+	// Double-buffered position snapshot: compute writes back, flip() promotes to front for graphics.
+	DoubleBufferGpuBuffer::P sbdPositionSnapshotDB;
+	UINT sbdSrvTableStart = 0; // first of 3 contiguous SRVs: sbdPos(t0), dummyDen(t1), dummyLod(t2)
+
+	// SBD compute passes: predict positions, apply strain constraints, update velocities.
+	ComputeShader::P sbdPredictShader;
+	ComputeShader::P sbdStrainShader;
+	ComputeShader::P sbdUpdateVelocityShader;
+
+	// Point-sprite rendering of SBD nodes reusing the particle VS/GS/PS.
+	Egg::Mesh::Shaded::P sbdMesh;
+
+	void InitSoftBodyFields();
+	void InitSoftBodySnapshotBuffers();
+	void BuildSoftBodyComputePipelines();
+	void BuildSoftBodyRenderPipeline();
+	void FillSbdUploadBuffer();
+	void RecordSbdUpload();
 
 	// arrow key held state for external acceleration input
 	bool arrowLeft = false, arrowRight = false, arrowUp = false, arrowDown = false;

@@ -82,6 +82,8 @@ void main(uint3 id : SV_DispatchThreadID)
         if (w <= 0.0f)
             continue;
 
+        if(pos.x < 0.0) w *= 1;
+        
         FloatInterlockedAdd(uint3(vx, vy, vz), w);
     }
 }
