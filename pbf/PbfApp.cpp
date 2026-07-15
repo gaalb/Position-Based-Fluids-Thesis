@@ -329,13 +329,13 @@ void PbfApp::FillSbdUploadBuffer() {
 	for (int z = 0; z < SBD_DIM_Z; z++)
 		for (int y = 0; y < SBD_DIM_Y; y++)
 			for (int x = 0; x < SBD_DIM_X; x++)
-				positions.push_back(aOffset + Float3((float)x, (float)y, (float)z) * spacing);
+				positions.push_back(aOffset + Float3::Random() * 1.1f + Float3((float)x, (float)y, (float)z) * spacing);
 
 	// Sublattice B: (SBD_DIM_X+1) * (SBD_DIM_Y+1) * (SBD_DIM_Z+1) nodes
 	for (int z = 0; z <= SBD_DIM_Z; z++)
 		for (int y = 0; y <= SBD_DIM_Y; y++)
 			for (int x = 0; x <= SBD_DIM_X; x++)
-				positions.push_back(bOffset + Float3((float)x, (float)y, (float)z) * spacing);
+				positions.push_back(bOffset + Float3::Random() * 1.1f + Float3((float)x, (float)y, (float)z) * spacing);
 
 	void* data;
 	CD3DX12_RANGE readRange(0, 0);
@@ -1309,26 +1309,55 @@ void PbfApp::RecordComputeCommands() {
 			// parity 0 — 12 orientations
 
 			0b011100100,
-			0b010100100,
-			0b001100100,
 			0b000100100,
+			0b001011000,
+			0b010011000,
+
+			0b011001001,
+			0b000001001,
+			0b001100001,
+			0b010100001,
+
+			0b011010010,
+			0b000010010,
+			0b001000110,
+			0b010000110,
+
+			0b111100100,
+			0b100100100,
+			0b101011000,
+			0b110011000,
+
+			0b111001001,
+			0b100001001,
+			0b101100001,
+			0b110100001,
+
+			0b111010010,
+			0b100010010,
+			0b101000110,
+			0b110000110,
 //			228,  // ( 0, +1, +2)  axes=(0,1,2) signs=(+,+)
 //			 88,  // ( 0, +2, -1)  axes=(0,2,1) signs=(+,-)
 //			 36,  // ( 0, -1, -2)  axes=(0,1,2) signs=(-,-)
 //			152,  // ( 0, -2, +1)  axes=(0,2,1) signs=(-,+)
-			210,  // (+2,  0, +1)  axes=(2,0,1) signs=(+,+)
-			225,  // (-1,  0, +2)  axes=(1,0,2) signs=(+,+)
-			 82,  // (-2,  0, -1)  axes=(2,0,1) signs=(+,-)
-			 97,  // (+1,  0, -2)  axes=(1,0,2) signs=(+,-)
-			201,  // (+1, +2,  0)  axes=(1,2,0) signs=(+,+)
-			134,  // (+2, -1,  0)  axes=(2,1,0) signs=(-,+)
-			137,  // (-1, -2,  0)  axes=(1,2,0) signs=(-,+)
-			198,  // (-2, +1,  0)  axes=(2,1,0) signs=(+,+)
-			// parity 1 — same 12 orientations with bit 8 set (+256)
-			484, 344, 292, 408, 466, 481, 338, 353, 457, 390, 393, 454,
+//			210,  // (+2,  0, +1)  axes=(2,0,1) signs=(+,+)
+//			225,  // (-1,  0, +2)  axes=(1,0,2) signs=(+,+)
+//			 82,  // (-2,  0, -1)  axes=(2,0,1) signs=(+,-)
+//			 97,  // (+1,  0, -2)  axes=(1,0,2) signs=(+,-)
+//			201,  // (+1, +2,  0)  axes=(1,2,0) signs=(+,+)
+//			134,  // (+2, -1,  0)  axes=(2,1,0) signs=(-,+)
+//			137,  // (-1, -2,  0)  axes=(1,2,0) signs=(-,+)
+//			198,  // (-2, +1,  0)  axes=(2,1,0) signs=(+,+)
+//			// parity 1 — same 12 orientations with bit 8 set (+256)
+//			484, 344, 292, 408, 466, 481, 338, 353, 457, 390, 393, 454,
 		};
+		for (UINT iSbdOrionIndex = 0; iSbdOrionIndex < 24; iSbdOrionIndex++)
 		{
-			UINT orion = sbdOrionValues[sbdOrionIndex];
+			UINT orion = sbdOrionValues[iSbdOrionIndex];
+			if (!sbdOrionFullOrbit) {
+				orion = sbdOrionValues[sbdOrionIndex];
+			}
 			UINT sbdStrainCellsPerCall = (SBD_DIM_X / 2) * SBD_DIM_Y * SBD_DIM_Z;
 			if ((orion & 0x3) == 1)
 				sbdStrainCellsPerCall = SBD_DIM_X * (SBD_DIM_Y / 2) * SBD_DIM_Z;
@@ -1336,6 +1365,8 @@ void PbfApp::RecordComputeCommands() {
 				sbdStrainCellsPerCall = SBD_DIM_X * SBD_DIM_Y * (SBD_DIM_Z / 2);
 			UINT sbdStrainGroups = ((UINT)sbdStrainCellsPerCall + THREAD_GROUP_SIZE - 1) / THREAD_GROUP_SIZE;
 			sbdStrainShader->dispatch_then_barrier_with_constant(computeList.Get(), sbdStrainGroups, 2, orion);
+
+			if (!sbdOrionFullOrbit) break;
 		}
 
 		sbdUpdateVelocityShader->dispatch_then_barrier(computeList.Get(), sbdGroups);
@@ -1638,6 +1669,9 @@ void PbfApp::BuildImGui() {
 		ImGui::Checkbox("SBD running", &sbdRunning);
 		ImGui::SameLine();
 		if (ImGui::Button("Reset")) sbdNeedsReset = true;
+		if (ImGui::Checkbox("Full Orbit", &sbdOrionFullOrbit)) {
+			sbdOrionFullOrbit = true;
+		}
 		ImGui::SliderInt("Orientation", &sbdOrionIndex, 0, 23);
 		ImGui::TextDisabled("%d BCC nodes (%dx%dx%d * 2)", numSbdNodes, SBD_DIM_X, SBD_DIM_Y, SBD_DIM_Z);
 		ImGui::TextDisabled("Shaders: sbdPredictCS, sbdStrainCS, sbdUpdateVelocityCS");

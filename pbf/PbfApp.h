@@ -189,6 +189,7 @@ protected:
 	bool sbdRunning = true;     // toggles strain-based dynamics compute passes independently
 	bool sbdNeedsReset = false; // set by GUI Reset button; consumed at next RecordComputeCommands
 	int  sbdOrionIndex = 0;    // which of the 24 orientations to dispatch (0-11 parity=0, 12-23 parity=1)
+	bool sbdOrionFullOrbit = false;
 
 	// --- Soft Body Dynamics (SBD) ---
 	// BCC grid: SBD_DIM_X * SBD_DIM_Y * SBD_DIM_Z corner nodes + same count of body-center nodes.

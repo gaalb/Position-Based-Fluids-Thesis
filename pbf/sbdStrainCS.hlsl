@@ -31,7 +31,7 @@ float3x3 outerProduct(float3 a, float3 b)
 
 float3x3 get_nabla_p_Sij(const float3x3 F, const float3x3 Qi, uint i, uint j) {
 	return float3x3(
-		outerProduct(F[j], Qi[i]) + outerProduct(F[i], Qi[j])
+		outerProduct(Qi[i], F[j]) + outerProduct(Qi[j], F[i])
 	);
 }
 
@@ -43,7 +43,7 @@ float3x3 get_overline_nabla_p_Sij(const float3x3 F, const float3x3 Qi, float Sij
 
     float3x3 result = get_nabla_p_Sij(F, Qi, i, j);
 
-    result += (outerProduct(F[i], Qi[i]) * fj2 + outerProduct(F[j], Qi[j]) * fi2) * Sij / fi2 / fj2;
+    result += (outerProduct(Qi[i], F[j]) * fj2 + outerProduct(Qi[j], F[i]) * fi2) * Sij / fi2 / fj2;
 	
 	return result * fili * fjli;
 }
@@ -117,12 +117,12 @@ float3x3 get_delta_p_for_volume(const float3x3 P, const float3x3 Q) {
 		squaredLength(dpd1 + dpd2 + dpd3)
 	;
 
-	float Cvol = dot (P[0], dpd1) - dot (Q[0], cross(Q[1], Q[2]));
+	float Cvol = 4.0 /*dot (Q[0], cross(Q[1], Q[2])) */ - dot (P[0], dpd1);
 	return float3x3(
-		dpd1 *= -1.0f * get_lambda_volume(Cvol, sum_length),
-		dpd2 *= -1.0f * get_lambda_volume(Cvol, sum_length),
-		dpd3 *= -1.0f * get_lambda_volume(Cvol, sum_length)
-	);
+		dpd1 ,
+		dpd2 ,
+		dpd3
+	) * Cvol / sum_length;
 }
 
 void executeConstraintsOnVertices(float3x3 Q, float3x3 Qi, inout float3 p0, inout float3 p1, inout float3 p2, inout float3 p3) {
@@ -133,18 +133,19 @@ void executeConstraintsOnVertices(float3x3 Q, float3x3 Qi, inout float3 p0, inou
 			p3 - p0
 		);
 	
-	float3x3 F = mul(P, Qi);
-	float3x3 S = mul(transpose(F), F);
+	float3x3 F = mul(Qi, P);
+	float3x3 S = mul(F, transpose(F));
 
 	//Stretch
 	float3x3 deltaP = 
-		//get_delta_p_for_stretch(F, Qi, S) * 0.03
-		//+ 
-		//get_delta_p_for_shear(F, Qi, S) * 0.02
-		//+
-		get_delta_p_for_volume(P, Q) * 0.03;
-
-    p0 -= deltaP[0] + deltaP[1] + deltaP[2];
+		get_delta_p_for_stretch(F, Qi, S) * 0.03
+		+ 
+		get_delta_p_for_shear(F, Qi, S) * 0.02
+		+
+		get_delta_p_for_volume(P, Q) * 0.03
+	;
+	
+    p0 -= (deltaP[0] + deltaP[1] + deltaP[2]);
     p1 += deltaP[0];
     p2 += deltaP[1];
     p3 += deltaP[2];
@@ -196,7 +197,6 @@ void main(uint tid : SV_DispatchThreadID)
 		signyz.x ? 1.0 : -1.0,
 		signyz.y ? 1.0 : -1.0
 	);
-	
 
 /*	float3x3 Q = float3x3(
 		float3(2.0, 0.0, 0.0),
@@ -209,7 +209,7 @@ void main(uint tid : SV_DispatchThreadID)
 		signs
 	);
 	Q[0][axes.x] = 2.0;
-	Q[1][axes.z] = -1.0;
+	Q[1][axes.z] *= -1.0;
 
 	float3x3 Qi;
 	Qi[axes.x] = float3(0.5, 0.0,  0.0);
@@ -227,20 +227,39 @@ void main(uint tid : SV_DispatchThreadID)
     uint nid = iid.x + (iid.y + iid.z * SBD_DIM_Y) * SBD_DIM_X;
     iid[axes.x] += 1;
 	iid[axes.y] += signyz.x;
-	//iid[axes.z] += 1 - signyz.y;
+	iid[axes.z] += 1 - signyz.y;
     uint qid = iid.x + (iid.y + iid.z * (SBD_DIM_Y+1)) * (SBD_DIM_X+1) + SBD_NUM_CUBIC_NODES;
-	iid[axes.z] += 1; //signyz.y;
+	iid[axes.z] += 2 * signyz.y - 1;
     uint qid2 = iid.x + (iid.y + iid.z * (SBD_DIM_Y+1)) * (SBD_DIM_X+1) + SBD_NUM_CUBIC_NODES;	
 	
     // TODO: compute strain from BCC neighbor distances and apply position correction
 	//predictedPosition[qid].x += 0.1;
 	//predictedPosition[nid + strides[axes.x]].x += 0.01;
-	clump(
+    float3 p0 = predictedPosition[nid];
+    float3 p1 = predictedPosition[nid + strides[axes.x]];
+    float3 p2 = predictedPosition[qid];
+    float3 p3 = predictedPosition[qid2];
+	//clump(
+	executeConstraintsOnVertices(
 		Q,
 		Qi,
-		predictedPosition[nid],
+		predictedPosition[nid] ,
 		predictedPosition[nid + strides[axes.x]],
 		predictedPosition[qid],
 		predictedPosition[qid2]
 	);
+/*	
+	float3x3 deltaP = executeConstraintsOnVertices(
+		Q,
+		Qi,
+		p0,
+		p1,
+		p2,
+		p3
+	);
+    predictedPosition[nid] = p0 - deltaP[0] - deltaP[1] - deltaP[2];
+    predictedPosition[nid + strides[axes.x]] = p1 + deltaP[0];
+    predictedPosition[qid] = p2 + deltaP[1];
+    predictedPosition[qid2] = p3 + deltaP[2];
+*/
 }
