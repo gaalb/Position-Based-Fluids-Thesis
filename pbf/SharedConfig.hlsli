@@ -79,4 +79,9 @@
 #define SBD_NUM_CUBIC_NODES (SBD_DIM_X * SBD_DIM_Y * SBD_DIM_Z)
 #define SBD_NUM_NODES (SBD_NUM_CUBIC_NODES + (SBD_DIM_X+1) * (SBD_DIM_Y+1) * (SBD_DIM_Z+1))
 
+// SBD spatial-grid influence radius. Larger than the PBF smoothing radius H so that
+// fluid particles can feel suction from SBD nodes even when the BCC lattice spacing (1 m)
+// exceeds H. Cell size = SBD_H (one cell per radius), reusing GRID_DIM^3 cells.
+#define SBD_H 2.0f
+
 #endif

@@ -1,6 +1,10 @@
-// Soft body dynamics: derive new velocity from the position change and commit the predicted position.
+// Soft body dynamics: commit the predicted position and derive the new velocity.
+// 1. Position-level box push-out: clamp predictedPosition to [boxMin, boxMax] in case
+//    constraint iterations pushed a node outside (or it started outside after a reset).
+// 2. Derive velocity: v = (pred - pos) / dt  (implicit position update rule).
+// 3. Commit: position = pred.
 // Inputs : position (u0), predictedPosition (u2)
-// Outputs: velocity (u1) updated as (predPos - pos) / dt; position (u0) set to predictedPosition
+// Outputs: velocity (u1), position (u0)
 #define SbdUpdateVelocityRootSig "CBV(b0), DescriptorTable(UAV(u0, numDescriptors=3))"
 
 RWStructuredBuffer<float3> position          : register(u0);
@@ -14,7 +18,10 @@ RWStructuredBuffer<float3> predictedPosition : register(u2);
 void main(uint3 id : SV_DispatchThreadID)
 {
     if (id.x >= SBD_NUM_NODES) return;
-    // TODO: update velocity from (predictedPosition - position) / dt and commit position
-    velocity[id.x].xyz = (predictedPosition[id.x].xyz - position[id.x].xyz) / dt * 0.9;
-    position[id.x].xyz = predictedPosition[id.x].xyz;
+
+    float3 pred = clamp(predictedPosition[id.x], boxMin, boxMax);
+    predictedPosition[id.x] = pred;
+
+    velocity[id.x] = (pred - position[id.x]) / dt;
+    position[id.x] = pred;
 }

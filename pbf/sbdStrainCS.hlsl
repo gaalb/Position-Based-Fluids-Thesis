@@ -50,15 +50,15 @@ float3x3 get_overline_nabla_p_Sij(const float3x3 F, const float3x3 Qi, float Sij
 
 float get_lambda_stretch(float Sii, float sum_length_of_nabla_p_Sii) {
 	float sqrtSii = sqrt(Sii);
-	return 2.0f * sqrtSii * (sqrtSii - 1.0f) / (sum_length_of_nabla_p_Sii);
+	return 2.0f * sqrtSii * (sqrtSii - 1.0f) / (sum_length_of_nabla_p_Sii + 1e-6);
 }
 
 float get_lambda_shear(float Sij, float sum_length_of_nabla_p_Sij) {
-	return Sij / (sum_length_of_nabla_p_Sij);
+	return Sij / (sum_length_of_nabla_p_Sij + 1e-6);
 }
 
 float get_lambda_volume(float Cvol, float sum_length_of_nabla_Cvol) {
-	return Cvol / (sum_length_of_nabla_Cvol);
+	return Cvol / (sum_length_of_nabla_Cvol + 1e-6);
 }
 
 float3x3 get_delta_p_for_stretch(const float3x3 F, const float3x3 Qi, const float Sii, uint i) {
@@ -92,7 +92,7 @@ float3x3 get_delta_p_for_shear(const float3x3 F, const float3x3 Qi, const float 
 		squaredLength(nabla_p_Sij[0] + nabla_p_Sij[1] + nabla_p_Sij[2])
 	;
 
-	return nabla_p_Sij * -get_lambda_shear(Sij, sum_length);
+	return nabla_p_Sij * -get_lambda_shear(Sij, sum_length + 1e-6);
 	
 }
 
@@ -117,7 +117,7 @@ float3x3 get_delta_p_for_volume(const float3x3 P, const float3x3 Q) {
 		squaredLength(dpd1 + dpd2 + dpd3)
 	;
 
-	float Cvol = 4.0 /*dot (Q[0], cross(Q[1], Q[2])) */ - dot (P[0], dpd1);
+	float Cvol = dot (Q[0], cross(Q[1], Q[2])) - dot (P[0], dpd1);
 	return float3x3(
 		dpd1 ,
 		dpd2 ,
@@ -198,23 +198,28 @@ void main(uint tid : SV_DispatchThreadID)
 		signyz.y ? 1.0 : -1.0
 	);
 
-/*	float3x3 Q = float3x3(
-		float3(2.0, 0.0, 0.0),
-		float3(1.0, 1.0,-1.0),
-		float3(1.0, 1.0, 1.0)
-	);	*/
+//	float3x3 Q = float3x3(
+//		float3(2.0, 0.0, 0.0),
+//		float3(1.0, 1.0,-1.0),
+//		float3(1.0, 1.0, 1.0)
+//	);	
 	float3x3 Q = float3x3(
 		float3(0.0, 0.0, 0.0), // must be float3(2.0, 0.0,  0.0); swizzled
-		signs, // must be float3(1.0, 1.0, -1.0); swizzled
-		signs
+		float3(1.0, 1.0, 1.0), // must be float3(1.0, 1.0, -1.0); swizzled
+		float3(1.0, 1.0, 1.0)
 	);
 	Q[0][axes.x] = 2.0;
 	Q[1][axes.z] *= -1.0;
+	Q[1][axes.y] *= signs[1];
+	Q[2][axes.y] *= signs[1];	
+	Q[1][axes.z] *= signs[2];
+	Q[2][axes.z] *= signs[2];
 
 	float3x3 Qi;
 	Qi[axes.x] = float3(0.5, 0.0,  0.0);
 	Qi[axes.y] = float3(-0.5, 0.5, 0.5) * signs[1];
 	Qi[axes.z] = float3(0.0, -0.5, 0.5) * signs[2];
+
 
 	uint3 iid;
 	iid.x = tid % dims.x;

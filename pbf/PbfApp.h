@@ -189,7 +189,7 @@ protected:
 	bool sbdRunning = true;     // toggles strain-based dynamics compute passes independently
 	bool sbdNeedsReset = false; // set by GUI Reset button; consumed at next RecordComputeCommands
 	int  sbdOrionIndex = 0;    // which of the 24 orientations to dispatch (0-11 parity=0, 12-23 parity=1)
-	bool sbdOrionFullOrbit = false;
+	bool sbdOrionFullOrbit = true;
 
 	// --- Soft Body Dynamics (SBD) ---
 	// BCC grid: SBD_DIM_X * SBD_DIM_Y * SBD_DIM_Z corner nodes + same count of body-center nodes.
@@ -214,15 +214,35 @@ protected:
 	ComputeShader::P sbdStrainShader;
 	ComputeShader::P sbdUpdateVelocityShader;
 
+	// SBD Spatial Grid — bins SBD nodes into the same GRID_DIM^3 uniform grid as PBF,
+	// enabling fluid↔SBD proximity lookups (pore suction).
+	GpuBuffer::P sbdCellCountBuffer;
+	GpuBuffer::P sbdCellPrefixSumBuffer;
+	GpuBuffer::P sbdNodeListBuffer;
+	GpuBuffer::P sbdGroupSumBuffer;
+	GpuBuffer::P sbdGroupPrefixSumBuffer;
+	GpuBuffer::P sbdSuperGroupSumBuffer;
+
+	ComputeShader::P sbdClearGridShader;   // reuses clearGridCS.cso with SBD cell-count buffer
+	ComputeShader::P sbdCountGridShader;
+	ComputeShader::P sbdGridPass1, sbdGridPass2, sbdGridPass3, sbdGridPass4, sbdGridPass5;
+	ComputeShader::P sbdSortShader;
+	ComputeShader::P sbdPoreSuctionShader;
+
+	float sbdSuctionStrength = 0.1f;
+
 	// Point-sprite rendering of SBD nodes reusing the particle VS/GS/PS.
 	Egg::Mesh::Shaded::P sbdMesh;
 
 	void InitSoftBodyFields();
 	void InitSoftBodySnapshotBuffers();
+	void InitSbdGrid();
 	void BuildSoftBodyComputePipelines();
+	void BuildSbdGridPipelines();
 	void BuildSoftBodyRenderPipeline();
 	void FillSbdUploadBuffer();
 	void RecordSbdUpload();
+	void RecordSbdGridBuild(ID3D12GraphicsCommandList* cmd);
 
 	// arrow key held state for external acceleration input
 	bool arrowLeft = false, arrowRight = false, arrowUp = false, arrowDown = false;

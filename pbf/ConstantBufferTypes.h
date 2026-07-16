@@ -81,7 +81,7 @@ __declspec(align(16)) struct ComputeCb {
 	float pushRadius;       // offset 76: solid push-out distance; PUSH_RADIUS in particle modes, 0 in liquid mode
 	UINT minLOD;            // offset 80: minimum solver iterations (farthest particles)
 	UINT maxLOD;            // offset 84: maximum solver iterations (= solverIterations, closest)
-	float _padA;            // offset 88
+	float sbdSuctionStrength; // offset 88: position-correction strength of SBD nodes on nearby fluid
 	float _padB;            // offset 92
 	Float3 cameraPos;       // offset 96: camera world position for DTC LOD computation
 	float _padC;            // offset 108

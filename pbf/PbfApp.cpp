@@ -37,6 +37,7 @@ void PbfApp::CreateResources() {
 	InitObstacles();
 	InitSoftBodyFields();
 	InitSoftBodySnapshotBuffers();
+	InitSbdGrid();
 }
 
 // Create all descriptor allocators. Must be called before any Init function
@@ -309,14 +310,48 @@ void PbfApp::InitSoftBodySnapshotBuffers() {
 	sbdPositionSnapshotDB->registerFrontTarget(mainAllocator->GetCpuHandle(sbdSrvTableStart), true);
 }
 
+// Allocate GPU buffers for the SBD spatial grid (cell count, prefix sum, node list,
+// and intermediate prefix-sum group buffers). Reuses the same GRID_DIM^3 cell layout as the PBF grid.
+void PbfApp::InitSbdGrid() {
+	const UINT numCells = GRID_DIM * GRID_DIM * GRID_DIM;
+	static constexpr UINT EPG = THREAD_GROUP_SIZE * 2; // elements per prefix-sum group
+	const UINT numPass1Groups = numCells / EPG;        // N
+	const UINT numPass2Groups = numPass1Groups / EPG;  // M
+
+	sbdCellCountBuffer = GpuBuffer::Create(device.Get(), numCells, sizeof(UINT),
+		L"SBD Cell Count", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	sbdCellCountBuffer->CreateUav(device.Get(), *staticAllocator);
+
+	sbdCellPrefixSumBuffer = GpuBuffer::Create(device.Get(), numCells, sizeof(UINT),
+		L"SBD Cell Prefix Sum", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	sbdCellPrefixSumBuffer->CreateUav(device.Get(), *staticAllocator);
+
+	sbdNodeListBuffer = GpuBuffer::Create(device.Get(), numSbdNodes, sizeof(UINT),
+		L"SBD Node List", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	sbdNodeListBuffer->CreateUav(device.Get(), *staticAllocator);
+
+	sbdGroupSumBuffer = GpuBuffer::Create(device.Get(), numPass1Groups, sizeof(UINT),
+		L"SBD Group Sum", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	sbdGroupSumBuffer->CreateUav(device.Get(), *staticAllocator);
+
+	sbdGroupPrefixSumBuffer = GpuBuffer::Create(device.Get(), numPass1Groups, sizeof(UINT),
+		L"SBD Group Prefix Sum", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	sbdGroupPrefixSumBuffer->CreateUav(device.Get(), *staticAllocator);
+
+	const UINT superGroupElems = std::max(numPass2Groups, 2u);
+	sbdSuperGroupSumBuffer = GpuBuffer::Create(device.Get(), superGroupElems, sizeof(UINT),
+		L"SBD Super Group Sum", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	sbdSuperGroupSumBuffer->CreateUav(device.Get(), *staticAllocator);
+}
+
 // Fill the CPU-side BCC position upload buffer.
 // Sublattice A: SBD_DIM_X * SBD_DIM_Y * SBD_DIM_Z nodes at (i, j, k) * spacing.
 // Sublattice B: (SBD_DIM_X+1)*(SBD_DIM_Y+1)*(SBD_DIM_Z+1) nodes at (i-0.5, j-0.5, k-0.5)*spacing,
 //              so B extends half a spacing unit outside A on every side.
 // Both sublattices share the same world-space center.
 void PbfApp::FillSbdUploadBuffer() {
-	const float spacing = 1.0f;
-	const Float3 center(0.0f, 5.0f, 0.0f);
+	const float spacing = 2.0f;
+	const Float3 center(0.0f, 0.0f, 0.0f);
 	// A center = (DIM-1)*spacing/2 per axis; offset places A node (0,0,0) at center - that.
 	const Float3 aOffset = center - Float3(SBD_DIM_X - 1, SBD_DIM_Y - 1, SBD_DIM_Z - 1) * (spacing * 0.5f);
 	// B starts half a spacing below A, so B node (0,0,0) = aOffset - (0.5,0.5,0.5)*spacing.
@@ -329,13 +364,13 @@ void PbfApp::FillSbdUploadBuffer() {
 	for (int z = 0; z < SBD_DIM_Z; z++)
 		for (int y = 0; y < SBD_DIM_Y; y++)
 			for (int x = 0; x < SBD_DIM_X; x++)
-				positions.push_back(aOffset + Float3::Random() * 1.1f + Float3((float)x, (float)y, (float)z) * spacing);
+				positions.push_back(aOffset + Float3::Random() * 5.5f + Float3((float)x, (float)y, (float)z) * spacing);
 
 	// Sublattice B: (SBD_DIM_X+1) * (SBD_DIM_Y+1) * (SBD_DIM_Z+1) nodes
 	for (int z = 0; z <= SBD_DIM_Z; z++)
 		for (int y = 0; y <= SBD_DIM_Y; y++)
 			for (int x = 0; x <= SBD_DIM_X; x++)
-				positions.push_back(bOffset + Float3::Random() * 1.1f + Float3((float)x, (float)y, (float)z) * spacing);
+				positions.push_back(bOffset + Float3::Random() * 5.5f + Float3((float)x, (float)y, (float)z) * spacing);
 
 	void* data;
 	CD3DX12_RANGE readRange(0, 0);
@@ -422,6 +457,151 @@ void PbfApp::BuildSoftBodyComputePipelines() {
 			std::vector<P>{ sbdFieldBuffers[SBD_VELOCITY]->GetResourcePtr(),
 			                sbdFieldBuffers[SBD_POSITION]->GetResourcePtr() });
 	}
+
+	BuildSbdGridPipelines();
+}
+
+// Wire descriptor tables for the SBD spatial-grid shaders and build their PSOs.
+// Reuses existing prefix-sum CSOs (generic buffer operations, grid-size agnostic).
+void PbfApp::BuildSbdGridPipelines() {
+	D3D12_GPU_VIRTUAL_ADDRESS cbv = computeCb.GetGPUVirtualAddress();
+	using P = com_ptr<ID3D12Resource>*;
+	auto copyToMain = [&](UINT slot, D3D12_CPU_DESCRIPTOR_HANDLE src) {
+		device->CopyDescriptorsSimple(1, mainAllocator->GetCpuHandle(slot), src,
+			D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+	};
+
+	// sbdClearGridShader: reuses clearGridCS.cso — UAV(u0) = sbdCellCount
+	{
+		UINT s = mainAllocator->Allocate(1);
+		copyToMain(s, sbdCellCountBuffer->GetUavCpuHandle());
+		sbdClearGridShader = ComputeShader::Create(device.Get(), "Shaders/clearGridCS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ sbdCellCountBuffer->GetResourcePtr() },
+			std::vector<P>{ sbdCellCountBuffer->GetResourcePtr() });
+	}
+
+	// sbdCountGridShader: UAV(u0-1) = [sbdPosition, sbdCellCount]
+	{
+		UINT s = mainAllocator->Allocate(2);
+		copyToMain(s,     sbdFieldBuffers[SBD_POSITION]->GetUavCpuHandle());
+		copyToMain(s + 1, sbdCellCountBuffer->GetUavCpuHandle());
+		sbdCountGridShader = ComputeShader::Create(device.Get(), "Shaders/sbdCountGridCS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ sbdFieldBuffers[SBD_POSITION]->GetResourcePtr() },
+			std::vector<P>{ sbdCellCountBuffer->GetResourcePtr() });
+	}
+
+	// Prefix-sum passes 1–5: reuse PBF prefix-sum CSOs, new SBD buffer bindings.
+	// Pass 1: [sbdCellCount, sbdCellPrefixSum, sbdGroupSum]
+	{
+		UINT s = mainAllocator->Allocate(3);
+		copyToMain(s,     sbdCellCountBuffer->GetUavCpuHandle());
+		copyToMain(s + 1, sbdCellPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 2, sbdGroupSumBuffer->GetUavCpuHandle());
+		sbdGridPass1 = ComputeShader::Create(device.Get(), "Shaders/prefixSumPass1_2CS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ sbdCellCountBuffer->GetResourcePtr() },
+			std::vector<P>{ sbdCellPrefixSumBuffer->GetResourcePtr(), sbdGroupSumBuffer->GetResourcePtr() });
+	}
+	// Pass 2: [sbdGroupSum, sbdGroupPrefixSum, sbdSuperGroupSum]
+	{
+		UINT s = mainAllocator->Allocate(3);
+		copyToMain(s,     sbdGroupSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 1, sbdGroupPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 2, sbdSuperGroupSumBuffer->GetUavCpuHandle());
+		sbdGridPass2 = ComputeShader::Create(device.Get(), "Shaders/prefixSumPass1_2CS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ sbdGroupSumBuffer->GetResourcePtr() },
+			std::vector<P>{ sbdGroupPrefixSumBuffer->GetResourcePtr(), sbdSuperGroupSumBuffer->GetResourcePtr() });
+	}
+	// Pass 3: [sbdSuperGroupSum] in-place
+	{
+		UINT s = mainAllocator->Allocate(1);
+		copyToMain(s, sbdSuperGroupSumBuffer->GetUavCpuHandle());
+		sbdGridPass3 = ComputeShader::Create(device.Get(), "Shaders/prefixSumPass3CS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ sbdSuperGroupSumBuffer->GetResourcePtr() },
+			std::vector<P>{ sbdSuperGroupSumBuffer->GetResourcePtr() });
+	}
+	// Pass 4: [sbdGroupPrefixSum, sbdSuperGroupSum]
+	{
+		UINT s = mainAllocator->Allocate(2);
+		copyToMain(s,     sbdGroupPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 1, sbdSuperGroupSumBuffer->GetUavCpuHandle());
+		sbdGridPass4 = ComputeShader::Create(device.Get(), "Shaders/prefixSumPass4_5CS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ sbdSuperGroupSumBuffer->GetResourcePtr(), sbdGroupPrefixSumBuffer->GetResourcePtr() },
+			std::vector<P>{ sbdGroupPrefixSumBuffer->GetResourcePtr() });
+	}
+	// Pass 5: [sbdCellPrefixSum, sbdGroupPrefixSum]
+	{
+		UINT s = mainAllocator->Allocate(2);
+		copyToMain(s,     sbdCellPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 1, sbdGroupPrefixSumBuffer->GetUavCpuHandle());
+		sbdGridPass5 = ComputeShader::Create(device.Get(), "Shaders/prefixSumPass4_5CS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ sbdGroupPrefixSumBuffer->GetResourcePtr(), sbdCellPrefixSumBuffer->GetResourcePtr() },
+			std::vector<P>{ sbdCellPrefixSumBuffer->GetResourcePtr() });
+	}
+
+	// sbdSortShader: UAV(u0-3) = [sbdPosition, sbdCellCount, sbdCellPrefixSum, sbdNodeList]
+	{
+		UINT s = mainAllocator->Allocate(4);
+		copyToMain(s,     sbdFieldBuffers[SBD_POSITION]->GetUavCpuHandle());
+		copyToMain(s + 1, sbdCellCountBuffer->GetUavCpuHandle());
+		copyToMain(s + 2, sbdCellPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 3, sbdNodeListBuffer->GetUavCpuHandle());
+		sbdSortShader = ComputeShader::Create(device.Get(), "Shaders/sbdSortCS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ sbdFieldBuffers[SBD_POSITION]->GetResourcePtr(),
+			                sbdCellPrefixSumBuffer->GetResourcePtr(),
+			                sbdCellCountBuffer->GetResourcePtr() },
+			std::vector<P>{ sbdNodeListBuffer->GetResourcePtr(),
+			                sbdCellCountBuffer->GetResourcePtr() });
+	}
+
+	// sbdPoreSuctionShader: UAV(u0-4) =
+	//   [fluidPredPos back, sbdPosition, sbdCellCount, sbdCellPrefixSum, sbdNodeList]
+	{
+		UINT s = mainAllocator->Allocate(5);
+		particleFieldDB[PF_PREDICTED_POSITION]->registerBackTarget(mainAllocator->GetCpuHandle(s), false);
+		copyToMain(s + 1, sbdFieldBuffers[SBD_POSITION]->GetUavCpuHandle());
+		copyToMain(s + 2, sbdCellCountBuffer->GetUavCpuHandle());
+		copyToMain(s + 3, sbdCellPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 4, sbdNodeListBuffer->GetUavCpuHandle());
+		sbdPoreSuctionShader = ComputeShader::Create(device.Get(), "Shaders/sbdPoreSuctionCS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ particleFieldDB[PF_PREDICTED_POSITION]->getBack()->GetResourcePtr(),
+			                sbdFieldBuffers[SBD_POSITION]->GetResourcePtr(),
+			                sbdCellCountBuffer->GetResourcePtr(),
+			                sbdCellPrefixSumBuffer->GetResourcePtr(),
+			                sbdNodeListBuffer->GetResourcePtr() },
+			std::vector<P>{ particleFieldDB[PF_PREDICTED_POSITION]->getBack()->GetResourcePtr() });
+	}
+}
+
+// Dispatch the SBD spatial-grid build sequence on cmd:
+//   clear → count → 5-pass prefix sum → clear → sort
+// After this, sbdCellCount[ci] = node count, sbdCellPrefixSum[ci] = cumulative offset,
+// sbdNodeList[prefix[ci]..prefix[ci]+count[ci]-1] = SBD node indices in that cell.
+void PbfApp::RecordSbdGridBuild(ID3D12GraphicsCommandList* cmd) {
+	const UINT numCells     = GRID_DIM * GRID_DIM * GRID_DIM;
+	const UINT numCellGroups = (numCells + THREAD_GROUP_SIZE - 1) / THREAD_GROUP_SIZE;
+	const UINT EPG           = THREAD_GROUP_SIZE * 2;
+	const UINT N             = numCells / EPG;       // pass-1 groups
+	const UINT M             = N / EPG;              // pass-2 groups
+	const UINT sbdNodeGroups = (SBD_NUM_NODES + THREAD_GROUP_SIZE - 1) / THREAD_GROUP_SIZE;
+
+	sbdClearGridShader->dispatch_then_barrier(cmd, numCellGroups);
+	sbdCountGridShader->dispatch_then_barrier(cmd, sbdNodeGroups);
+	sbdGridPass1->dispatch_then_barrier(cmd, N);
+	sbdGridPass2->dispatch_then_barrier(cmd, M);
+	sbdGridPass3->dispatch_then_barrier(cmd, 1);
+	sbdGridPass4->dispatch_then_barrier(cmd, M);
+	sbdGridPass5->dispatch_then_barrier(cmd, N);
+	sbdClearGridShader->dispatch_then_barrier(cmd, numCellGroups);
+	sbdSortShader->dispatch_then_barrier(cmd, sbdNodeGroups);
 }
 
 // Build the SBD node rendering pipeline, reusing the particle VS/GS/PS.
@@ -1253,6 +1433,8 @@ void PbfApp::RecordComputeCommands() {
 
 	spatialGrid->Build(computeList.Get());
 
+	if (sbdRunning) RecordSbdGridBuild(computeList.Get());
+
 	collisionPredictedPositionShader->dispatch_then_barrier(computeList.Get(), numGroups);
 
 	lod->CalculateLod(computeList.Get());
@@ -1277,6 +1459,8 @@ void PbfApp::RecordComputeCommands() {
 		positionFromScratchShader->dispatch_then_barrier(computeList.Get(), numGroups);
 		collisionPredictedPositionShader->dispatch_then_barrier(computeList.Get(), numGroups);
 	}
+
+	if (sbdRunning) sbdPoreSuctionShader->dispatch_then_barrier(computeList.Get(), numGroups);
 
 	updateVelocityShader->dispatch_then_barrier(computeList.Get(), numGroups);
 	(gsmEnabled ? gsmVorticityShader : vorticityShader)->dispatch_then_barrier(computeList.Get(), numGroups);
@@ -1673,6 +1857,7 @@ void PbfApp::BuildImGui() {
 			sbdOrionFullOrbit = true;
 		}
 		ImGui::SliderInt("Orientation", &sbdOrionIndex, 0, 23);
+		ImGui::SliderFloat("Suction Strength", &sbdSuctionStrength, 0.0f, 2.0f, "%.4f");
 		ImGui::TextDisabled("%d BCC nodes (%dx%dx%d * 2)", numSbdNodes, SBD_DIM_X, SBD_DIM_Y, SBD_DIM_Z);
 		ImGui::TextDisabled("Shaders: sbdPredictCS, sbdStrainCS, sbdUpdateVelocityCS");
 	}
@@ -1787,6 +1972,7 @@ void PbfApp::UpdateComputeCb(float dt) {
 	computeCb->viewportWidth = (float)scissorRect.right;
 	computeCb->viewportHeight = (float)scissorRect.bottom;
 	computeCb->pushRadius = (shadingMode == ShadingMode::LIQUID) ? 0.0f : PUSH_RADIUS;
+	computeCb->sbdSuctionStrength = sbdSuctionStrength;
 	computeCb.Upload();
 }
 

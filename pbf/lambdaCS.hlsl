@@ -68,8 +68,8 @@ void main(uint3 dispatchID : SV_DispatchThreadID)
             float3 ppj = predictedPosition[j];
             float3 r = pi - ppj;
             float rhosat = RHO0; // rest density
-            if (ppj.x < 0.0)
-                rhosat *= 1.0; // reduce rest density for particles on the left side of the box
+            //if (ppj.x < 0.0)
+            //    rhosat *= 1.0; // reduce rest density for particles on the left side of the box
             
             float r2 = dot(r, r);
 
@@ -96,8 +96,8 @@ void main(uint3 dispatchID : SV_DispatchThreadID)
     gradSqSum += dot(gradI, gradI); // add |grad_pi(C_i)|^2 to denominator
 
     float rhosat = RHO0; // rest density
-    if (pi.x < 0.0)
-        rhosat *= 1.0; // reduce rest density for particles on the left side of the box
+    //if (pi.x < 0.0)
+    //    rhosat *= 1.0; // reduce rest density for particles on the left side of the box
     
     // Density constraint value
     float C = rho /rhosat - 1.0; // 0 at rest density, > 0 if compressed, < 0 if sparse

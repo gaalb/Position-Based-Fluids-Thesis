@@ -36,7 +36,7 @@ cbuffer ComputeCb : register(b0)
     float pushRadius;       // offset 76: solid push-out distance; PUSH_RADIUS normally, 0 in liquid mode
     uint minLOD;            // offset 80: minimum solver iterations (farthest particles)
     uint maxLOD;            // offset 84: maximum solver iterations (= solverIterations, closest)
-    float _padA;            // offset 88
+    float sbdSuctionStrength; // offset 88: position-correction strength of SBD nodes on nearby fluid
     float _padB;            // offset 92
     float3 cameraPos;       // offset 96: camera world position for DTC LOD computation
     float _padC;            // offset 108

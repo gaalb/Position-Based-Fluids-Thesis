@@ -97,9 +97,9 @@ void main(uint3 dispatchID : SV_DispatchThreadID)
         }
     }
     deltaP /= RHO0;
-    if(pi.x < 0.0 ){
-        deltaP *= 1;
-    }
+    //if(pi.x < 0.0 ){
+    //    deltaP *= 1;
+    //}
 
     // Update the predicted position (collision response is handled by collisionCS)
     scratch[i] = pi + deltaP;
