@@ -1,3 +1,0 @@
-
-#define hashCount 13
-
