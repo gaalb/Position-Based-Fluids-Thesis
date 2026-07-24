@@ -26,6 +26,7 @@
 #include <thread>
 #include "SharedConfig.hlsli"
 #include "SoftBodyTypes.h"
+#include "HipHopAnimation.h"
 
 // CPU-side staging struct for ease of particle initialization.
 struct ParticleInitData {
@@ -61,8 +62,8 @@ struct ParticleInitData {
 class PbfApp : public AsyncComputeApp {
 protected:
 	// Fixed particle and grid constants.
-	const int particlesX = 100, particlesY = 80, particlesZ = 100; // number of particles along each axis of the initial grid
-	const int offsetX = 0, offsetY = -20, offsetZ = 0; // world space offset of the center of the initial particle grid
+	const int particlesX = 40, particlesY = 80, particlesZ = 40; // number of particles along each axis of the initial grid
+	const int offsetX = -10, offsetY = -20, offsetZ = 0; // world space offset of the center of the initial particle grid
 	const int numParticles = particlesX * particlesY * particlesZ; // total number of particles in the simulation
 	// particleSpacing and hMultiplier are constants that define the SPH kernel width h,
 	// which gives a lower bound to the spatial grid's cell width. We can use (try using...)
@@ -186,7 +187,9 @@ protected:
 	bool fpsCapped = false; // toggled from ImGui
 	bool gsmEnabled = false; // use GSM-boosted shaders for lambda, delta, vorticity, confinementViscosity
 	bool physicsRunning = false; // toggled by spacebar: when false, compute passes are skipped each frame
+	bool fluidEnabled = true;   // when false, all fluid compute and rendering passes are skipped
 	bool sbdRunning = true;     // toggles strain-based dynamics compute passes independently
+	bool sbdVisible = true;     // toggles point-sprite rendering of SBD nodes
 	bool sbdNeedsReset = false; // set by GUI Reset button; consumed at next RecordComputeCommands
 	int  sbdOrionIndex = 0;    // which of the 24 orientations to dispatch (0-11 parity=0, 12-23 parity=1)
 	bool sbdOrionFullOrbit = true;
@@ -230,6 +233,9 @@ protected:
 	ComputeShader::P sbdPoreSuctionShader;
 
 	float sbdSuctionStrength = 0.1f;
+	float sbdDragStrength    = 0.005f;
+	float sbdWallStrength = 50.0f;
+	float sbdWallFalloff  = 0.5f;
 
 	// Point-sprite rendering of SBD nodes reusing the particle VS/GS/PS.
 	Egg::Mesh::Shaded::P sbdMesh;
@@ -243,6 +249,54 @@ protected:
 	void FillSbdUploadBuffer();
 	void RecordSbdUpload();
 	void RecordSbdGridBuild(ID3D12GraphicsCommandList* cmd);
+
+	// --- Character Particle System ---
+	// N_CHAR_PARTICLES interior mesh points rigged to the character skeleton.
+	// Each frame: CPU skins them → upload heap → GPU UAV → char spatial grid →
+	//   density/suction/velocity influence on PBF fluid.
+	HipHopAnimation hipHop;
+	Float3 charModelPos = Float3(0.0f, -10.0f, 0.0f);
+	bool   charEnabled = true;
+	float  charAnimSpeed        = 1.0f;
+	float  charScale            = 0.02f;
+	float  charSuctionStrength  = 0.5f;
+	float  charVelocityStrength = 0.3f;
+
+	GpuBuffer::P charPositionBuffer;     // DEFAULT heap UAV, float3 x N_CHAR_PARTICLES
+	GpuBuffer::P charVelocityBuffer;     // DEFAULT heap UAV, float3 x N_CHAR_PARTICLES
+	GpuBuffer::P charDensityBuffer;      // DEFAULT heap UAV, float  x N_CHAR_PARTICLES
+
+	GpuBuffer::P charDummyDensityBuffer; // DEFAULT heap SRV (zero), for rendering
+	GpuBuffer::P charDummyLodBuffer;     // DEFAULT heap SRV (zero), for rendering
+
+	DoubleBufferGpuBuffer::P charPositionSnapshotDB;
+	UINT charSrvTableStart = 0;          // 3 contiguous SRVs: charPos(t0), dummyDen(t1), dummyLod(t2)
+
+	Egg::Mesh::Shaded::P charMesh;       // point-sprite rendering, reuses particleVS/GS/PS
+
+	// Char spatial grid (SBD_H cell size, same GRID_DIM^3 layout)
+	GpuBuffer::P charCellCountBuffer;
+	GpuBuffer::P charCellPrefixSumBuffer;
+	GpuBuffer::P charNodeListBuffer;
+	GpuBuffer::P charGroupSumBuffer;
+	GpuBuffer::P charGroupPrefixSumBuffer;
+	GpuBuffer::P charSuperGroupSumBuffer;
+
+	ComputeShader::P charClearGridShader;
+	ComputeShader::P charCountGridShader;
+	ComputeShader::P charGridPass1, charGridPass2, charGridPass3, charGridPass4, charGridPass5;
+	ComputeShader::P charSortShader;
+	ComputeShader::P charDensityShader;      // fluid SPH density at each char particle
+	ComputeShader::P charPosInfluenceShader; // suction: pull fluid predPos into char volume
+	ComputeShader::P charVelInfluenceShader; // drag: pull fluid velocity toward char velocity
+
+	std::string charLoadError; // set when createParticleResources fails, shown in ImGui
+
+	void InitCharParticles();
+	void BuildCharParticlePipelines();
+	void BuildCharParticleRenderPipeline();
+	void RecordCharGridBuild(ID3D12GraphicsCommandList* cmd);
+	void RecordCharInit();
 
 	// arrow key held state for external acceleration input
 	bool arrowLeft = false, arrowRight = false, arrowUp = false, arrowDown = false;

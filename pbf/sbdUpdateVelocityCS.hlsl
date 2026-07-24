@@ -1,6 +1,5 @@
 // Soft body dynamics: commit the predicted position and derive the new velocity.
-// 1. Position-level box push-out: clamp predictedPosition to [boxMin, boxMax] in case
-//    constraint iterations pushed a node outside (or it started outside after a reset).
+// 1. Hard clamp pred to [boxMin, boxMax] as a backstop against tunneling through the soft exponential wall.
 // 2. Derive velocity: v = (pred - pos) / dt  (implicit position update rule).
 // 3. Commit: position = pred.
 // Inputs : position (u0), predictedPosition (u2)
@@ -20,8 +19,6 @@ void main(uint3 id : SV_DispatchThreadID)
     if (id.x >= SBD_NUM_NODES) return;
 
     float3 pred = clamp(predictedPosition[id.x], boxMin, boxMax);
-    predictedPosition[id.x] = pred;
-
     velocity[id.x] = (pred - position[id.x]) / dt;
     position[id.x] = pred;
 }

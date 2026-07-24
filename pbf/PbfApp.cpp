@@ -38,6 +38,13 @@ void PbfApp::CreateResources() {
 	InitSoftBodyFields();
 	InitSoftBodySnapshotBuffers();
 	InitSbdGrid();
+	if (!hipHop.createParticleResources(device.Get(), "../Media/kachu.fbx", N_CHAR_PARTICLES))
+		charLoadError = "Failed to load ../Media/kachu.fbx — check Output window for Assimp error";
+	// Re-run at T=0 with the correct default scale and position so RecordCharInit seeds
+	// the snapshot buffers with valid data (createParticleResources uses scale=1, pos=0).
+	hipHop.updateCharParticles(0.0f, 0.0f,
+		XMFLOAT3(charModelPos.x, charModelPos.y, charModelPos.z), charScale);
+	InitCharParticles();
 }
 
 // Create all descriptor allocators. Must be called before any Init function
@@ -47,13 +54,13 @@ void PbfApp::InitDescriptorHeaps() {
 	imguiAllocator = DescriptorAllocator::Create(
 		device.Get(), D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, 1, /*shaderVisible*/true);
 
-	// Main shader-visible heap: 256 slots for all per-shader contiguous regions + graphics tables.
+	// Main shader-visible heap: slots for all per-shader contiguous regions + graphics tables.
 	mainAllocator = DescriptorAllocator::Create(
-		device.Get(), D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, 256, /*shaderVisible*/true);
+		device.Get(), D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, 320, /*shaderVisible*/true);
 
 	// CPU-only static heap: UAV/SRV descriptors written once; source for all CopyDescriptorsSimple calls.
 	staticAllocator = DescriptorAllocator::Create(
-		device.Get(), D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, 128, /*shaderVisible*/false);
+		device.Get(), D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV, 192, /*shaderVisible*/false);
 }
 
 void PbfApp::InitConstantBuffers() {
@@ -351,7 +358,7 @@ void PbfApp::InitSbdGrid() {
 // Both sublattices share the same world-space center.
 void PbfApp::FillSbdUploadBuffer() {
 	const float spacing = 2.0f;
-	const Float3 center(0.0f, 0.0f, 0.0f);
+	const Float3 center(0.0f, -20.0f, 0.0f);
 	// A center = (DIM-1)*spacing/2 per axis; offset places A node (0,0,0) at center - that.
 	const Float3 aOffset = center - Float3(SBD_DIM_X - 1, SBD_DIM_Y - 1, SBD_DIM_Z - 1) * (spacing * 0.5f);
 	// B starts half a spacing below A, so B node (0,0,0) = aOffset - (0.5,0.5,0.5)*spacing.
@@ -421,27 +428,39 @@ void PbfApp::BuildSoftBodyComputePipelines() {
 			D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
 	};
 
-	// sbdPredictCS: UAV(u0-2) = 3 slots (position, velocity, predictedPosition)
+	// sbdPredictCS: UAV(u0-6) = 7 slots
+	// [0]=sbdPosition, [1]=sbdVelocity, [2]=sbdPredictedPosition
+	// [3]=fluidPosition, [4]=fluidVelocity, [5]=fluidCellCount, [6]=fluidCellPrefixSum
 	{
-		UINT s = mainAllocator->Allocate(3);
+		UINT s = mainAllocator->Allocate(7);
 		copyToMain(s,     sbdFieldBuffers[SBD_POSITION]->GetUavCpuHandle());
 		copyToMain(s + 1, sbdFieldBuffers[SBD_VELOCITY]->GetUavCpuHandle());
 		copyToMain(s + 2, sbdFieldBuffers[SBD_PREDICTED_POSITION]->GetUavCpuHandle());
+		particleFieldDB[PF_POSITION]->registerBackTarget(mainAllocator->GetCpuHandle(s + 3), false);
+		particleFieldDB[PF_VELOCITY]->registerBackTarget(mainAllocator->GetCpuHandle(s + 4), false);
+		copyToMain(s + 5, spatialGrid->GetCellCountBuffer()->GetUavCpuHandle());
+		copyToMain(s + 6, spatialGrid->GetPrefixSumBuffer()->GetUavCpuHandle());
 		sbdPredictShader = ComputeShader::Create(device.Get(), "Shaders/sbdPredictCS.cso", cbv,
 			mainAllocator->GetGpuHandle(s),
 			std::vector<P>{ sbdFieldBuffers[SBD_POSITION]->GetResourcePtr(),
-			                sbdFieldBuffers[SBD_VELOCITY]->GetResourcePtr() },
+			                sbdFieldBuffers[SBD_VELOCITY]->GetResourcePtr(),
+			                particleFieldDB[PF_POSITION]->getBack()->GetResourcePtr(),
+			                particleFieldDB[PF_VELOCITY]->getBack()->GetResourcePtr(),
+			                spatialGrid->GetCellCountBuffer()->GetResourcePtr(),
+			                spatialGrid->GetPrefixSumBuffer()->GetResourcePtr() },
 			std::vector<P>{ sbdFieldBuffers[SBD_PREDICTED_POSITION]->GetResourcePtr() });
 	}
 
-	// sbdStrainCS: UAV(u0) = 1 slot (predictedPosition)
+	// sbdStrainCS: UAV(u0-1) = [predictedPosition, velocity]
 	{
-		UINT s = mainAllocator->Allocate(1);
-		copyToMain(s, sbdFieldBuffers[SBD_PREDICTED_POSITION]->GetUavCpuHandle());
+		UINT s = mainAllocator->Allocate(2);
+		copyToMain(s,     sbdFieldBuffers[SBD_PREDICTED_POSITION]->GetUavCpuHandle());
+		copyToMain(s + 1, sbdFieldBuffers[SBD_VELOCITY]->GetUavCpuHandle());
 		sbdStrainShader = ComputeShader::Create(device.Get(), "Shaders/sbdStrainCS.cso", cbv,
 			mainAllocator->GetGpuHandle(s),
-			std::vector<P>{},
-			std::vector<P>{ sbdFieldBuffers[SBD_PREDICTED_POSITION]->GetResourcePtr() });
+			std::vector<P>{ sbdFieldBuffers[SBD_VELOCITY]->GetResourcePtr() },
+			std::vector<P>{ sbdFieldBuffers[SBD_PREDICTED_POSITION]->GetResourcePtr(),
+			                sbdFieldBuffers[SBD_VELOCITY]->GetResourcePtr() });
 	}
 
 	// sbdUpdateVelocityCS: UAV(u0-2) = 3 slots (position, velocity, predictedPosition)
@@ -638,6 +657,322 @@ void PbfApp::BuildSoftBodyRenderPipeline() {
 	sbdMesh = Egg::Mesh::Shaded::Create(psoManager, material, geometry);
 }
 
+// Allocate GPU buffers for N_CHAR_PARTICLES character mesh interior points.
+void PbfApp::InitCharParticles() {
+	const UINT nChar = (UINT)hipHop.getNumCharParticles();
+	if (nChar == 0) return;
+
+	charPositionBuffer = GpuBuffer::Create(device.Get(), nChar, sizeof(Float3),
+		L"Char Position", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	charPositionBuffer->CreateUav(device.Get(), *staticAllocator);
+
+	charVelocityBuffer = GpuBuffer::Create(device.Get(), nChar, sizeof(Float3),
+		L"Char Velocity", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	charVelocityBuffer->CreateUav(device.Get(), *staticAllocator);
+
+	charDensityBuffer = GpuBuffer::Create(device.Get(), nChar, sizeof(float),
+		L"Char Density", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	charDensityBuffer->CreateUav(device.Get(), *staticAllocator);
+
+	charDummyDensityBuffer = GpuBuffer::Create(device.Get(), nChar, sizeof(float),
+		L"Char Dummy Density", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	charDummyDensityBuffer->CreateSrv(device.Get(), *staticAllocator);
+
+	charDummyLodBuffer = GpuBuffer::Create(device.Get(), nChar, sizeof(UINT),
+		L"Char Dummy LOD", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	charDummyLodBuffer->CreateSrv(device.Get(), *staticAllocator);
+
+	charPositionSnapshotDB = DoubleBufferGpuBuffer::Create(
+		device.Get(), nChar, sizeof(Float3),
+		L"Char Position Snapshot [front]", L"Char Position Snapshot [back]",
+		D3D12_RESOURCE_STATE_COMMON, *staticAllocator);
+
+	charSrvTableStart = mainAllocator->Allocate(3);
+	charPositionSnapshotDB->registerFrontTarget(mainAllocator->GetCpuHandle(charSrvTableStart), true);
+
+	const UINT nCells = GRID_DIM * GRID_DIM * GRID_DIM;
+	static constexpr UINT EPG = THREAD_GROUP_SIZE * 2;
+	const UINT numPass1Groups = nCells / EPG;
+	const UINT numPass2Groups = numPass1Groups / EPG;
+
+	charCellCountBuffer = GpuBuffer::Create(device.Get(), nCells, sizeof(UINT),
+		L"Char Cell Count", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	charCellCountBuffer->CreateUav(device.Get(), *staticAllocator);
+
+	charCellPrefixSumBuffer = GpuBuffer::Create(device.Get(), nCells, sizeof(UINT),
+		L"Char Cell Prefix Sum", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	charCellPrefixSumBuffer->CreateUav(device.Get(), *staticAllocator);
+
+	charNodeListBuffer = GpuBuffer::Create(device.Get(), nChar, sizeof(UINT),
+		L"Char Node List", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	charNodeListBuffer->CreateUav(device.Get(), *staticAllocator);
+
+	charGroupSumBuffer = GpuBuffer::Create(device.Get(), numPass1Groups, sizeof(UINT),
+		L"Char Group Sum", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	charGroupSumBuffer->CreateUav(device.Get(), *staticAllocator);
+
+	charGroupPrefixSumBuffer = GpuBuffer::Create(device.Get(), numPass1Groups, sizeof(UINT),
+		L"Char Group Prefix Sum", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	charGroupPrefixSumBuffer->CreateUav(device.Get(), *staticAllocator);
+
+	const UINT superGroupElems = std::max(numPass2Groups, 2u);
+	charSuperGroupSumBuffer = GpuBuffer::Create(device.Get(), superGroupElems, sizeof(UINT),
+		L"Char Super Group Sum", D3D12_RESOURCE_STATE_COMMON, D3D12_HEAP_TYPE_DEFAULT);
+	charSuperGroupSumBuffer->CreateUav(device.Get(), *staticAllocator);
+}
+
+// Upload initial T=0 char positions and seed both snapshot slots so particles are
+// visible before physics starts — mirrors the RecordSbdUpload() pattern.
+// Called during UploadAll() on the graphics command list.
+void PbfApp::RecordCharInit() {
+	if (!charPositionSnapshotDB) return;
+
+	const UINT64 charBytes = (UINT64)hipHop.getNumCharParticles() * sizeof(Float3);
+
+	// Copy T=0 skinned positions from upload heap → charPositionBuffer.
+	charPositionBuffer->Transition(D3D12_RESOURCE_STATE_COPY_DEST, commandList.Get());
+	commandList->CopyBufferRegion(charPositionBuffer->Get(), 0,
+		hipHop.GetCharPosUpload(), 0, charBytes);
+
+	// Seed both snapshot slots so graphics can render immediately.
+	charPositionBuffer->Transition(D3D12_RESOURCE_STATE_COPY_SOURCE, commandList.Get());
+	charPositionSnapshotDB->getFront()->Transition(D3D12_RESOURCE_STATE_COPY_DEST, commandList.Get());
+	charPositionSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_DEST, commandList.Get());
+	commandList->CopyBufferRegion(charPositionSnapshotDB->getFront()->Get(), 0,
+		charPositionBuffer->Get(), 0, charBytes);
+	commandList->CopyBufferRegion(charPositionSnapshotDB->getBack()->Get(), 0,
+		charPositionBuffer->Get(), 0, charBytes);
+
+	// Transition everything to home states.
+	charPositionBuffer->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, commandList.Get());
+	charPositionSnapshotDB->getFront()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, commandList.Get());
+	charPositionSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, commandList.Get());
+	charDummyDensityBuffer->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, commandList.Get());
+	charDummyLodBuffer->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, commandList.Get());
+	charVelocityBuffer->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, commandList.Get());
+	charDensityBuffer->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, commandList.Get());
+	charCellCountBuffer->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, commandList.Get());
+	charCellPrefixSumBuffer->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, commandList.Get());
+	charNodeListBuffer->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, commandList.Get());
+	charGroupSumBuffer->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, commandList.Get());
+	charGroupPrefixSumBuffer->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, commandList.Get());
+	charSuperGroupSumBuffer->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, commandList.Get());
+}
+
+// Wire descriptor tables for all character particle compute shaders.
+void PbfApp::BuildCharParticlePipelines() {
+	const UINT nChar = (UINT)hipHop.getNumCharParticles();
+	if (nChar == 0) return;
+
+	D3D12_GPU_VIRTUAL_ADDRESS cbv = computeCb.GetGPUVirtualAddress();
+	using P = com_ptr<ID3D12Resource>*;
+	auto copyToMain = [&](UINT slot, D3D12_CPU_DESCRIPTOR_HANDLE src) {
+		device->CopyDescriptorsSimple(1, mainAllocator->GetCpuHandle(slot), src,
+			D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+	};
+
+	// charClearGridShader: reuse clearGridCS.cso — UAV(u0) = charCellCount
+	{
+		UINT s = mainAllocator->Allocate(1);
+		copyToMain(s, charCellCountBuffer->GetUavCpuHandle());
+		charClearGridShader = ComputeShader::Create(device.Get(), "Shaders/clearGridCS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ charCellCountBuffer->GetResourcePtr() },
+			std::vector<P>{ charCellCountBuffer->GetResourcePtr() });
+	}
+
+	// charCountGridShader: UAV(u0-1) = [charPosition, charCellCount]
+	{
+		UINT s = mainAllocator->Allocate(2);
+		copyToMain(s,     charPositionBuffer->GetUavCpuHandle());
+		copyToMain(s + 1, charCellCountBuffer->GetUavCpuHandle());
+		charCountGridShader = ComputeShader::Create(device.Get(), "Shaders/charCountGridCS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ charPositionBuffer->GetResourcePtr() },
+			std::vector<P>{ charCellCountBuffer->GetResourcePtr() });
+	}
+
+	// Prefix-sum passes 1–5: reuse PBF CSOs with char grid buffers.
+	{
+		UINT s = mainAllocator->Allocate(3);
+		copyToMain(s,     charCellCountBuffer->GetUavCpuHandle());
+		copyToMain(s + 1, charCellPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 2, charGroupSumBuffer->GetUavCpuHandle());
+		charGridPass1 = ComputeShader::Create(device.Get(), "Shaders/prefixSumPass1_2CS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ charCellCountBuffer->GetResourcePtr() },
+			std::vector<P>{ charCellPrefixSumBuffer->GetResourcePtr(), charGroupSumBuffer->GetResourcePtr() });
+	}
+	{
+		UINT s = mainAllocator->Allocate(3);
+		copyToMain(s,     charGroupSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 1, charGroupPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 2, charSuperGroupSumBuffer->GetUavCpuHandle());
+		charGridPass2 = ComputeShader::Create(device.Get(), "Shaders/prefixSumPass1_2CS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ charGroupSumBuffer->GetResourcePtr() },
+			std::vector<P>{ charGroupPrefixSumBuffer->GetResourcePtr(), charSuperGroupSumBuffer->GetResourcePtr() });
+	}
+	{
+		UINT s = mainAllocator->Allocate(1);
+		copyToMain(s, charSuperGroupSumBuffer->GetUavCpuHandle());
+		charGridPass3 = ComputeShader::Create(device.Get(), "Shaders/prefixSumPass3CS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ charSuperGroupSumBuffer->GetResourcePtr() },
+			std::vector<P>{ charSuperGroupSumBuffer->GetResourcePtr() });
+	}
+	{
+		UINT s = mainAllocator->Allocate(2);
+		copyToMain(s,     charGroupPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 1, charSuperGroupSumBuffer->GetUavCpuHandle());
+		charGridPass4 = ComputeShader::Create(device.Get(), "Shaders/prefixSumPass4_5CS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ charSuperGroupSumBuffer->GetResourcePtr(), charGroupPrefixSumBuffer->GetResourcePtr() },
+			std::vector<P>{ charGroupPrefixSumBuffer->GetResourcePtr() });
+	}
+	{
+		UINT s = mainAllocator->Allocate(2);
+		copyToMain(s,     charCellPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 1, charGroupPrefixSumBuffer->GetUavCpuHandle());
+		charGridPass5 = ComputeShader::Create(device.Get(), "Shaders/prefixSumPass4_5CS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ charGroupPrefixSumBuffer->GetResourcePtr(), charCellPrefixSumBuffer->GetResourcePtr() },
+			std::vector<P>{ charCellPrefixSumBuffer->GetResourcePtr() });
+	}
+
+	// charSortShader: UAV(u0-3) = [charPosition, charCellCount, charCellPrefixSum, charNodeList]
+	{
+		UINT s = mainAllocator->Allocate(4);
+		copyToMain(s,     charPositionBuffer->GetUavCpuHandle());
+		copyToMain(s + 1, charCellCountBuffer->GetUavCpuHandle());
+		copyToMain(s + 2, charCellPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 3, charNodeListBuffer->GetUavCpuHandle());
+		charSortShader = ComputeShader::Create(device.Get(), "Shaders/charSortCS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ charPositionBuffer->GetResourcePtr(),
+			                charCellPrefixSumBuffer->GetResourcePtr(),
+			                charCellCountBuffer->GetResourcePtr() },
+			std::vector<P>{ charNodeListBuffer->GetResourcePtr(),
+			                charCellCountBuffer->GetResourcePtr() });
+	}
+
+	// charDensityShader: UAV(u0-4) = [charPosition, charDensity, fluidPredPos, fluidCellCount, fluidCellPrefixSum]
+	{
+		UINT s = mainAllocator->Allocate(5);
+		copyToMain(s,     charPositionBuffer->GetUavCpuHandle());
+		copyToMain(s + 1, charDensityBuffer->GetUavCpuHandle());
+		particleFieldDB[PF_PREDICTED_POSITION]->registerBackTarget(mainAllocator->GetCpuHandle(s + 2), false);
+		copyToMain(s + 3, spatialGrid->GetCellCountBuffer()->GetUavCpuHandle());
+		copyToMain(s + 4, spatialGrid->GetPrefixSumBuffer()->GetUavCpuHandle());
+		charDensityShader = ComputeShader::Create(device.Get(), "Shaders/charDensityCS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ charPositionBuffer->GetResourcePtr(),
+			                particleFieldDB[PF_PREDICTED_POSITION]->getBack()->GetResourcePtr(),
+			                spatialGrid->GetCellCountBuffer()->GetResourcePtr(),
+			                spatialGrid->GetPrefixSumBuffer()->GetResourcePtr() },
+			std::vector<P>{ charDensityBuffer->GetResourcePtr() });
+	}
+
+	// charPosInfluenceShader: UAV(u0-5) = [fluidPredPos, charPosition, charDensity, charCellCount, charCellPrefixSum, charNodeList]
+	{
+		UINT s = mainAllocator->Allocate(6);
+		particleFieldDB[PF_PREDICTED_POSITION]->registerBackTarget(mainAllocator->GetCpuHandle(s), false);
+		copyToMain(s + 1, charPositionBuffer->GetUavCpuHandle());
+		copyToMain(s + 2, charDensityBuffer->GetUavCpuHandle());
+		copyToMain(s + 3, charCellCountBuffer->GetUavCpuHandle());
+		copyToMain(s + 4, charCellPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 5, charNodeListBuffer->GetUavCpuHandle());
+		charPosInfluenceShader = ComputeShader::Create(device.Get(), "Shaders/charPosInfluenceCS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ particleFieldDB[PF_PREDICTED_POSITION]->getBack()->GetResourcePtr(),
+			                charPositionBuffer->GetResourcePtr(),
+			                charDensityBuffer->GetResourcePtr(),
+			                charCellCountBuffer->GetResourcePtr(),
+			                charCellPrefixSumBuffer->GetResourcePtr(),
+			                charNodeListBuffer->GetResourcePtr() },
+			std::vector<P>{ particleFieldDB[PF_PREDICTED_POSITION]->getBack()->GetResourcePtr() });
+	}
+
+	// charVelInfluenceShader: UAV(u0-6) = [fluidVelocity, fluidPosition, charPosition, charVelocity, charCellCount, charCellPrefixSum, charNodeList]
+	{
+		UINT s = mainAllocator->Allocate(7);
+		particleFieldDB[PF_VELOCITY]->registerBackTarget(mainAllocator->GetCpuHandle(s), false);
+		particleFieldDB[PF_POSITION]->registerBackTarget(mainAllocator->GetCpuHandle(s + 1), false);
+		copyToMain(s + 2, charPositionBuffer->GetUavCpuHandle());
+		copyToMain(s + 3, charVelocityBuffer->GetUavCpuHandle());
+		copyToMain(s + 4, charCellCountBuffer->GetUavCpuHandle());
+		copyToMain(s + 5, charCellPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 6, charNodeListBuffer->GetUavCpuHandle());
+		charVelInfluenceShader = ComputeShader::Create(device.Get(), "Shaders/charVelInfluenceCS.cso", cbv,
+			mainAllocator->GetGpuHandle(s),
+			std::vector<P>{ particleFieldDB[PF_VELOCITY]->getBack()->GetResourcePtr(),
+			                particleFieldDB[PF_POSITION]->getBack()->GetResourcePtr(),
+			                charPositionBuffer->GetResourcePtr(),
+			                charVelocityBuffer->GetResourcePtr(),
+			                charCellCountBuffer->GetResourcePtr(),
+			                charCellPrefixSumBuffer->GetResourcePtr(),
+			                charNodeListBuffer->GetResourcePtr() },
+			std::vector<P>{ particleFieldDB[PF_VELOCITY]->getBack()->GetResourcePtr() });
+	}
+}
+
+// Dispatch the char spatial-grid build sequence on cmd:
+//   clear → count → 5-pass prefix sum → clear → sort
+void PbfApp::RecordCharGridBuild(ID3D12GraphicsCommandList* cmd) {
+	const UINT nChar        = (UINT)hipHop.getNumCharParticles();
+	if (nChar == 0) return;
+	const UINT nCells       = GRID_DIM * GRID_DIM * GRID_DIM;
+	const UINT numCellGroups = (nCells + THREAD_GROUP_SIZE - 1) / THREAD_GROUP_SIZE;
+	const UINT EPG           = THREAD_GROUP_SIZE * 2;
+	const UINT N             = nCells / EPG;
+	const UINT M             = N / EPG;
+	const UINT charGroups    = (nChar + THREAD_GROUP_SIZE - 1) / THREAD_GROUP_SIZE;
+
+	charClearGridShader->dispatch_then_barrier(cmd, numCellGroups);
+	charCountGridShader->dispatch_then_barrier(cmd, charGroups);
+	charGridPass1->dispatch_then_barrier(cmd, N);
+	charGridPass2->dispatch_then_barrier(cmd, M);
+	charGridPass3->dispatch_then_barrier(cmd, 1);
+	charGridPass4->dispatch_then_barrier(cmd, M);
+	charGridPass5->dispatch_then_barrier(cmd, N);
+	charClearGridShader->dispatch_then_barrier(cmd, numCellGroups);
+	charSortShader->dispatch_then_barrier(cmd, charGroups);
+}
+
+// Build point-sprite rendering pipeline for char particles, reusing particleVS/GS/PS.
+void PbfApp::BuildCharParticleRenderPipeline() {
+	const UINT nChar = (UINT)hipHop.getNumCharParticles();
+	if (nChar == 0) return;
+
+	auto copyToMain = [&](UINT slot, D3D12_CPU_DESCRIPTOR_HANDLE src) {
+		device->CopyDescriptorsSimple(1, mainAllocator->GetCpuHandle(slot), src,
+			D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV);
+	};
+
+	copyToMain(charSrvTableStart + 1, charDummyDensityBuffer->GetSrvCpuHandle());
+	copyToMain(charSrvTableStart + 2, charDummyLodBuffer->GetSrvCpuHandle());
+
+	com_ptr<ID3DBlob> vertexShader   = Egg::Shader::LoadCso("Shaders/particleVS.cso");
+	com_ptr<ID3DBlob> geometryShader = Egg::Shader::LoadCso("Shaders/particleGS.cso");
+	com_ptr<ID3DBlob> pixelShader    = Egg::Shader::LoadCso("Shaders/particlePS.cso");
+	com_ptr<ID3D12RootSignature> rootSig = Egg::Shader::LoadRootSignature(device.Get(), vertexShader.Get());
+
+	Egg::Mesh::Material::P material = Egg::Mesh::Material::Create();
+	material->SetRootSignature(rootSig);
+	material->SetVertexShader(vertexShader);
+	material->SetGeometryShader(geometryShader);
+	material->SetPixelShader(pixelShader);
+	material->SetDepthStencilState(CD3DX12_DEPTH_STENCIL_DESC(D3D12_DEFAULT));
+	material->SetDSVFormat(DXGI_FORMAT_D32_FLOAT);
+	material->SetConstantBuffer(perFrameCb);
+	material->SetSrvHeap(1, mainAllocator->GetHeap(), charSrvTableStart * mainAllocator->GetDescriptorSize());
+
+	Egg::Mesh::Geometry::P geometry = Egg::Mesh::NullGeometry::Create(nChar);
+	geometry->SetTopology(D3D_PRIMITIVE_TOPOLOGY_POINTLIST);
+
+	charMesh = Egg::Mesh::Shaded::Create(psoManager, material, geometry);
+}
+
 // upload initial data to the GPU and build rendering/compute pipelines.
 void PbfApp::LoadAssets() {
 	UploadAll();
@@ -671,6 +1006,8 @@ void PbfApp::UploadAll() {
 	RecordSnapshotUpload(); // record initial state of snapshot buffers for frame 1
 	FillSbdUploadBuffer();  // CPU: generate BCC positions into the upload buffer
 	RecordSbdUpload();      // GPU: copy BCC positions to field buffer + both snapshot slots
+
+	RecordCharInit();   // transition char GPU buffers to their home states
 
 	// Pre-clear both depth texture slots to 1.0 (far plane) so the first DTVS compute frame
 	// sees valid depth data even before any graphics depth pass has run.
@@ -808,6 +1145,7 @@ void PbfApp::BuildGraphicsPipelines() {
 	BuildLiquidPipeline();
 	SetObstacleTransforms();
 	BuildSoftBodyRenderPipeline();
+	BuildCharParticleRenderPipeline();
 }
 
 // Build the background skybox rendering pipeline (shaders, material, mesh).
@@ -1074,23 +1412,34 @@ void PbfApp::BuildComputePipelines() {
 			std::vector<P>{ particleFieldDB[PF_OMEGA]->getBack()->GetResourcePtr() });
 	}
 
-	// confinementViscosityCS: UAV(u0-5) = 6 slots 
+	// confinementViscosityCS: UAV(u0-10) = 11 slots
 	// [0]=position, [1]=velocity, [2]=omega, [3]=scratch, [4]=cellCount, [5]=cellPrefixSum
+	// [6]=sbdPosition, [7]=sbdVelocity, [8]=sbdCellCount, [9]=sbdCellPrefixSum, [10]=sbdNodeList
 	{
-		UINT s = mainAllocator->Allocate(6);
+		UINT s = mainAllocator->Allocate(11);
 		particleFieldDB[PF_POSITION]->registerBackTarget(mainAllocator->GetCpuHandle(s), false);
 		particleFieldDB[PF_VELOCITY]->registerBackTarget(mainAllocator->GetCpuHandle(s + 1), false);
 		particleFieldDB[PF_OMEGA]->registerBackTarget(mainAllocator->GetCpuHandle(s + 2), false);
 		particleFieldDB[PF_SCRATCH]->registerBackTarget(mainAllocator->GetCpuHandle(s + 3), false);
 		copyToMain(s + 4, spatialGrid->GetCellCountBuffer()->GetUavCpuHandle());
 		copyToMain(s + 5, spatialGrid->GetPrefixSumBuffer()->GetUavCpuHandle());
+		copyToMain(s + 6,  sbdFieldBuffers[SBD_POSITION]->GetUavCpuHandle());
+		copyToMain(s + 7,  sbdFieldBuffers[SBD_VELOCITY]->GetUavCpuHandle());
+		copyToMain(s + 8,  sbdCellCountBuffer->GetUavCpuHandle());
+		copyToMain(s + 9,  sbdCellPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 10, sbdNodeListBuffer->GetUavCpuHandle());
 		confinementViscosityShader = ComputeShader::Create(device.Get(), "Shaders/confinementViscosityCS.cso", cbv,
 			mainAllocator->GetGpuHandle(s),
 			std::vector<P>{ particleFieldDB[PF_POSITION]->getBack()->GetResourcePtr(),
 			                particleFieldDB[PF_VELOCITY]->getBack()->GetResourcePtr(),
 			                particleFieldDB[PF_OMEGA]->getBack()->GetResourcePtr(),
 			                spatialGrid->GetCellCountBuffer()->GetResourcePtr(),
-			                spatialGrid->GetPrefixSumBuffer()->GetResourcePtr() },
+			                spatialGrid->GetPrefixSumBuffer()->GetResourcePtr(),
+			                sbdFieldBuffers[SBD_POSITION]->GetResourcePtr(),
+			                sbdFieldBuffers[SBD_VELOCITY]->GetResourcePtr(),
+			                sbdCellCountBuffer->GetResourcePtr(),
+			                sbdCellPrefixSumBuffer->GetResourcePtr(),
+			                sbdNodeListBuffer->GetResourcePtr() },
 			std::vector<P>{ particleFieldDB[PF_SCRATCH]->getBack()->GetResourcePtr() });
 	}
 
@@ -1099,6 +1448,7 @@ void PbfApp::BuildComputePipelines() {
 	lod->BuildPipelines(device.Get(), cbv, *mainAllocator, particleFieldDB);
 
 	BuildSoftBodyComputePipelines();
+	BuildCharParticlePipelines();
 
 	// splatDensityVolumeCS: SRV(t0) UAV(u0) = 2 slots 
 	// [0]=posSnapshot front SRV, [1]=densityVol UAV
@@ -1169,22 +1519,34 @@ void PbfApp::BuildComputePipelines() {
 			std::vector<P>{ particleFieldDB[PF_OMEGA]->getBack()->GetResourcePtr() });
 	}
 
-	// GSM_confinementViscosityCS: UAV(u0-5) = 6 slots
+	// GSM_confinementViscosityCS: UAV(u0-10) = 11 slots
+	// [0]=position, [1]=velocity, [2]=omega, [3]=scratch, [4]=cellCount, [5]=cellPrefixSum
+	// [6]=sbdPosition, [7]=sbdVelocity, [8]=sbdCellCount, [9]=sbdCellPrefixSum, [10]=sbdNodeList
 	{
-		UINT s = mainAllocator->Allocate(6);
+		UINT s = mainAllocator->Allocate(11);
 		particleFieldDB[PF_POSITION]->registerBackTarget(mainAllocator->GetCpuHandle(s), false);
 		particleFieldDB[PF_VELOCITY]->registerBackTarget(mainAllocator->GetCpuHandle(s + 1), false);
 		particleFieldDB[PF_OMEGA]->registerBackTarget(mainAllocator->GetCpuHandle(s + 2), false);
 		particleFieldDB[PF_SCRATCH]->registerBackTarget(mainAllocator->GetCpuHandle(s + 3), false);
 		copyToMain(s + 4, spatialGrid->GetCellCountBuffer()->GetUavCpuHandle());
 		copyToMain(s + 5, spatialGrid->GetPrefixSumBuffer()->GetUavCpuHandle());
+		copyToMain(s + 6,  sbdFieldBuffers[SBD_POSITION]->GetUavCpuHandle());
+		copyToMain(s + 7,  sbdFieldBuffers[SBD_VELOCITY]->GetUavCpuHandle());
+		copyToMain(s + 8,  sbdCellCountBuffer->GetUavCpuHandle());
+		copyToMain(s + 9,  sbdCellPrefixSumBuffer->GetUavCpuHandle());
+		copyToMain(s + 10, sbdNodeListBuffer->GetUavCpuHandle());
 		gsmConfinementViscosityShader = ComputeShader::Create(device.Get(), "Shaders/GSM_confinementViscosityCS.cso", cbv,
 			mainAllocator->GetGpuHandle(s),
 			std::vector<P>{ particleFieldDB[PF_POSITION]->getBack()->GetResourcePtr(),
 			                particleFieldDB[PF_VELOCITY]->getBack()->GetResourcePtr(),
 			                particleFieldDB[PF_OMEGA]->getBack()->GetResourcePtr(),
 			                spatialGrid->GetCellCountBuffer()->GetResourcePtr(),
-			                spatialGrid->GetPrefixSumBuffer()->GetResourcePtr() },
+			                spatialGrid->GetPrefixSumBuffer()->GetResourcePtr(),
+			                sbdFieldBuffers[SBD_POSITION]->GetResourcePtr(),
+			                sbdFieldBuffers[SBD_VELOCITY]->GetResourcePtr(),
+			                sbdCellCountBuffer->GetResourcePtr(),
+			                sbdCellPrefixSumBuffer->GetResourcePtr(),
+			                sbdNodeListBuffer->GetResourcePtr() },
 			std::vector<P>{ particleFieldDB[PF_SCRATCH]->getBack()->GetResourcePtr() });
 	}
 }
@@ -1317,6 +1679,7 @@ void PbfApp::flipDoubleBuffers() {
 	cellPrefixSumSnapshotDB->flip();
 	lod->GetParticleDepthDB()->flip();
 	sbdPositionSnapshotDB->flip();
+	if (charPositionSnapshotDB) charPositionSnapshotDB->flip();
 }
 
 // Override Render() to decouple physics (compute queue) from graphics (direct queue).
@@ -1423,17 +1786,36 @@ void PbfApp::Render() {
 void PbfApp::RecordComputeCommands() {
 	UINT numGroups = (numParticles + THREAD_GROUP_SIZE - 1) / THREAD_GROUP_SIZE;
 
+	if (fluidEnabled) {
 	// predictShader is the only shader that runs before the sort
 	// it has to, of course, because the sort is based on the *predicted* positions,
 	// which only exist after this shader has ran. However, since the sort is what produces
 	// the data in the back buffers, predictShader must write its outputs (predictedPosition)
-	// to the front buffers, which are then sorted into the back buffers by spatialGrid->Build(). 
+	// to the front buffers, which are then sorted into the back buffers by spatialGrid->Build().
 	// All subsequent shaders read from and write to the back buffers.
 	predictShader->dispatch_then_barrier(computeList.Get(), numGroups);
 
 	spatialGrid->Build(computeList.Get());
 
 	if (sbdRunning) RecordSbdGridBuild(computeList.Get());
+
+	if (charEnabled && hipHop.getNumCharParticles() > 0) {
+		const UINT nChar = (UINT)hipHop.getNumCharParticles();
+		// Upload CPU-skinned positions and velocities to GPU UAV buffers each frame.
+		charPositionBuffer->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
+		charVelocityBuffer->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
+		computeList->CopyBufferRegion(charPositionBuffer->Get(), 0,
+			hipHop.GetCharPosUpload(), 0, (UINT64)nChar * sizeof(Float3));
+		computeList->CopyBufferRegion(charVelocityBuffer->Get(), 0,
+			hipHop.GetCharVelUpload(), 0, (UINT64)nChar * sizeof(Float3));
+		charPositionBuffer->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
+		charVelocityBuffer->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
+
+		RecordCharGridBuild(computeList.Get());
+
+		const UINT charGroups = (nChar + THREAD_GROUP_SIZE - 1) / THREAD_GROUP_SIZE;
+		charDensityShader->dispatch_then_barrier(computeList.Get(), charGroups);
+	}
 
 	collisionPredictedPositionShader->dispatch_then_barrier(computeList.Get(), numGroups);
 
@@ -1461,12 +1843,17 @@ void PbfApp::RecordComputeCommands() {
 	}
 
 	if (sbdRunning) sbdPoreSuctionShader->dispatch_then_barrier(computeList.Get(), numGroups);
+	if (charEnabled && hipHop.getNumCharParticles() > 0)
+		charPosInfluenceShader->dispatch_then_barrier(computeList.Get(), numGroups);
 
 	updateVelocityShader->dispatch_then_barrier(computeList.Get(), numGroups);
 	(gsmEnabled ? gsmVorticityShader : vorticityShader)->dispatch_then_barrier(computeList.Get(), numGroups);
 	(gsmEnabled ? gsmConfinementViscosityShader : confinementViscosityShader)->dispatch_then_barrier(computeList.Get(), numGroups);
 	velocityFromScratchShader->dispatch_then_barrier(computeList.Get(), numGroups);
+	if (charEnabled && hipHop.getNumCharParticles() > 0)
+		charVelInfluenceShader->dispatch_then_barrier(computeList.Get(), numGroups);
 	updatePositionShader->dispatch_then_barrier(computeList.Get(), numGroups);
+	} // if (fluidEnabled)
 
 	if (sbdNeedsReset) {
 		sbdNeedsReset = false;
@@ -1479,6 +1866,12 @@ void PbfApp::RecordComputeCommands() {
 		computeList->CopyBufferRegion(sbdFieldBuffers[SBD_VELOCITY]->Get(), 0,
 			sbdVelocityUploadBuffer->Get(), 0, posBytes);
 		sbdFieldBuffers[SBD_VELOCITY]->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
+		// Also reset predicted position so stale/NaN values from a crashed frame don't reach the strain shader
+		// before sbdPredictCS has a chance to overwrite them.
+		sbdFieldBuffers[SBD_PREDICTED_POSITION]->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
+		computeList->CopyBufferRegion(sbdFieldBuffers[SBD_PREDICTED_POSITION]->Get(), 0,
+			sbdPositionUploadBuffer->Get(), 0, posBytes);
+		sbdFieldBuffers[SBD_PREDICTED_POSITION]->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
 	}
 
 	if (sbdRunning) {
@@ -1560,43 +1953,55 @@ void PbfApp::RecordComputeCommands() {
 }
 
 void PbfApp::WriteSnapshot() {
-	// Copy position and density into the back snapshot buffers.
-	// After this frame's flip(), back becomes the new front for graphics to read.
-	// Sorted particle data lives in back (permutateCS wrote there; flip happens CPU-side in Render()).
-	particleFieldDB[PF_POSITION]->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_SOURCE, computeList.Get());
-	particleFieldDB[PF_DENSITY]->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_SOURCE, computeList.Get());
-	positionSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
-	densitySnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
+	if (fluidEnabled) {
+		// Copy position and density into the back snapshot buffers.
+		// After this frame's flip(), back becomes the new front for graphics to read.
+		// Sorted particle data lives in back (permutateCS wrote there; flip happens CPU-side in Render()).
+		particleFieldDB[PF_POSITION]->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_SOURCE, computeList.Get());
+		particleFieldDB[PF_DENSITY]->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_SOURCE, computeList.Get());
+		positionSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
+		densitySnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
 
-	computeList->CopyBufferRegion(positionSnapshotDB->getBack()->Get(), 0,
-		particleFieldDB[PF_POSITION]->getBack()->Get(), 0, (UINT64)numParticles * sizeof(Float3));
-	computeList->CopyBufferRegion(densitySnapshotDB->getBack()->Get(), 0,
-		particleFieldDB[PF_DENSITY]->getBack()->Get(), 0, (UINT64)numParticles * sizeof(float));
+		computeList->CopyBufferRegion(positionSnapshotDB->getBack()->Get(), 0,
+			particleFieldDB[PF_POSITION]->getBack()->Get(), 0, (UINT64)numParticles * sizeof(Float3));
+		computeList->CopyBufferRegion(densitySnapshotDB->getBack()->Get(), 0,
+			particleFieldDB[PF_DENSITY]->getBack()->Get(), 0, (UINT64)numParticles * sizeof(float));
 
-	computeList->CopyBufferRegion(densityReadbackBuffer->Get(), 0,
-		particleFieldDB[PF_DENSITY]->getBack()->Get(), 0, (UINT64)numParticles * sizeof(float));
+		computeList->CopyBufferRegion(densityReadbackBuffer->Get(), 0,
+			particleFieldDB[PF_DENSITY]->getBack()->Get(), 0, (UINT64)numParticles * sizeof(float));
 
-	particleFieldDB[PF_POSITION]->getBack()->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
-	particleFieldDB[PF_DENSITY]->getBack()->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
-	positionSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, computeList.Get());
-	densitySnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, computeList.Get());
+		particleFieldDB[PF_POSITION]->getBack()->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
+		particleFieldDB[PF_DENSITY]->getBack()->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
+		positionSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, computeList.Get());
+		densitySnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, computeList.Get());
 
-	// Copy grid buffers into the back grid snapshot slots.
-	spatialGrid->GetCellCountBuffer()->Transition(D3D12_RESOURCE_STATE_COPY_SOURCE, computeList.Get());
-	spatialGrid->GetPrefixSumBuffer()->Transition(D3D12_RESOURCE_STATE_COPY_SOURCE, computeList.Get());
-	cellCountSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
-	cellPrefixSumSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
+		// Copy grid buffers into the back grid snapshot slots.
+		spatialGrid->GetCellCountBuffer()->Transition(D3D12_RESOURCE_STATE_COPY_SOURCE, computeList.Get());
+		spatialGrid->GetPrefixSumBuffer()->Transition(D3D12_RESOURCE_STATE_COPY_SOURCE, computeList.Get());
+		cellCountSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
+		cellPrefixSumSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
 
-	const UINT64 gridBufSize = (UINT64)numCells * sizeof(UINT);
-	computeList->CopyBufferRegion(cellCountSnapshotDB->getBack()->Get(), 0,
-		spatialGrid->GetCellCountBuffer()->Get(), 0, gridBufSize);
-	computeList->CopyBufferRegion(cellPrefixSumSnapshotDB->getBack()->Get(), 0,
-		spatialGrid->GetPrefixSumBuffer()->Get(), 0, gridBufSize);
+		const UINT64 gridBufSize = (UINT64)numCells * sizeof(UINT);
+		computeList->CopyBufferRegion(cellCountSnapshotDB->getBack()->Get(), 0,
+			spatialGrid->GetCellCountBuffer()->Get(), 0, gridBufSize);
+		computeList->CopyBufferRegion(cellPrefixSumSnapshotDB->getBack()->Get(), 0,
+			spatialGrid->GetPrefixSumBuffer()->Get(), 0, gridBufSize);
 
-	spatialGrid->GetCellCountBuffer()->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
-	spatialGrid->GetPrefixSumBuffer()->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
-	cellCountSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, computeList.Get());
-	cellPrefixSumSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, computeList.Get());
+		spatialGrid->GetCellCountBuffer()->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
+		spatialGrid->GetPrefixSumBuffer()->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
+		cellCountSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, computeList.Get());
+		cellPrefixSumSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, computeList.Get());
+	} // if (fluidEnabled)
+
+	// Copy char positions to the back snapshot.
+	if (charEnabled && charPositionSnapshotDB && hipHop.getNumCharParticles() > 0) {
+		charPositionBuffer->Transition(D3D12_RESOURCE_STATE_COPY_SOURCE, computeList.Get());
+		charPositionSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_COPY_DEST, computeList.Get());
+		computeList->CopyBufferRegion(charPositionSnapshotDB->getBack()->Get(), 0,
+			charPositionBuffer->Get(), 0, (UINT64)hipHop.getNumCharParticles() * sizeof(Float3));
+		charPositionBuffer->Transition(D3D12_RESOURCE_STATE_UNORDERED_ACCESS, computeList.Get());
+		charPositionSnapshotDB->getBack()->Transition(D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE, computeList.Get());
+	}
 
 	// Copy SBD positions to the back snapshot so flip() makes them available to graphics.
 	if (sbdRunning) {
@@ -1616,8 +2021,14 @@ void PbfApp::RecordGraphicsCommands() {
 
 	// Draw SBD nodes as point-sprite spheres alongside the fluid.
 	// sbdPositionSnapshotDB front is in NON_PIXEL_SHADER_RESOURCE (home state), sufficient for VS access.
-	sbdMesh->Draw(commandList.Get());
+	if (sbdVisible)
+		sbdMesh->Draw(commandList.Get());
 
+	// Draw character volume particles as point sprites.
+	if (charEnabled && charMesh)
+		charMesh->Draw(commandList.Get());
+
+	if (fluidEnabled) {
 	// Promote positionSnapshot front to pixel-visible before any draw that uses it from the pixel stage.
 	constexpr D3D12_RESOURCE_STATES SRV_ALL =
 		D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE | D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE;
@@ -1650,6 +2061,7 @@ void PbfApp::RecordGraphicsCommands() {
 	else {
 		particleMesh->Draw(commandList.Get());
 	}
+	} // if (fluidEnabled)
 }
 
 // Fill the density volume and draw the ray-marched liquid surface, all on the graphics command list.
@@ -1804,6 +2216,8 @@ void PbfApp::BuildImGui() {
 		ImGui::InputFloat("Vorticity epsilon", &vorticityEpsilon, 0.001f, 0.01f, "%.4f");
 		ImGui::InputFloat("Adhesion", &adhesion, 0.01f, 0.1f, "%.3f");
 		ImGui::PopItemWidth();
+		ImGui::Checkbox("Fluid", &fluidEnabled);
+		ImGui::SameLine();
 		ImGui::Checkbox("Fountain", &fountainEnabled);
 		ImGui::SameLine();
 		ImGui::Checkbox("FPS cap", &fpsCapped);
@@ -1852,14 +2266,33 @@ void PbfApp::BuildImGui() {
 	if (ImGui::CollapsingHeader("Soft Body")) {
 		ImGui::Checkbox("SBD running", &sbdRunning);
 		ImGui::SameLine();
+		ImGui::Checkbox("Visible", &sbdVisible);
+		ImGui::SameLine();
 		if (ImGui::Button("Reset")) sbdNeedsReset = true;
-		if (ImGui::Checkbox("Full Orbit", &sbdOrionFullOrbit)) {
-			sbdOrionFullOrbit = true;
-		}
+		ImGui::Checkbox("Full Orbit", &sbdOrionFullOrbit);
 		ImGui::SliderInt("Orientation", &sbdOrionIndex, 0, 23);
 		ImGui::SliderFloat("Suction Strength", &sbdSuctionStrength, 0.0f, 2.0f, "%.4f");
+		ImGui::SliderFloat("Drag Strength", &sbdDragStrength, 0.0f, 0.02f, "%.4f");
+		ImGui::SliderFloat("Wall Strength", &sbdWallStrength, 0.0f, 500.0f, "%.1f");
+		ImGui::SliderFloat("Wall Falloff", &sbdWallFalloff, 0.01f, 5.0f, "%.3f");
 		ImGui::TextDisabled("%d BCC nodes (%dx%dx%d * 2)", numSbdNodes, SBD_DIM_X, SBD_DIM_Y, SBD_DIM_Z);
 		ImGui::TextDisabled("Shaders: sbdPredictCS, sbdStrainCS, sbdUpdateVelocityCS");
+	}
+
+	if (ImGui::CollapsingHeader("Character Particles")) {
+		if (!charLoadError.empty()) {
+			ImGui::TextColored(ImVec4(1, 0.3f, 0.3f, 1), "%s", charLoadError.c_str());
+		} else {
+			ImGui::Checkbox("Char enabled", &charEnabled);
+			ImGui::PushItemWidth(200);
+			ImGui::DragFloat3("Model pos", &charModelPos.x, 0.1f);
+			ImGui::SliderFloat("Anim speed",        &charAnimSpeed,        0.0f, 5.0f,  "%.2f");
+			ImGui::SliderFloat("Scale",             &charScale,            0.001f, 0.2f, "%.4f");
+			ImGui::SliderFloat("Suction strength",  &charSuctionStrength,  0.0f, 5.0f, "%.3f");
+			ImGui::SliderFloat("Velocity strength", &charVelocityStrength, 0.0f, 2.0f, "%.3f");
+			ImGui::PopItemWidth();
+			ImGui::TextDisabled("%d char particles", hipHop.getNumCharParticles());
+		}
 	}
 
 	if (ImGui::CollapsingHeader("Neural Post-Process")) {
@@ -1973,6 +2406,11 @@ void PbfApp::UpdateComputeCb(float dt) {
 	computeCb->viewportHeight = (float)scissorRect.bottom;
 	computeCb->pushRadius = (shadingMode == ShadingMode::LIQUID) ? 0.0f : PUSH_RADIUS;
 	computeCb->sbdSuctionStrength = sbdSuctionStrength;
+	computeCb->sbdDragStrength    = sbdRunning ? sbdDragStrength : 0.0f;
+	computeCb->sbdWallStrength    = sbdWallStrength;
+	computeCb->sbdWallFalloff     = sbdWallFalloff;
+	computeCb->charSuctionStrength  = (charEnabled && hipHop.getNumCharParticles() > 0) ? charSuctionStrength  : 0.0f;
+	computeCb->charVelocityStrength = (charEnabled && hipHop.getNumCharParticles() > 0) ? charVelocityStrength : 0.0f;
 	computeCb.Upload();
 }
 
@@ -1982,6 +2420,9 @@ void PbfApp::Update(float dt, float T)  {
 	UpdateExternalForce();
 	UpdatePerFrameCb();
 	SetObstacleTransforms();
+	if (charEnabled && hipHop.getNumCharParticles() > 0)
+		hipHop.updateCharParticles(T * charAnimSpeed, lastDt,
+			XMFLOAT3(charModelPos.x, charModelPos.y, charModelPos.z), charScale);
 }
 
 void PbfApp::CalculateAvgDensity() {

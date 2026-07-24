@@ -37,12 +37,15 @@ cbuffer ComputeCb : register(b0)
     uint minLOD;            // offset 80: minimum solver iterations (farthest particles)
     uint maxLOD;            // offset 84: maximum solver iterations (= solverIterations, closest)
     float sbdSuctionStrength; // offset 88: position-correction strength of SBD nodes on nearby fluid
-    float _padB;            // offset 92
+    float sbdWallStrength;  // offset 92: amplitude of exponential wall-repulsion force (m/s²)
     float3 cameraPos;       // offset 96: camera world position for DTC LOD computation
-    float _padC;            // offset 108
+    float sbdWallFalloff;   // offset 108: characteristic decay distance for wall repulsion (m)
     float4x4 viewProjTransform; // offset 112: world-to-clip transform for DTVS depth projection
     // offset 176: obstacles array placed last so extending NUM_OBSTACLES only grows the tail
     ObstacleCb obstacles[NUM_OBSTACLES]; // offset 176: per-obstacle transforms and SDF bounds
+    float sbdDragStrength;      // offset 272: viscous drag pulling fluid velocity toward nearby SBD node velocities
+    float charSuctionStrength;  // offset 276: pull fluid predicted positions into character volume (deficit-weighted)
+    float charVelocityStrength; // offset 280: XSPH-style velocity matching of fluid to character animation
 };
 
 #endif

@@ -76,6 +76,9 @@
     <Filter Include="Shaders\SBD\grid">
       <UniqueIdentifier>{cafe7cf8-245b-4c69-a9e9-dad6ccffa019}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders\Compute\Character">
+      <UniqueIdentifier>{cd111bb7-64f9-4f76-ad1d-611ca51afb29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -153,6 +156,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SoftBodyTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HipHopAnimation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -314,6 +320,21 @@
     </FxCompile>
     <FxCompile Include="sbdSortCS.hlsl">
       <Filter>Shaders\SBD\grid</Filter>
+    </FxCompile>
+    <FxCompile Include="charVelInfluenceCS.hlsl">
+      <Filter>Shaders\Compute\Character</Filter>
+    </FxCompile>
+    <FxCompile Include="charPosInfluenceCS.hlsl">
+      <Filter>Shaders\Compute\Character</Filter>
+    </FxCompile>
+    <FxCompile Include="charDensityCS.hlsl">
+      <Filter>Shaders\Compute\Character</Filter>
+    </FxCompile>
+    <FxCompile Include="charSortCS.hlsl">
+      <Filter>Shaders\Compute\Character</Filter>
+    </FxCompile>
+    <FxCompile Include="charCountGridCS.hlsl">
+      <Filter>Shaders\Compute\Character</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>

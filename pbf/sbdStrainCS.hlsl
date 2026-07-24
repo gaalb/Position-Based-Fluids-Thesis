@@ -8,11 +8,12 @@
 //   bit  6:   signyz.x (1=positive, 0=negative direction for second neighbor)
 //   bit  7:   signyz.y (1=positive, 0=negative direction for third neighbor)
 //   bit  8:   parity (0 or 1, selects even/odd A-node set to avoid write conflicts)
-#define SbdStrainRootSig "CBV(b0), DescriptorTable(UAV(u0, numDescriptors=1)), RootConstants(num32BitConstants=1, b1)"
+#define SbdStrainRootSig "CBV(b0), DescriptorTable(UAV(u0, numDescriptors=2)), RootConstants(num32BitConstants=1, b1)"
 
 cbuffer SbdOrionCb : register(b1) { uint orion; };
 
 RWStructuredBuffer<float3> predictedPosition : register(u0);
+RWStructuredBuffer<float3> velocity          : register(u1);
 
 #include "ComputeCb.hlsli"
 
@@ -36,29 +37,28 @@ float3x3 get_nabla_p_Sij(const float3x3 F, const float3x3 Qi, uint i, uint j) {
 }
 
 float3x3 get_overline_nabla_p_Sij(const float3x3 F, const float3x3 Qi, float Sij, uint i, uint j) {
-	float fi2 = dot(F[i], F[i]);
-    float fili = rsqrt(fi2);
-	float fj2 = dot(F[j], F[j]);
-    float fjli = rsqrt(fj2);
+	float fi2 = dot(F[i], F[i]) + 1e-3;
+    float fili = rsqrt(fi2 + 1e-3);
+	float fj2 = dot(F[j], F[j]) + 1e-3;
+    float fjli = rsqrt(fj2 + 1e-3);
 
     float3x3 result = get_nabla_p_Sij(F, Qi, i, j);
-
-    result += (outerProduct(Qi[i], F[j]) * fj2 + outerProduct(Qi[j], F[i]) * fi2) * Sij / fi2 / fj2;
-	
+   // result -= (outerProduct(Qi[i], F[j]) * fj2 + outerProduct(Qi[j], F[i]) * fi2) * Sij / fi2 / fj2;
+//	result -= (outerProduct(Qi[i], F[j]) / fi2 + outerProduct(Qi[j], F[i]) / fj2 ) * Sij;	
 	return result * fili * fjli;
 }
 
 float get_lambda_stretch(float Sii, float sum_length_of_nabla_p_Sii) {
 	float sqrtSii = sqrt(Sii);
-	return 2.0f * sqrtSii * (sqrtSii - 1.0f) / (sum_length_of_nabla_p_Sii + 1e-6);
+	return 2.0f * sqrtSii * (sqrtSii - 1.0f) / (sum_length_of_nabla_p_Sii + 1e-3);
 }
 
 float get_lambda_shear(float Sij, float sum_length_of_nabla_p_Sij) {
-	return Sij / (sum_length_of_nabla_p_Sij + 1e-6);
+	return Sij / (sum_length_of_nabla_p_Sij + 1e-3);
 }
 
 float get_lambda_volume(float Cvol, float sum_length_of_nabla_Cvol) {
-	return Cvol / (sum_length_of_nabla_Cvol + 1e-6);
+	return Cvol / (sum_length_of_nabla_Cvol + 1e-3);
 }
 
 float3x3 get_delta_p_for_stretch(const float3x3 F, const float3x3 Qi, const float Sii, uint i) {
@@ -92,7 +92,7 @@ float3x3 get_delta_p_for_shear(const float3x3 F, const float3x3 Qi, const float 
 		squaredLength(nabla_p_Sij[0] + nabla_p_Sij[1] + nabla_p_Sij[2])
 	;
 
-	return nabla_p_Sij * -get_lambda_shear(Sij, sum_length + 1e-6);
+	return nabla_p_Sij * -get_lambda_shear(Sij, sum_length);
 	
 }
 
@@ -122,7 +122,7 @@ float3x3 get_delta_p_for_volume(const float3x3 P, const float3x3 Q) {
 		dpd1 ,
 		dpd2 ,
 		dpd3
-	) * Cvol / sum_length;
+	) * Cvol / (sum_length);
 }
 
 void executeConstraintsOnVertices(float3x3 Q, float3x3 Qi, inout float3 p0, inout float3 p1, inout float3 p2, inout float3 p3) {
@@ -132,17 +132,20 @@ void executeConstraintsOnVertices(float3x3 Q, float3x3 Qi, inout float3 p0, inou
 			p2 - p0,
 			p3 - p0
 		);
+	//if(abs(determinant(P)) < 100.0){
+	//	return;			  
+	//}
 	
 	float3x3 F = mul(Qi, P);
 	float3x3 S = mul(F, transpose(F));
 
 	//Stretch
 	float3x3 deltaP = 
-		get_delta_p_for_stretch(F, Qi, S) * 0.03
+		get_delta_p_for_stretch(F, Qi, S) * 0.03 * 10.0
 		+ 
-		get_delta_p_for_shear(F, Qi, S) * 0.02
+		get_delta_p_for_shear(F, Qi, S) * 0.02 * 10.0
 		+
-		get_delta_p_for_volume(P, Q) * 0.03
+		get_delta_p_for_volume(P, Q) * 0.03 * 10.0
 	;
 	
     p0 -= (deltaP[0] + deltaP[1] + deltaP[2]);
@@ -248,11 +251,40 @@ void main(uint tid : SV_DispatchThreadID)
 	executeConstraintsOnVertices(
 		Q,
 		Qi,
-		predictedPosition[nid] ,
+		predictedPosition[nid],
 		predictedPosition[nid + strides[axes.x]],
 		predictedPosition[qid],
 		predictedPosition[qid2]
 	);
+
+	// Velocity damping: eq. 23 from the SBD paper.
+	// n_i = dp_i / |dp_i|, alpha = sum_j(v_j . n_j), v_i -= k * alpha * n_i
+	// NOTE: currently disabled. updateVelocityCS overwrites velocity with (pred-pos)/dt
+	// after all strain passes, so any writes here are discarded. The correct fix is to
+	// apply this formula in a second constraint pass after updateVelocityCS.
+//	float3 dp0 = predictedPosition[nid]                   - p0;
+//	float3 dp1 = predictedPosition[nid + strides[axes.x]] - p1;
+//	float3 dp2 = predictedPosition[qid]                   - p2;
+//	float3 dp3 = predictedPosition[qid2]                  - p3;
+//
+//	float l0 = length(dp0), l1 = length(dp1), l2 = length(dp2), l3 = length(dp3);
+//	float3 n0 = l0 > 1e-8f ? dp0 / l0 : (float3)0;
+//	float3 n1 = l1 > 1e-8f ? dp1 / l1 : (float3)0;
+//	float3 n2 = l2 > 1e-8f ? dp2 / l2 : (float3)0;
+//	float3 n3 = l3 > 1e-8f ? dp3 / l3 : (float3)0;
+//
+//	float3 v0 = velocity[nid];
+//	float3 v1 = velocity[nid + strides[axes.x]];
+//	float3 v2 = velocity[qid];
+//	float3 v3 = velocity[qid2];
+//
+//	float alpha = dot(v0, n0) + dot(v1, n1) + dot(v2, n2) + dot(v3, n3);
+//	float k = /* sbdDampingK */ 0.5f * alpha;  // sbdDampingK was removed; replace with a dedicated CB field when re-enabling
+//
+//	velocity[nid]                   = v0 - k * n0;
+//	velocity[nid + strides[axes.x]] = v1 - k * n1;
+//	velocity[qid]                   = v2 - k * n2;
+//	velocity[qid2]                  = v3 - k * n3;
 /*	
 	float3x3 deltaP = executeConstraintsOnVertices(
 		Q,

@@ -26,19 +26,25 @@
 // In: position, velocity, omega, cellCount, cellPrefixSum
 // Out: scratch (new velocity, Jacobi mode) or velocity (Gauss-Seidel mode)
 
-#define ConfinementViscosityRootSig "CBV(b0), DescriptorTable(UAV(u0, numDescriptors = 6))"
+#define ConfinementViscosityRootSig "CBV(b0), DescriptorTable(UAV(u0, numDescriptors = 11))"
 
 #include "SharedConfig.hlsli"
 #include "ComputeCb.hlsli"
 #include "SphKernels.hlsli"
 #include "GridUtils.hlsli"
+#include "SbdGridUtils.hlsli"
 
-RWStructuredBuffer<float3> position      : register(u0);
-RWStructuredBuffer<float3> velocity      : register(u1);
-RWStructuredBuffer<float3> omega         : register(u2);
-RWStructuredBuffer<float3> scratch       : register(u3);
-RWStructuredBuffer<uint>   cellCount     : register(u4);
-RWStructuredBuffer<uint>   cellPrefixSum : register(u5);
+RWStructuredBuffer<float3> position         : register(u0);
+RWStructuredBuffer<float3> velocity         : register(u1);
+RWStructuredBuffer<float3> omega            : register(u2);
+RWStructuredBuffer<float3> scratch          : register(u3);
+RWStructuredBuffer<uint>   cellCount        : register(u4);
+RWStructuredBuffer<uint>   cellPrefixSum    : register(u5);
+RWStructuredBuffer<float3> sbdPosition      : register(u6);
+RWStructuredBuffer<float3> sbdVelocity      : register(u7);
+RWStructuredBuffer<uint>   sbdCellCount     : register(u8);
+RWStructuredBuffer<uint>   sbdCellPrefixSum : register(u9);
+RWStructuredBuffer<uint>   sbdNodeList      : register(u10);
 
 groupshared float3 gs_position[THREAD_GROUP_SIZE];
 groupshared float3 gs_velocity[THREAD_GROUP_SIZE];
@@ -112,6 +118,24 @@ void main(
         }
     }
 
+    // SBD drag: pull fluid velocity toward nearby SBD node velocities (uses original vi)
+    float3 sbdDrag = float3(0, 0, 0);
+    SbdNeighborCells sbdNhbrs = SbdNeighborCellIndices(pi);
+    for (uint dc = 0; dc < sbdNhbrs.count; dc++) {
+        uint dci = sbdNhbrs.indices[dc];
+        uint dcount = sbdCellCount[dci];
+        for (uint dn = 0; dn < dcount; dn++) {
+            uint j = sbdNodeList[sbdCellPrefixSum[dci] + dn];
+            float3 r = pi - sbdPosition[j];
+            float dist2 = dot(r, r);
+            if (dist2 < SBD_H * SBD_H) {
+                float t = 1.0f - dist2 / (SBD_H * SBD_H);
+                float w = 3.0f * t * t - 2.0f * t * t * t; // smoothstep
+                sbdDrag += (sbdVelocity[j] - vi) * w;
+            }
+        }
+    }
+
     // Confinement
     float etaLen = length(eta);
     if (etaLen >= 1e-6)
@@ -120,6 +144,5 @@ void main(
         vi += dt * vorticityEpsilon * cross(N, omegaI);
     }
 
-    // Viscosity + write
-    scratch[i] = vi + viscosity * xsphSum;
+    scratch[i] = vi + viscosity * xsphSum + sbdDragStrength * sbdDrag;
 }

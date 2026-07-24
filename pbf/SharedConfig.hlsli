@@ -73,15 +73,19 @@
 // BCC soft body dynamics grid dimensions.
 // Nodes: sublattice A at integer (i,j,k)*spacing, sublattice B at (i+0.5,j+0.5,k+0.5)*spacing.
 // Total node count = 2 * SBD_DIM_X * SBD_DIM_Y * SBD_DIM_Z.
-#define SBD_DIM_X 3
-#define SBD_DIM_Y 3
-#define SBD_DIM_Z 3
+#define SBD_DIM_X 7
+#define SBD_DIM_Y 7
+#define SBD_DIM_Z 7
 #define SBD_NUM_CUBIC_NODES (SBD_DIM_X * SBD_DIM_Y * SBD_DIM_Z)
 #define SBD_NUM_NODES (SBD_NUM_CUBIC_NODES + (SBD_DIM_X+1) * (SBD_DIM_Y+1) * (SBD_DIM_Z+1))
 
 // SBD spatial-grid influence radius. Larger than the PBF smoothing radius H so that
 // fluid particles can feel suction from SBD nodes even when the BCC lattice spacing (1 m)
 // exceeds H. Cell size = SBD_H (one cell per radius), reusing GRID_DIM^3 cells.
-#define SBD_H 2.0f
+#define SBD_H 2.5f
+
+// Number of volume particles seeded inside the animated character mesh.
+// Used as bounds check in character grid / density / influence shaders.
+#define N_CHAR_PARTICLES 512
 
 #endif
